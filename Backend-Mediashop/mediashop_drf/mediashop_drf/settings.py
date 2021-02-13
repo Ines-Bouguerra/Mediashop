@@ -60,7 +60,7 @@ MIDDLEWARE = [
 
 CORS_ORIGIN_ALLOW_ALL = False
 CORS_ORIGIN_WHITELIST = (
-	  'http://localhost:8081',
+    'http://localhost:8081',
 )
 
 ROOT_URLCONF = 'mediashop_drf.urls'
@@ -90,7 +90,7 @@ WSGI_APPLICATION = 'mediashop_drf.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'designmycodes_db',
+        'NAME': 'mediashop_db',
                   'HOST': '127.0.0.1',
                   'PORT': 27017,
     }
