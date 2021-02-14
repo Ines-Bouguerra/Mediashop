@@ -11,10 +11,21 @@ from rest_framework.decorators import api_view
 
 @api_view(['GET', 'POST', 'DELETE'])
 def product_list(request):
+    # GET list of tutorials, POST a new tutorial, DELETE all tutorials
     if request.method == 'GET':
         products = Product.objects.all()
+
         name = request.GET.get('name', None)
         if name is not None:
             products = products.filter(title__icontains=name)
-        products_Serializer = products_Serializer(products, many=True)
-        return JsonResponse(products_Serializer.data, safe=False)
+
+        products__Serializer = products_Serializer(products, many=True)
+        return JsonResponse(products__Serializer.data, safe=False)
+        # 'safe=False' for objects serialization
+    elif request.method == 'POST':
+        product_data = JSONParser().parse(request)
+        products__Serializer = products_Serializer(data=product_data)
+        if products__Serializer.is_valid():
+            products__Serializer.save()
+            return JsonResponse(products__Serializer.data, status=status.HTTP_201_CREATED)
+        return JsonResponse(products__Serializer.errors, status=status.HTTP_400_BAD_REQUEST)
