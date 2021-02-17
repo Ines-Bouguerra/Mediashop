@@ -8,7 +8,7 @@ class Product(models.Model):
     description = models.TextField(max_length=255)
     domaine = models.CharField(max_length=255)
     name = models.CharField(max_length=255, blank=False)
-    reference = models.CharField(max_length=255, blank=False)
+    reference = models.TextField()
     discount = models.CharField(max_length=255)
     url = models.URLField(blank=False)
     timestamp = models.DateField(auto_now_add=True)
@@ -22,5 +22,8 @@ class Product(models.Model):
     country = models.CharField(max_length=255)
     short_description = models.TextField(max_length=255, unique=True)
     old_price = models.FloatField()
-    image = models.URLField( blank=False)
+    image = models.URLField(blank=False)
     marketplaceId = models.CharField(max_length=255, blank=False)
+
+    def __str__(self):
+        return '%s' % self.name

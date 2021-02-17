@@ -51,3 +51,14 @@ class ProductDocument(Document):
         # Paginate the django queryset used to populate the index with the specified size
         # (by default it uses the database driver's default setting)
         # queryset_pagination = 5000
+
+
+# Bulk indexing function, run in shell
+from elasticsearch_dsl.connections import connections
+from elasticsearch.helpers import bulk
+from elasticsearch import Elasticsearch
+from . import models
+def bulk_indexing():
+    ProductDocument.init()
+    es = Elasticsearch()
+    bulk(client=es, actions=(b.indexing() for b in models.Product.objects.all().iterator()))

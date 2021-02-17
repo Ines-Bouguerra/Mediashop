@@ -6,6 +6,8 @@ from rest_framework import status
 from products.models import Product
 from products.serializers import products_Serializer
 from rest_framework.decorators import api_view
+from products.documents import ProductDocument
+from django.http import HttpResponse
 # Create your views here.
 
 
@@ -29,3 +31,13 @@ def product_list(request):
             products__Serializer.save()
             return JsonResponse(products__Serializer.data, status=status.HTTP_201_CREATED)
         return JsonResponse(products__Serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+# def search(request):
+#     q=request.GET.get('q')
+    
+#     if q:
+#         mediashop_products=ProductDocument.search().query("match",name=q)
+#     else:
+#         mediashop_products=''
+
+#     return JsonResponse({'products':mediashop_products})
