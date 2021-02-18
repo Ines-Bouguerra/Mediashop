@@ -1,4 +1,5 @@
 # documents.py
+from . import models
 from django_elasticsearch_dsl import Document
 from django_elasticsearch_dsl.registries import registry
 from .models import Product
@@ -53,12 +54,4 @@ class ProductDocument(Document):
         # queryset_pagination = 5000
 
 
-# Bulk indexing function, run in shell
-from elasticsearch_dsl.connections import connections
-from elasticsearch.helpers import bulk
-from elasticsearch import Elasticsearch
-from . import models
-def bulk_indexing():
-    ProductDocument.init()
-    es = Elasticsearch()
-    bulk(client=es, actions=(b.indexing() for b in models.Product.objects.all().iterator()))
+
