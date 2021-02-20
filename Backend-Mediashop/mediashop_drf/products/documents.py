@@ -1,6 +1,5 @@
 # documents.py
-from . import models
-from django_elasticsearch_dsl import Document
+from django_elasticsearch_dsl import Document, fields
 from django_elasticsearch_dsl.registries import registry
 from .models import Product
 
@@ -52,6 +51,3 @@ class ProductDocument(Document):
         # Paginate the django queryset used to populate the index with the specified size
         # (by default it uses the database driver's default setting)
         # queryset_pagination = 5000
-
-
-

@@ -1,3 +1,4 @@
+from .search import lookup
 from django.shortcuts import render
 from django.http.response import JsonResponse
 from rest_framework.parsers import JSONParser
@@ -8,6 +9,7 @@ from products.serializers import products_Serializer
 from rest_framework.decorators import api_view
 from products.documents import ProductDocument
 from django.http import HttpResponse
+from django.http import Http404
 # Create your views here.
 
 
@@ -32,12 +34,24 @@ def product_list(request):
             return JsonResponse(products__Serializer.data, status=status.HTTP_201_CREATED)
         return JsonResponse(products__Serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-# def search(request):
-#     q=request.GET.get('q')
-    
-#     if q:
-#         mediashop_products=ProductDocument.search().query("match",name=q)
-#     else:
-#         mediashop_products=''
 
-#     return JsonResponse({'products':mediashop_products})
+def index(request):
+    try:
+        latest_product_list = Product.objects.order_by('price')[:2]
+        output = ', '.join([q.short_description for q in latest_product_list])
+    except Product.DoesNotExist:
+        raise Http404("Product does not exist")
+    return JsonResponse(output, safe=False)
+
+
+def search_view(request):
+    query_params = request.GET
+    q = query_params.get('q')
+
+    context = {}
+
+    if q is not None:
+        results = lookup(q)
+        context['results'] = results
+        context['query'] = q
+    return JsonResponse(context)
