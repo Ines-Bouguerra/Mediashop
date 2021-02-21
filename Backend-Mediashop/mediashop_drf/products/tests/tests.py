@@ -10,3 +10,6 @@ class ProductModelTests(TestCase):
 
     def test_search_products(self):
         pass
+
+    def test_product_has_an_client(self):
+        pass
