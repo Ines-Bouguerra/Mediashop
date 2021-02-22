@@ -1,11 +1,14 @@
-import "./App.css";
 import React, { Component } from 'react';
-import Header from './components/header/header';
+import Header from './components/header/Header';
+import Footer from './components/footer/Footer';
+
 class App extends Component {
   render() {
     return (
-      <div><Header /></div>
-
+      <div>
+        <Header />
+        <Footer />
+      </div>
     )
   }
 }
