@@ -18,19 +18,19 @@ class Header extends Component {
                     <div className="top_bar_menu">
                       <ul className="standard_dropdown top_bar_dropdown">
                         <li>
-                          <a href="url">English<i className="fas fa-chevron-down" /></a>
+                          <a href="#">English<i className="fas fa-chevron-down" /></a>
                           <ul>
-                            <li><a href="url">Arabic</a></li>
-                            <li><a href="url">French</a></li>
-                            <li><a href="url">Deutch</a></li>
+                            <li><a href="#">Arabic</a></li>
+                            <li><a href="#">French</a></li>
+                            <li><a href="#">Deutch</a></li>
                           </ul>
                         </li>
                       </ul>
                     </div>
                     <div className="top_bar_user">
                       <div className="user_icon"><img src="images/user.svg" alt="" /></div>
-                      <div><a href="url">Register</a></div>
-                      <div><a href="url">Sign in</a></div>
+                      <div><a href="#">Register</a></div>
+                      <div><a href="#">Sign in</a></div>
                     </div>
                   </div>
                 </div>
@@ -44,7 +44,7 @@ class Header extends Component {
                 {/* Logo */}
                 <div className="col-lg-2 col-sm-3 col-3 order-1">
                   <div className="logo_container">
-                    <div className="logo"><a href="url">MediaShop</a></div>
+                    <div className="logo"><a href="#">MediaShop</a></div>
                   </div>
                 </div>
                 {/* Search */}
@@ -52,19 +52,19 @@ class Header extends Component {
                   <div className="header_search">
                     <div className="header_search_content">
                       <div className="header_search_form_container">
-                        <form action="url" className="header_search_form clearfix">
+                        <form action="#" className="header_search_form clearfix">
                           <input type="search" required="required" className="header_search_input" placeholder="Search for products..." />
                           <div className="custom_dropdown">
                             <div className="custom_dropdown_list">
                               <span className="custom_dropdown_placeholder clc">All Categories</span>
                               <i className="fas fa-chevron-down" />
                               <ul className="custom_list clc">
-                                <li><a className="clc" href="url">All Categories</a></li>
-                                <li><a className="clc" href="url">Computers</a></li>
-                                <li><a className="clc" href="url">Laptops</a></li>
-                                <li><a className="clc" href="url">Cameras</a></li>
-                                <li><a className="clc" href="url">Hardware</a></li>
-                                <li><a className="clc" href="url">Smartphones</a></li>
+                                <li><a className="clc" href="#">All Categories</a></li>
+                                <li><a className="clc" href="#">Computers</a></li>
+                                <li><a className="clc" href="#">Laptops</a></li>
+                                <li><a className="clc" href="#">Cameras</a></li>
+                                <li><a className="clc" href="#">Hardware</a></li>
+                                <li><a className="clc" href="#">Smartphones</a></li>
                               </ul>
                             </div>
                           </div>
@@ -80,7 +80,7 @@ class Header extends Component {
                     <div className="wishlist d-flex flex-row align-items-center justify-content-end">
                       <div className="wishlist_icon"><img src="images/heart.png" alt="" /></div>
                       <div className="wishlist_content">
-                        <div className="wishlist_text"><a href="url">Wishlist</a></div>
+                        <div className="wishlist_text"><a href="#">Wishlist</a></div>
                         <div className="wishlist_count">115</div>
                       </div>
                     </div>
@@ -102,71 +102,71 @@ class Header extends Component {
                         <div className="cat_menu_text">categories</div>
                       </div>
                       <ul className="cat_menu">
-                        <li><a href="url">Computers &amp; Laptops <i className="fas fa-chevron-right ml-auto" /></a></li>
-                        <li><a href="url">Cameras &amp; Photos<i className="fas fa-chevron-right" /></a></li>
+                        <li><a href="#">Computers &amp; Laptops <i className="fas fa-chevron-right ml-auto" /></a></li>
+                        <li><a href="#">Cameras &amp; Photos<i className="fas fa-chevron-right" /></a></li>
                         <li className="hassubs">
-                          <a href="url">Hardware<i className="fas fa-chevron-right" /></a>
+                          <a href="#">Hardware<i className="fas fa-chevron-right" /></a>
                           <ul>
                             <li className="hassubs">
-                              <a href="url">Menu Item<i className="fas fa-chevron-right" /></a>
+                              <a href="#">Menu Item<i className="fas fa-chevron-right" /></a>
                               <ul>
-                                <li><a href="url">Menu Item<i className="fas fa-chevron-right" /></a></li>
-                                <li><a href="url">Menu Item<i className="fas fa-chevron-right" /></a></li>
-                                <li><a href="url">Menu Item<i className="fas fa-chevron-right" /></a></li>
-                                <li><a href="url">Menu Item<i className="fas fa-chevron-right" /></a></li>
+                                <li><a href="#">Menu Item<i className="fas fa-chevron-right" /></a></li>
+                                <li><a href="#">Menu Item<i className="fas fa-chevron-right" /></a></li>
+                                <li><a href="#">Menu Item<i className="fas fa-chevron-right" /></a></li>
+                                <li><a href="#">Menu Item<i className="fas fa-chevron-right" /></a></li>
                               </ul>
                             </li>
-                            <li><a href="url">Menu Item<i className="fas fa-chevron-right" /></a></li>
-                            <li><a href="url">Menu Item<i className="fas fa-chevron-right" /></a></li>
-                            <li><a href="url">Menu Item<i className="fas fa-chevron-right" /></a></li>
+                            <li><a href="#">Menu Item<i className="fas fa-chevron-right" /></a></li>
+                            <li><a href="#">Menu Item<i className="fas fa-chevron-right" /></a></li>
+                            <li><a href="#">Menu Item<i className="fas fa-chevron-right" /></a></li>
                           </ul>
                         </li>
-                        <li><a href="url">Smartphones &amp; Tablets<i className="fas fa-chevron-right" /></a></li>
-                        <li><a href="url">TV &amp; Audio<i className="fas fa-chevron-right" /></a></li>
-                        <li><a href="url">Gadgets<i className="fas fa-chevron-right" /></a></li>
-                        <li><a href="url">Car Electronics<i className="fas fa-chevron-right" /></a></li>
-                        <li><a href="url">Video Games &amp; Consoles<i className="fas fa-chevron-right" /></a></li>
-                        <li><a href="url">Accessories<i className="fas fa-chevron-right" /></a></li>
+                        <li><a href="#">Smartphones &amp; Tablets<i className="fas fa-chevron-right" /></a></li>
+                        <li><a href="#">TV &amp; Audio<i className="fas fa-chevron-right" /></a></li>
+                        <li><a href="#">Gadgets<i className="fas fa-chevron-right" /></a></li>
+                        <li><a href="#">Car Electronics<i className="fas fa-chevron-right" /></a></li>
+                        <li><a href="#">Video Games &amp; Consoles<i className="fas fa-chevron-right" /></a></li>
+                        <li><a href="#">Accessories<i className="fas fa-chevron-right" /></a></li>
                       </ul>
                     </div>
                     {/* Main Nav Menu */}
                     <div className="main_nav_menu ml-auto">
                       <ul className="standard_dropdown main_nav_dropdown">
-                        <li><a href="url">Home<i className="fas fa-chevron-down" /></a></li>
+                        <li><a href="#">Home<i className="fas fa-chevron-down" /></a></li>
                         <li className="hassubs">
-                          <a href="url">Super Deals<i className="fas fa-chevron-down" /></a>
+                          <a href="#">Super Deals<i className="fas fa-chevron-down" /></a>
                           <ul>
                             <li>
-                              <a href="url">Menu Item<i className="fas fa-chevron-down" /></a>
+                              <a href="#">Menu Item<i className="fas fa-chevron-down" /></a>
                               <ul>
-                                <li><a href="url">Menu Item<i className="fas fa-chevron-down" /></a></li>
-                                <li><a href="url">Menu Item<i className="fas fa-chevron-down" /></a></li>
-                                <li><a href="url">Menu Item<i className="fas fa-chevron-down" /></a></li>
+                                <li><a href="#">Menu Item<i className="fas fa-chevron-down" /></a></li>
+                                <li><a href="#">Menu Item<i className="fas fa-chevron-down" /></a></li>
+                                <li><a href="#">Menu Item<i className="fas fa-chevron-down" /></a></li>
                               </ul>
                             </li>
-                            <li><a href="url">Menu Item<i className="fas fa-chevron-down" /></a></li>
-                            <li><a href="url">Menu Item<i className="fas fa-chevron-down" /></a></li>
-                            <li><a href="url">Menu Item<i className="fas fa-chevron-down" /></a></li>
+                            <li><a href="#">Menu Item<i className="fas fa-chevron-down" /></a></li>
+                            <li><a href="#">Menu Item<i className="fas fa-chevron-down" /></a></li>
+                            <li><a href="#">Menu Item<i className="fas fa-chevron-down" /></a></li>
                           </ul>
                         </li>
                         <li className="hassubs">
-                          <a href="url">Featured Brands<i className="fas fa-chevron-down" /></a>
+                          <a href="#">Featured Brands<i className="fas fa-chevron-down" /></a>
                           <ul>
                             <li>
-                              <a href="url">Menu Item<i className="fas fa-chevron-down" /></a>
+                              <a href="#">Menu Item<i className="fas fa-chevron-down" /></a>
                               <ul>
-                                <li><a href="url">Menu Item<i className="fas fa-chevron-down" /></a></li>
-                                <li><a href="url">Menu Item<i className="fas fa-chevron-down" /></a></li>
-                                <li><a href="url">Menu Item<i className="fas fa-chevron-down" /></a></li>
+                                <li><a href="#">Menu Item<i className="fas fa-chevron-down" /></a></li>
+                                <li><a href="#">Menu Item<i className="fas fa-chevron-down" /></a></li>
+                                <li><a href="#">Menu Item<i className="fas fa-chevron-down" /></a></li>
                               </ul>
                             </li>
-                            <li><a href="url">Menu Item<i className="fas fa-chevron-down" /></a></li>
-                            <li><a href="url">Menu Item<i className="fas fa-chevron-down" /></a></li>
-                            <li><a href="url">Menu Item<i className="fas fa-chevron-down" /></a></li>
+                            <li><a href="#">Menu Item<i className="fas fa-chevron-down" /></a></li>
+                            <li><a href="#">Menu Item<i className="fas fa-chevron-down" /></a></li>
+                            <li><a href="#">Menu Item<i className="fas fa-chevron-down" /></a></li>
                           </ul>
                         </li>
                         <li className="hassubs">
-                          <a href="url">Pages<i className="fas fa-chevron-down" /></a>
+                          <a href="#">Pages<i className="fas fa-chevron-down" /></a>
                           <ul>
                             <li><a href="shop.html">Shop<i className="fas fa-chevron-down" /></a></li>
                             <li><a href="product.html">Product<i className="fas fa-chevron-down" /></a></li>
@@ -201,66 +201,66 @@ class Header extends Component {
                 <div className="col">
                   <div className="page_menu_content">
                     <div className="page_menu_search">
-                      <form action="url">
+                      <form action="#">
                         <input type="search" required="required" className="page_menu_search_input" placeholder="Search for products..." />
                       </form>
                     </div>
                     <ul className="page_menu_nav">
                       <li className="page_menu_item has-children">
-                        <a href="url">Language<i className="fa fa-angle-down" /></a>
+                        <a href="#">Language<i className="fa fa-angle-down" /></a>
                         <ul className="page_menu_selection">
-                          <li><a href="url">English<i className="fa fa-angle-down" /></a></li>
-                          <li><a href="url">Italian<i className="fa fa-angle-down" /></a></li>
-                          <li><a href="url">Spanish<i className="fa fa-angle-down" /></a></li>
-                          <li><a href="url">Japanese<i className="fa fa-angle-down" /></a></li>
+                          <li><a href="#">English<i className="fa fa-angle-down" /></a></li>
+                          <li><a href="#">Italian<i className="fa fa-angle-down" /></a></li>
+                          <li><a href="#">Spanish<i className="fa fa-angle-down" /></a></li>
+                          <li><a href="#">Japanese<i className="fa fa-angle-down" /></a></li>
                         </ul>
                       </li>
                       <li className="page_menu_item has-children">
-                        <a href="url">Currency<i className="fa fa-angle-down" /></a>
+                        <a href="#">Currency<i className="fa fa-angle-down" /></a>
                         <ul className="page_menu_selection">
-                          <li><a href="url">US Dollar<i className="fa fa-angle-down" /></a></li>
-                          <li><a href="url">EUR Euro<i className="fa fa-angle-down" /></a></li>
-                          <li><a href="url">GBP British Pound<i className="fa fa-angle-down" /></a></li>
-                          <li><a href="url">JPY Japanese Yen<i className="fa fa-angle-down" /></a></li>
+                          <li><a href="#">US Dollar<i className="fa fa-angle-down" /></a></li>
+                          <li><a href="#">EUR Euro<i className="fa fa-angle-down" /></a></li>
+                          <li><a href="#">GBP British Pound<i className="fa fa-angle-down" /></a></li>
+                          <li><a href="#">JPY Japanese Yen<i className="fa fa-angle-down" /></a></li>
                         </ul>
                       </li>
                       <li className="page_menu_item">
-                        <a href="url">Home<i className="fa fa-angle-down" /></a>
+                        <a href="#">Home<i className="fa fa-angle-down" /></a>
                       </li>
                       <li className="page_menu_item has-children">
-                        <a href="url">Super Deals<i className="fa fa-angle-down" /></a>
+                        <a href="#">Super Deals<i className="fa fa-angle-down" /></a>
                         <ul className="page_menu_selection">
-                          <li><a href="url">Super Deals<i className="fa fa-angle-down" /></a></li>
+                          <li><a href="#">Super Deals<i className="fa fa-angle-down" /></a></li>
                           <li className="page_menu_item has-children">
-                            <a href="url">Menu Item<i className="fa fa-angle-down" /></a>
+                            <a href="#">Menu Item<i className="fa fa-angle-down" /></a>
                             <ul className="page_menu_selection">
-                              <li><a href="url">Menu Item<i className="fa fa-angle-down" /></a></li>
-                              <li><a href="url">Menu Item<i className="fa fa-angle-down" /></a></li>
-                              <li><a href="url">Menu Item<i className="fa fa-angle-down" /></a></li>
-                              <li><a href="url">Menu Item<i className="fa fa-angle-down" /></a></li>
+                              <li><a href="#">Menu Item<i className="fa fa-angle-down" /></a></li>
+                              <li><a href="#">Menu Item<i className="fa fa-angle-down" /></a></li>
+                              <li><a href="#">Menu Item<i className="fa fa-angle-down" /></a></li>
+                              <li><a href="#">Menu Item<i className="fa fa-angle-down" /></a></li>
                             </ul>
                           </li>
-                          <li><a href="url">Menu Item<i className="fa fa-angle-down" /></a></li>
-                          <li><a href="url">Menu Item<i className="fa fa-angle-down" /></a></li>
-                          <li><a href="url">Menu Item<i className="fa fa-angle-down" /></a></li>
+                          <li><a href="#">Menu Item<i className="fa fa-angle-down" /></a></li>
+                          <li><a href="#">Menu Item<i className="fa fa-angle-down" /></a></li>
+                          <li><a href="#">Menu Item<i className="fa fa-angle-down" /></a></li>
                         </ul>
                       </li>
                       <li className="page_menu_item has-children">
-                        <a href="url">Featured Brands<i className="fa fa-angle-down" /></a>
+                        <a href="#">Featured Brands<i className="fa fa-angle-down" /></a>
                         <ul className="page_menu_selection">
-                          <li><a href="url">Featured Brands<i className="fa fa-angle-down" /></a></li>
-                          <li><a href="url">Menu Item<i className="fa fa-angle-down" /></a></li>
-                          <li><a href="url">Menu Item<i className="fa fa-angle-down" /></a></li>
-                          <li><a href="url">Menu Item<i className="fa fa-angle-down" /></a></li>
+                          <li><a href="#">Featured Brands<i className="fa fa-angle-down" /></a></li>
+                          <li><a href="#">Menu Item<i className="fa fa-angle-down" /></a></li>
+                          <li><a href="#">Menu Item<i className="fa fa-angle-down" /></a></li>
+                          <li><a href="#">Menu Item<i className="fa fa-angle-down" /></a></li>
                         </ul>
                       </li>
                       <li className="page_menu_item has-children">
-                        <a href="url">Trending Styles<i className="fa fa-angle-down" /></a>
+                        <a href="#">Trending Styles<i className="fa fa-angle-down" /></a>
                         <ul className="page_menu_selection">
-                          <li><a href="url">Trending Styles<i className="fa fa-angle-down" /></a></li>
-                          <li><a href="url">Menu Item<i className="fa fa-angle-down" /></a></li>
-                          <li><a href="url">Menu Item<i className="fa fa-angle-down" /></a></li>
-                          <li><a href="url">Menu Item<i className="fa fa-angle-down" /></a></li>
+                          <li><a href="#">Trending Styles<i className="fa fa-angle-down" /></a></li>
+                          <li><a href="#">Menu Item<i className="fa fa-angle-down" /></a></li>
+                          <li><a href="#">Menu Item<i className="fa fa-angle-down" /></a></li>
+                          <li><a href="#">Menu Item<i className="fa fa-angle-down" /></a></li>
                         </ul>
                       </li>
                       <li className="page_menu_item"><a href="blog.html">blog<i className="fa fa-angle-down" /></a></li>
