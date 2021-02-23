@@ -8,6 +8,7 @@ class App extends Component {
       <div class="super_container">
         <Header />
         <Footer />
+        
       </div>
     )
   }

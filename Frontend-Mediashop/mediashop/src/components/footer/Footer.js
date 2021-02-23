@@ -11,13 +11,13 @@ export default class Footer extends Component {
                             <div className="col-lg-3 footer_col">
                                 <div className="footer_column footer_contact">
                                     <div className="logo_container">
-                                        <div className="logo"><a href="url">OneTech</a></div>
+                                        <div className="logo"><a href="url">MediaShop</a></div>
                                     </div>
                                     <div className="footer_title">Got Question? Call Us 24/7</div>
-                                    <div className="footer_phone">+38 068 005 3570</div>
+                                    <div className="footer_phone">71 827 484</div>
                                     <div className="footer_contact_text">
-                                        <p>17 Princess Road, London</p>
-                                        <p>Grester London NW18JR, UK</p>
+                                        <p>Av. Hédi Nouira, Immeuble MAYA D1 ENNASR</p>
+                                        <p>II 2037, Tunis - Tunisie</p>
                                     </div>
                                     <div className="footer_social">
                                         <ul>
@@ -80,17 +80,8 @@ export default class Footer extends Component {
                         <div className="row">
                             <div className="col">
                                 <div className="copyright_container d-flex flex-sm-row flex-column align-items-center justify-content-start">
-                                    <div className="copyright_content">{/* Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. */}
-              Copyright © All rights reserved | This template is made with <i className="fa fa-heart" aria-hidden="true" /> by <a href="https://colorlib.com" >Colorlib</a>
-                                        {/* Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. */}
-                                    </div>
-                                    <div className="logos ml-sm-auto">
-                                        <ul className="logos_list">
-                                            <li><a href="url"><img src="images/logos_1.png" alt="" /></a></li>
-                                            <li><a href="url"><img src="images/logos_2.png" alt="" /></a></li>
-                                            <li><a href="url"><img src="images/logos_3.png" alt="" /></a></li>
-                                            <li><a href="url"><img src="images/logos_4.png" alt="" /></a></li>
-                                        </ul>
+                                    <div className="copyright_content">
+                                        Copyright © All rights reserved | Medianet <i className="fa fa-heart" aria-hidden="true" /> by <a href="https://www.medianet.tn/fr" >Medianet</a>
                                     </div>
                                 </div>
                             </div>

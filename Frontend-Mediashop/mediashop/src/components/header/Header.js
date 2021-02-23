@@ -12,25 +12,17 @@ class Header extends Component {
             <div className="container">
               <div className="row">
                 <div className="col d-flex flex-row">
-                  <div className="top_bar_contact_item"><div className="top_bar_icon"><img src="images/phone.png" alt="" /></div>+38 068 005 3570</div>
-                  <div className="top_bar_contact_item"><div className="top_bar_icon"><img src="images/mail.png" alt="" /></div><a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a></div>
+                  <div className="top_bar_contact_item"><div className="top_bar_icon"><img src="images/phone.png" alt="" /></div> 71 827 484</div>
+                  <div className="top_bar_contact_item"><div className="top_bar_icon"><img src="images/mail.png" alt="" /></div><a href="mailto:mediashop@medianet.com.tn">mediashop@medianet.com.tn</a></div>
                   <div className="top_bar_content ml-auto">
                     <div className="top_bar_menu">
                       <ul className="standard_dropdown top_bar_dropdown">
                         <li>
                           <a href="url">English<i className="fas fa-chevron-down" /></a>
                           <ul>
-                            <li><a href="url">Italian</a></li>
-                            <li><a href="url">Spanish</a></li>
-                            <li><a href="url">Japanese</a></li>
-                          </ul>
-                        </li>
-                        <li>
-                          <a href="url">$ US dollar<i className="fas fa-chevron-down" /></a>
-                          <ul>
-                            <li><a href="url">EUR Euro</a></li>
-                            <li><a href="url">GBP British Pound</a></li>
-                            <li><a href="url">JPY Japanese Yen</a></li>
+                            <li><a href="url">Arabic</a></li>
+                            <li><a href="url">French</a></li>
+                            <li><a href="url">Deutch</a></li>
                           </ul>
                         </li>
                       </ul>
@@ -52,7 +44,7 @@ class Header extends Component {
                 {/* Logo */}
                 <div className="col-lg-2 col-sm-3 col-3 order-1">
                   <div className="logo_container">
-                    <div className="logo"><a href="url">OneTech</a></div>
+                    <div className="logo"><a href="url">MediaShop</a></div>
                   </div>
                 </div>
                 {/* Search */}
@@ -90,19 +82,6 @@ class Header extends Component {
                       <div className="wishlist_content">
                         <div className="wishlist_text"><a href="url">Wishlist</a></div>
                         <div className="wishlist_count">115</div>
-                      </div>
-                    </div>
-                    {/* Cart */}
-                    <div className="cart">
-                      <div className="cart_container d-flex flex-row align-items-center justify-content-end">
-                        <div className="cart_icon">
-                          <img src="images/cart.png" alt="" />
-                          <div className="cart_count"><span>10</span></div>
-                        </div>
-                        <div className="cart_content">
-                          <div className="cart_text"><a href="url">Cart</a></div>
-                          <div className="cart_price">$85</div>
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -194,7 +173,6 @@ class Header extends Component {
                             <li><a href="blog.html">Blog<i className="fas fa-chevron-down" /></a></li>
                             <li><a href="blog_single.html">Blog Post<i className="fas fa-chevron-down" /></a></li>
                             <li><a href="regular.html">Regular Post<i className="fas fa-chevron-down" /></a></li>
-                            <li><a href="cart.html">Cart<i className="fas fa-chevron-down" /></a></li>
                             <li><a href="contact.html">Contact<i className="fas fa-chevron-down" /></a></li>
                           </ul>
                         </li>
@@ -298,8 +276,6 @@ class Header extends Component {
             </div>
           </div>
         </header>
-
-
       </div>
     )
   }
