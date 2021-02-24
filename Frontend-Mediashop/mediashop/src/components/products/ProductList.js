@@ -19,7 +19,7 @@ export default class ProductList extends Component {
     render() {
         return (
             <div>
-                {this.state.products.map(product => <p key={product.reference}>{product.name}</p>)}
+                {this.state.products.map(product => <p key={product.id}>{product.name}</p>)}
             </div>
         )
     }

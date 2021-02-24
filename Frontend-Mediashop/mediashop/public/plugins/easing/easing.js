@@ -1,3 +1,6 @@
+/* eslint-env es6 */
+/* eslint-disable */ 
+//Function expression to select elements 
 /*
  * jQuery Easing v1.3 - http://gsgd.co.uk/sandbox/jquery/easing/
  *
