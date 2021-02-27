@@ -5,6 +5,7 @@ import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
 import Home from './components/home/Home';
 import ProductList from './components/products/ProductList';
+import Favorites from './components/products/Favorites';
 
 class App extends Component {
   render() {
@@ -18,6 +19,9 @@ class App extends Component {
             </Route>
             <Route path="/ProductList">
               <ProductList />
+            </Route>
+            <Route path="/Favorites">
+              <Favorites />
             </Route>
           </Switch>
           <Footer />
