@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     # products application
     'products.apps.ProductsConfig',
     # account application
-    # 'account.apps.AccountConfig'
+
 
 
 
