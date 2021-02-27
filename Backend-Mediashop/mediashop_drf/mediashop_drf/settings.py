@@ -40,12 +40,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Django REST framework
     'rest_framework',
-    # products application
-    'products.apps.ProductsConfig',
     # CORS
     'corsheaders',
     # Elasticsearch
     'django_elasticsearch_dsl',
+    # products application
+    'products.apps.ProductsConfig',
+    # account application
+    # 'account.apps.AccountConfig'
 
 
 
