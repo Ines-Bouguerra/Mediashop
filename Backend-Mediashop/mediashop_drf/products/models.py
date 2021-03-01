@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from account.models import Account
 # Create your models here.
 
 
@@ -32,7 +33,7 @@ class Product(models.Model):
 class Favorite(models.Model):
     product_favorites = models.ManyToManyField(Product)
     favorite_created_by = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="user_creator_favorite")
+        Account, on_delete=models.CASCADE, related_name="user_creator_favorite")
     author = models.CharField(max_length=255, default='admin')
     created_date = models.DateTimeField(auto_now_add=True)
 
@@ -42,7 +43,7 @@ class Favorite(models.Model):
 
 class Post(models.Model):
     post_created_by = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="user_creator_post")
+        Account, on_delete=models.CASCADE, related_name="user_creator_post")
     post_text = models.CharField(max_length=255, blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -55,7 +56,7 @@ class Post(models.Model):
 
 class Rating(models.Model):
     rating_created_by = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="user_creator_rating")
+        Account, on_delete=models.CASCADE, related_name="user_creator_rating")
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:

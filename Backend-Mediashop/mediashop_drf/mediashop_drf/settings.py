@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     # products application
     'products.apps.ProductsConfig',
     # account application
+    'account.apps.AccountConfig',
 
 
 
@@ -85,6 +86,8 @@ TEMPLATES = [
     },
 ]
 
+AUTH_USER_MODEL = 'account.Account'
+
 WSGI_APPLICATION = 'mediashop_drf.wsgi.application'
 
 
@@ -93,10 +96,12 @@ WSGI_APPLICATION = 'mediashop_drf.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'djongo',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'mediashop_db',
-                  'HOST': '127.0.0.1',
-                  'PORT': 27017,
+        'USER': 'postgres',
+        'PASSWORD': 'postgresql',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 ELASTICSEARCH_DSL = {
