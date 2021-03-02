@@ -3,21 +3,22 @@ from account.models import Account
 
 
 class RegistrationSerializer(serializers.ModelSerializer):
-    confirmPassword = serializers.EmailField()
+    confirmPassword = serializers.CharField(style={'input_type':'password'},write_only=True)
 
     class Meta:
         model = Account
-        fields = ('email', 'username',
-                  'password' , 'confirmPassword')
+        fields = ['email', 'username',
+                  'password' , 'confirmPassword']
+        extra_kwargs = {'password':{'write_only':True}}
         
 
     def save(self):
         account = Account(
-            email=self.validate_data['email'],
-            username=self.validate_data['username']
+            email=self.validated_data['email'],
+            username=self.validated_data['username']
         )
-        password = self.validate_data['password']
-        confirmPassword = self.validate_data['confirmPassword']
+        password = self.validated_data['password']
+        confirmPassword = self.validated_data['confirmPassword']
         if password != confirmPassword:
             raise serializers.ValidationError(
                 {'password': 'passwords must match.'})
