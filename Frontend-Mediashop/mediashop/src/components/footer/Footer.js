@@ -81,7 +81,7 @@ export default class Footer extends Component {
                             <div className="col">
                                 <div className="copyright_container d-flex flex-sm-row flex-column align-items-center justify-content-start">
                                     <div className="copyright_content">
-                                        Copyright © All rights reserved | Medianet <i className="fa fa-heart" aria-hidden="true" /> by <a href="https://www.medianet.tn/fr" >Medianet</a>
+                                        Copyright © 2021 All rights reserved | Medianet <i className="fa fa-heart" aria-hidden="true" /> by <a href="https://www.medianet.tn/fr" >Medianet</a>
                                     </div>
                                 </div>
                             </div>
