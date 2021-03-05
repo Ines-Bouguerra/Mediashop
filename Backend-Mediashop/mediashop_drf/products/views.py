@@ -35,15 +35,7 @@ def product_list(request):
         return JsonResponse(products__Serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-def index(request):
-    try:
-        latest_product_list = Product.objects.order_by('price')[:2]
-        output = ', '.join([q.short_description for q in latest_product_list])
-    except Product.DoesNotExist:
-        raise Http404("Product does not exist")
-    return JsonResponse(output, safe=False)
-
-
+@api_view(['GET', 'POST', 'DELETE'])
 def search_view(request):
     query_params = request.GET
     q = query_params.get('q')
@@ -55,3 +47,9 @@ def search_view(request):
         context['results'] = results
         context['query'] = q
     return JsonResponse(context)
+
+@api_view(['GET', 'POST', 'DELETE'])
+def category_list(request):
+    products = Product.category
+    products__Serializer = products_Serializer(products, many=True)
+    return JsonResponse(products__Serializer.data, safe=False)
