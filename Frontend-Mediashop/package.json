@@ -12,8 +12,9 @@
     "lint-staged": "^10.5.4",
     "prettier": "^2.2.1",
     "react": "^17.0.1",
-    "react-bootstrap": "^1.5.0",
+    "react-bootstrap": "^1.5.1",
     "react-dom": "^17.0.1",
+    "react-router-bootstrap": "^0.25.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.2",
     "web-vitals": "^1.1.0"
@@ -27,7 +28,11 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "env": "source myenv/Scripts/activate --prefix Backend-Mediashop",
+    "server": "python manage.py runserver 8080 --prefix Backend-Mediashop/mediashop_drf ",
+    "client": "npm start --prefix Frontend-Mediashop",
+    "dev": "concurrently \"npm start env\" \"npm start server\" \"npm start client\""
   },
   "eslintConfig": {
     "extends": [
