@@ -48,7 +48,7 @@ def search_view(request):
         context['query'] = q
     return JsonResponse(context)
 
-@api_view(['GET', 'POST', 'DELETE'])
+@api_view(['GET'])
 def category_list(request):
     products = Product.category
     products__Serializer = products_Serializer(products, many=True)

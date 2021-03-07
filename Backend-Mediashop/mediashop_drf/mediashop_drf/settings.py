@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     'products.apps.ProductsConfig',
     # account application
     'account.apps.AccountConfig',
+    # generate auth token
+    'rest_framework.authtoken',
 
 
 
