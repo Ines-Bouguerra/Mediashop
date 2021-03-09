@@ -1,6 +1,6 @@
 // Header.js
 import React, { Component } from "react";
-
+import { Link } from 'react-router-dom'
 class Header extends Component {
   render() {
     return (
@@ -18,19 +18,19 @@ class Header extends Component {
                     <div className="top_bar_menu">
                       <ul className="standard_dropdown top_bar_dropdown">
                         <li>
-                          <a href="#">English<i className="fas fa-chevron-down" /></a>
+                          <Link to="/">English<i className="fas fa-chevron-down" /></Link>
                           <ul>
-                            <li><a href="#">Arabic</a></li>
-                            <li><a href="#">French</a></li>
-                            <li><a href="#">Deutch</a></li>
+                            <li><Link to="/">Arabic</Link></li>
+                            <li><Link to="/">French</Link></li>
+                            <li><Link to="/">Deutch</Link></li>
                           </ul>
                         </li>
                       </ul>
                     </div>
                     <div className="top_bar_user">
                       <div className="user_icon"><img src="images/user.svg" alt="" /></div>
-                      <div><a href="#">Register</a></div>
-                      <div><a href="#">Sign in</a></div>
+                      <div><Link to="/Register">Register</Link></div>
+                      <div><Link to="/Login">Sign in</Link></div>
                     </div>
                   </div>
                 </div>
@@ -44,7 +44,7 @@ class Header extends Component {
                 {/* Logo */}
                 <div className="col-lg-2 col-sm-3 col-3 order-1">
                   <div className="logo_container">
-                    <div className="logo"><a href="#">MediaShop</a></div>
+                    <div className="logo"><Link to="/">MediaShop</Link></div>
                   </div>
                 </div>
                 {/* Search */}
@@ -80,7 +80,7 @@ class Header extends Component {
                     <div className="wishlist d-flex flex-row align-items-center justify-content-end">
                       <div className="wishlist_icon"><img src="images/heart.png" alt="" /></div>
                       <div className="wishlist_content">
-                        <div className="wishlist_text"><a href="#">Wishlist</a></div>
+                        <div className="wishlist_text"><Link to="/">Wishlist</Link></div>
                         <div className="wishlist_count">115</div>
                       </div>
                     </div>
@@ -102,71 +102,71 @@ class Header extends Component {
                         <div className="cat_menu_text">categories</div>
                       </div>
                       <ul className="cat_menu">
-                        <li><a href="#">Computers &amp; Laptops <i className="fas fa-chevron-right ml-auto" /></a></li>
-                        <li><a href="#">Cameras &amp; Photos<i className="fas fa-chevron-right" /></a></li>
+                        <li><Link to="/">Computers &amp; Laptops <i className="fas fa-chevron-right ml-auto" /></Link></li>
+                        <li><Link to="/">Cameras &amp; Photos<i className="fas fa-chevron-right" /></Link></li>
                         <li className="hassubs">
-                          <a href="#">Hardware<i className="fas fa-chevron-right" /></a>
+                          <Link to="/">Hardware<i className="fas fa-chevron-right" /></Link>
                           <ul>
                             <li className="hassubs">
-                              <a href="#">Menu Item<i className="fas fa-chevron-right" /></a>
+                              <Link to="/">Menu Item<i className="fas fa-chevron-right" /></Link>
                               <ul>
-                                <li><a href="#">Menu Item<i className="fas fa-chevron-right" /></a></li>
-                                <li><a href="#">Menu Item<i className="fas fa-chevron-right" /></a></li>
-                                <li><a href="#">Menu Item<i className="fas fa-chevron-right" /></a></li>
-                                <li><a href="#">Menu Item<i className="fas fa-chevron-right" /></a></li>
+                                <li><Link to="/">Menu Item<i className="fas fa-chevron-right" /></Link></li>
+                                <li><Link to="/">Menu Item<i className="fas fa-chevron-right" /></Link></li>
+                                <li><Link to="/">Menu Item<i className="fas fa-chevron-right" /></Link></li>
+                                <li><Link to="/">Menu Item<i className="fas fa-chevron-right" /></Link></li>
                               </ul>
                             </li>
-                            <li><a href="#">Menu Item<i className="fas fa-chevron-right" /></a></li>
-                            <li><a href="#">Menu Item<i className="fas fa-chevron-right" /></a></li>
-                            <li><a href="#">Menu Item<i className="fas fa-chevron-right" /></a></li>
+                            <li><Link to="/">Menu Item<i className="fas fa-chevron-right" /></Link></li>
+                            <li><Link to="/">Menu Item<i className="fas fa-chevron-right" /></Link></li>
+                            <li><Link to="/">Menu Item<i className="fas fa-chevron-right" /></Link></li>
                           </ul>
                         </li>
-                        <li><a href="#">Smartphones &amp; Tablets<i className="fas fa-chevron-right" /></a></li>
-                        <li><a href="#">TV &amp; Audio<i className="fas fa-chevron-right" /></a></li>
-                        <li><a href="#">Gadgets<i className="fas fa-chevron-right" /></a></li>
-                        <li><a href="#">Car Electronics<i className="fas fa-chevron-right" /></a></li>
-                        <li><a href="#">Video Games &amp; Consoles<i className="fas fa-chevron-right" /></a></li>
-                        <li><a href="#">Accessories<i className="fas fa-chevron-right" /></a></li>
+                        <li><Link to="/">Smartphones &amp; Tablets<i className="fas fa-chevron-right" /></Link></li>
+                        <li><Link to="/">TV &amp; Audio<i className="fas fa-chevron-right" /></Link></li>
+                        <li><Link to="/">Gadgets<i className="fas fa-chevron-right" /></Link></li>
+                        <li><Link to="/">Car Electronics<i className="fas fa-chevron-right" /></Link></li>
+                        <li><Link to="/">Video Games &amp; Consoles<i className="fas fa-chevron-right" /></Link></li>
+                        <li><Link to="/">Accessories<i className="fas fa-chevron-right" /></Link></li>
                       </ul>
                     </div>
                     {/* Main Nav Menu */}
                     <div className="main_nav_menu ml-auto">
                       <ul className="standard_dropdown main_nav_dropdown">
-                        <li><a href="#">Home<i className="fas fa-chevron-down" /></a></li>
+                        <li><Link to="/">Home<i className="fas fa-chevron-down" /></Link></li>
                         <li className="hassubs">
-                          <a href="#">Super Deals<i className="fas fa-chevron-down" /></a>
+                          <Link to="/">Super Deals<i className="fas fa-chevron-down" /></Link>
                           <ul>
                             <li>
-                              <a href="#">Menu Item<i className="fas fa-chevron-down" /></a>
+                              <Link to="/">Menu Item<i className="fas fa-chevron-down" /></Link>
                               <ul>
-                                <li><a href="#">Menu Item<i className="fas fa-chevron-down" /></a></li>
-                                <li><a href="#">Menu Item<i className="fas fa-chevron-down" /></a></li>
-                                <li><a href="#">Menu Item<i className="fas fa-chevron-down" /></a></li>
+                                <li><Link to="/">Menu Item<i className="fas fa-chevron-down" /></Link></li>
+                                <li><Link to="/">Menu Item<i className="fas fa-chevron-down" /></Link></li>
+                                <li><Link to="/">Menu Item<i className="fas fa-chevron-down" /></Link></li>
                               </ul>
                             </li>
-                            <li><a href="#">Menu Item<i className="fas fa-chevron-down" /></a></li>
-                            <li><a href="#">Menu Item<i className="fas fa-chevron-down" /></a></li>
-                            <li><a href="#">Menu Item<i className="fas fa-chevron-down" /></a></li>
+                            <li><Link to="/">Menu Item<i className="fas fa-chevron-down" /></Link></li>
+                            <li><Link to="/">Menu Item<i className="fas fa-chevron-down" /></Link></li>
+                            <li><Link to="/">Menu Item<i className="fas fa-chevron-down" /></Link></li>
                           </ul>
                         </li>
                         <li className="hassubs">
-                          <a href="#">Featured Brands<i className="fas fa-chevron-down" /></a>
+                          <Link to="/">Featured Brands<i className="fas fa-chevron-down" /></Link>
                           <ul>
                             <li>
-                              <a href="#">Menu Item<i className="fas fa-chevron-down" /></a>
+                              <Link to="/">Menu Item<i className="fas fa-chevron-down" /></Link>
                               <ul>
-                                <li><a href="#">Menu Item<i className="fas fa-chevron-down" /></a></li>
-                                <li><a href="#">Menu Item<i className="fas fa-chevron-down" /></a></li>
-                                <li><a href="#">Menu Item<i className="fas fa-chevron-down" /></a></li>
+                                <li><Link to="/">Menu Item<i className="fas fa-chevron-down" /></Link></li>
+                                <li><Link to="/">Menu Item<i className="fas fa-chevron-down" /></Link></li>
+                                <li><Link to="/">Menu Item<i className="fas fa-chevron-down" /></Link></li>
                               </ul>
                             </li>
-                            <li><a href="#">Menu Item<i className="fas fa-chevron-down" /></a></li>
-                            <li><a href="#">Menu Item<i className="fas fa-chevron-down" /></a></li>
-                            <li><a href="#">Menu Item<i className="fas fa-chevron-down" /></a></li>
+                            <li><Link to="/">Menu Item<i className="fas fa-chevron-down" /></Link></li>
+                            <li><Link to="/">Menu Item<i className="fas fa-chevron-down" /></Link></li>
+                            <li><Link to="/">Menu Item<i className="fas fa-chevron-down" /></Link></li>
                           </ul>
                         </li>
                         <li className="hassubs">
-                          <a href="#">Pages<i className="fas fa-chevron-down" /></a>
+                          <Link to="/">Pages<i className="fas fa-chevron-down" /></Link>
                           <ul>
                             <li><a href="shop.html">Shop<i className="fas fa-chevron-down" /></a></li>
                             <li><a href="product.html">Product<i className="fas fa-chevron-down" /></a></li>
@@ -207,60 +207,60 @@ class Header extends Component {
                     </div>
                     <ul className="page_menu_nav">
                       <li className="page_menu_item has-children">
-                        <a href="#">Language<i className="fa fa-angle-down" /></a>
+                        <Link to="/">Language<i className="fa fa-angle-down" /></Link>
                         <ul className="page_menu_selection">
-                          <li><a href="#">English<i className="fa fa-angle-down" /></a></li>
-                          <li><a href="#">Italian<i className="fa fa-angle-down" /></a></li>
-                          <li><a href="#">Spanish<i className="fa fa-angle-down" /></a></li>
-                          <li><a href="#">Japanese<i className="fa fa-angle-down" /></a></li>
+                          <li><Link to="/">English<i className="fa fa-angle-down" /></Link></li>
+                          <li><Link to="/">Italian<i className="fa fa-angle-down" /></Link></li>
+                          <li><Link to="/">Spanish<i className="fa fa-angle-down" /></Link></li>
+                          <li><Link to="/">Japanese<i className="fa fa-angle-down" /></Link></li>
                         </ul>
                       </li>
                       <li className="page_menu_item has-children">
-                        <a href="#">Currency<i className="fa fa-angle-down" /></a>
+                        <Link to="/">Currency<i className="fa fa-angle-down" /></Link>
                         <ul className="page_menu_selection">
-                          <li><a href="#">US Dollar<i className="fa fa-angle-down" /></a></li>
-                          <li><a href="#">EUR Euro<i className="fa fa-angle-down" /></a></li>
-                          <li><a href="#">GBP British Pound<i className="fa fa-angle-down" /></a></li>
-                          <li><a href="#">JPY Japanese Yen<i className="fa fa-angle-down" /></a></li>
+                          <li><Link to="/">US Dollar<i className="fa fa-angle-down" /></Link></li>
+                          <li><Link to="/">EUR Euro<i className="fa fa-angle-down" /></Link></li>
+                          <li><Link to="/">GBP British Pound<i className="fa fa-angle-down" /></Link></li>
+                          <li><Link to="/">JPY Japanese Yen<i className="fa fa-angle-down" /></Link></li>
                         </ul>
                       </li>
                       <li className="page_menu_item">
-                        <a href="#">Home<i className="fa fa-angle-down" /></a>
+                        <Link to="/">Home<i className="fa fa-angle-down" /></Link>
                       </li>
                       <li className="page_menu_item has-children">
-                        <a href="#">Super Deals<i className="fa fa-angle-down" /></a>
+                        <Link to="/">Super Deals<i className="fa fa-angle-down" /></Link>
                         <ul className="page_menu_selection">
-                          <li><a href="#">Super Deals<i className="fa fa-angle-down" /></a></li>
+                          <li><Link to="/">Super Deals<i className="fa fa-angle-down" /></Link></li>
                           <li className="page_menu_item has-children">
-                            <a href="#">Menu Item<i className="fa fa-angle-down" /></a>
+                            <Link to="/">Menu Item<i className="fa fa-angle-down" /></Link>
                             <ul className="page_menu_selection">
-                              <li><a href="#">Menu Item<i className="fa fa-angle-down" /></a></li>
-                              <li><a href="#">Menu Item<i className="fa fa-angle-down" /></a></li>
-                              <li><a href="#">Menu Item<i className="fa fa-angle-down" /></a></li>
-                              <li><a href="#">Menu Item<i className="fa fa-angle-down" /></a></li>
+                              <li><Link to="/">Menu Item<i className="fa fa-angle-down" /></Link></li>
+                              <li><Link to="/">Menu Item<i className="fa fa-angle-down" /></Link></li>
+                              <li><Link to="/">Menu Item<i className="fa fa-angle-down" /></Link></li>
+                              <li><Link to="/">Menu Item<i className="fa fa-angle-down" /></Link></li>
                             </ul>
                           </li>
-                          <li><a href="#">Menu Item<i className="fa fa-angle-down" /></a></li>
-                          <li><a href="#">Menu Item<i className="fa fa-angle-down" /></a></li>
-                          <li><a href="#">Menu Item<i className="fa fa-angle-down" /></a></li>
+                          <li><Link to="/">Menu Item<i className="fa fa-angle-down" /></Link></li>
+                          <li><Link to="/">Menu Item<i className="fa fa-angle-down" /></Link></li>
+                          <li><Link to="/">Menu Item<i className="fa fa-angle-down" /></Link></li>
                         </ul>
                       </li>
                       <li className="page_menu_item has-children">
-                        <a href="#">Featured Brands<i className="fa fa-angle-down" /></a>
+                        <Link to="/">Featured Brands<i className="fa fa-angle-down" /></Link>
                         <ul className="page_menu_selection">
-                          <li><a href="#">Featured Brands<i className="fa fa-angle-down" /></a></li>
-                          <li><a href="#">Menu Item<i className="fa fa-angle-down" /></a></li>
-                          <li><a href="#">Menu Item<i className="fa fa-angle-down" /></a></li>
-                          <li><a href="#">Menu Item<i className="fa fa-angle-down" /></a></li>
+                          <li><Link to="/">Featured Brands<i className="fa fa-angle-down" /></Link></li>
+                          <li><Link to="/">Menu Item<i className="fa fa-angle-down" /></Link></li>
+                          <li><Link to="/">Menu Item<i className="fa fa-angle-down" /></Link></li>
+                          <li><Link to="/">Menu Item<i className="fa fa-angle-down" /></Link></li>
                         </ul>
                       </li>
                       <li className="page_menu_item has-children">
-                        <a href="#">Trending Styles<i className="fa fa-angle-down" /></a>
+                        <Link to="/">Trending Styles<i className="fa fa-angle-down" /></Link>
                         <ul className="page_menu_selection">
-                          <li><a href="#">Trending Styles<i className="fa fa-angle-down" /></a></li>
-                          <li><a href="#">Menu Item<i className="fa fa-angle-down" /></a></li>
-                          <li><a href="#">Menu Item<i className="fa fa-angle-down" /></a></li>
-                          <li><a href="#">Menu Item<i className="fa fa-angle-down" /></a></li>
+                          <li><Link to="/">Trending Styles<i className="fa fa-angle-down" /></Link></li>
+                          <li><Link to="/">Menu Item<i className="fa fa-angle-down" /></Link></li>
+                          <li><Link to="/">Menu Item<i className="fa fa-angle-down" /></Link></li>
+                          <li><Link to="/">Menu Item<i className="fa fa-angle-down" /></Link></li>
                         </ul>
                       </li>
                       <li className="page_menu_item"><a href="blog.html">blog<i className="fa fa-angle-down" /></a></li>
