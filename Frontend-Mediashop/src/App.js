@@ -7,6 +7,7 @@ import HomeScreen from './screens/HomeScreen';
 import ProductList from './components/products/ProductList';
 import Favorites from './components/favorites/Favorites';
 import Register from './components/authentication/Register';
+import Login from './components/authentication/Login';
 
 class App extends Component {
   render() {
@@ -19,6 +20,8 @@ class App extends Component {
             <Route path="/ProductList" component={ProductList} />
             <Route path="/Favorites" component={Favorites} />
             <Route path="/Register" component={Register} />
+            <Route path="/Login" component={Login} />
+
           </Switch>
           <Footer />
         </div>
