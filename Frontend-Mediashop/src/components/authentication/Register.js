@@ -19,8 +19,9 @@ import {
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
 import axios from 'axios';
-
-export default function Register() {
+import {connect} from 'react-redux'
+import {setAlert} from '../../actions/alerts'
+function Register(props) {
 
   const [formData, setFormData] = useState({
     username: '',
@@ -34,7 +35,7 @@ export default function Register() {
   const onSubmit = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      console.log('Password do not match')
+     props.setAlert('Password do not match','danger')
 
     }
     else {
@@ -148,7 +149,6 @@ export default function Register() {
                       value={confirmPassword}
                       onChange={e => onChange(e)}
                       required
-                      minLength='8'
                     />
                   </InputGroup>
                   {/* <small className="float-right">SHOW</small> */}
@@ -183,3 +183,4 @@ export default function Register() {
     </div>
   );
 }
+export default  connect(null,{setAlert})(Register)
