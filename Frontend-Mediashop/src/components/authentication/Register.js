@@ -19,9 +19,11 @@ import {
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
 import axios from 'axios';
-import {connect} from 'react-redux'
-import {setAlert} from '../../actions/alerts'
-function Register(props) {
+import { connect } from 'react-redux'
+import { setAlert } from '../../actions/alerts'
+import PropTypes from 'prop-types'
+
+function Register({ setAlert }) {
 
   const [formData, setFormData] = useState({
     username: '',
@@ -35,8 +37,7 @@ function Register(props) {
   const onSubmit = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-     props.setAlert('Password do not match','danger')
-
+      setAlert('Password do not match', 'danger')
     }
     else {
       const newUser = {
@@ -171,9 +172,9 @@ function Register(props) {
                   <Button color="info" size="md">
                     Sign Up
                 </Button>
-                <p className="my-1">
-                   Already have an account? <Link to='/Login'> Sign In</Link>
-              </p>
+                  <p className="my-1">
+                    Already have an account? <Link to='/Login'> Sign In</Link>
+                  </p>
                 </CardFooter>
               </Form>
             </Card>
@@ -183,4 +184,8 @@ function Register(props) {
     </div>
   );
 }
-export default  connect(null,{setAlert})(Register)
+Register.propTypes = {
+  // ptfr
+  setAlert: PropTypes.func.isRequired,
+}
+export default connect(null, { setAlert })(Register)
