@@ -8,10 +8,13 @@ import ProductList from './components/products/ProductList';
 import Favorites from './components/favorites/Favorites';
 import Register from './components/authentication/Register';
 import Login from './components/authentication/Login';
-
+//Redux
+import {Provider} from 'react-redux'
+import store from './store'
 class App extends Component {
   render() {
     return (
+      <Provider store={store}>
       <Router>
         <div class="super_container">
           <Header />
@@ -26,6 +29,7 @@ class App extends Component {
           <Footer />
         </div>
       </Router>
+      </Provider>
     )
   }
 }
