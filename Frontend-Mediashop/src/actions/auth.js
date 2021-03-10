@@ -1,10 +1,13 @@
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
+  LOGOUT,
 
 } from './types';
 import axios from 'axios'
 import { setAlert } from './alerts'
+
+
 // Register User
 export const register = ({ username, email, password, confirmPassword, checkbox }) => async dispatch => {
   const config = {
@@ -31,4 +34,10 @@ export const register = ({ username, email, password, confirmPassword, checkbox 
     })
   }
 
+}
+
+//Logout  /Clear Profile
+
+export const logout =()=>dispatch=>{
+  dispatch({type:LOGOUT})
 }

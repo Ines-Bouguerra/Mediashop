@@ -1,6 +1,7 @@
 import {
   REGISTER_SUCCESS,
-  REGISTER_FAIL
+  REGISTER_FAIL,
+  LOGOUT,
 } from '../actions/types';
 
 const initialState = {
@@ -21,6 +22,7 @@ function authReducer(state = initialState, action) {
         loading: false
       }
     case REGISTER_FAIL:
+    case LOGOUT:
       return {
         ...state,
         isAuthenticated: false,
