@@ -18,12 +18,12 @@ import {
 } from "reactstrap";
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
-import axios from 'axios';
 import { connect } from 'react-redux'
 import { setAlert } from '../../actions/alerts'
+import { register } from '../../actions/auth'
 import PropTypes from 'prop-types'
 
-function Register({ setAlert }) {
+function Register({ setAlert ,register}) {
 
   const [formData, setFormData] = useState({
     username: '',
@@ -40,26 +40,7 @@ function Register({ setAlert }) {
       setAlert('Password do not match', 'danger')
     }
     else {
-      const newUser = {
-        username,
-        email,
-        password,
-        confirmPassword,
-        checkbox
-      }
-      try {
-        const config = {
-          headers: {
-            'content-type': 'application/json'
-          }
-        }
-        const body = JSON.stringify(newUser)
-        const res = await axios.post('/api/authentication/register', body, config)
-        console.log("🚀 ~ file: Register.js ~ line 56 ~ onSubmit ~ res", res.data)
-      } catch (error) {
-        console.log("🚀 ~ file: Register.js ~ line 60 ~ onSubmit ~ error", error.response.data)
-      }
-
+      register({username, email, password,confirmPassword,checkbox})
     }
   }
   return (
@@ -187,5 +168,6 @@ function Register({ setAlert }) {
 Register.propTypes = {
   // ptfr
   setAlert: PropTypes.func.isRequired,
+  register:PropTypes.func.isRequired
 }
-export default connect(null, { setAlert })(Register)
+export default connect(null, { setAlert ,register})(Register)
