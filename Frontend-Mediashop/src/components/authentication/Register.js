@@ -23,7 +23,7 @@ import { setAlert } from '../../actions/alerts'
 import { register } from '../../actions/auth'
 import PropTypes from 'prop-types'
 
-function Register({ setAlert ,register}) {
+function Register({ setAlert, register }) {
 
   const [formData, setFormData] = useState({
     username: '',
@@ -40,7 +40,7 @@ function Register({ setAlert ,register}) {
       setAlert('Password do not match', 'danger')
     }
     else {
-      register({username, email, password,confirmPassword,checkbox})
+      register({ username, email, password, confirmPassword, checkbox })
     }
   }
   return (
@@ -168,6 +168,6 @@ function Register({ setAlert ,register}) {
 Register.propTypes = {
   // ptfr
   setAlert: PropTypes.func.isRequired,
-  register:PropTypes.func.isRequired
+  register: PropTypes.func.isRequired
 }
-export default connect(null, { setAlert ,register})(Register)
+export default connect(null, { setAlert, register })(Register)
