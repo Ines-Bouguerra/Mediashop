@@ -110,11 +110,11 @@ p a:hover::after
 }
 ::selection
 {
-	
+
 }
 p::selection
 {
-	
+
 }
 h1{font-size: 48px;}
 h2{font-size: 36px;}
@@ -129,14 +129,14 @@ h1, h2, h3, h4, h5, h6
 	-webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;
 	text-shadow: rgba(0,0,0,.01) 0 0 1px;
 }
-h1::selection, 
-h2::selection, 
-h3::selection, 
-h4::selection, 
-h5::selection, 
+h1::selection,
+h2::selection,
+h3::selection,
+h4::selection,
+h5::selection,
 h6::selection
 {
-	
+
 }
 .form-control
 {
@@ -229,7 +229,7 @@ section
 .button
 {
 	display: inline-block;
-	background: #6d9dc5;
+	background: #0e8ce4;
 	border-radius: 5px;
 	height: 48px;
 	-webkit-transition: all 200ms ease;
@@ -408,7 +408,7 @@ section
 }
 .standard_dropdown li a:hover
 {
-	color: #6d9dc5;
+	color: #0e8ce4;
 }
 .standard_dropdown li a i
 {
@@ -548,7 +548,7 @@ section
 {
 	font-size: 36px;
 	font-weight: 500;
-	color: #6d9dc5;
+	color: #0e8ce4;
 }
 .header_search
 {
@@ -602,21 +602,21 @@ section
 	line-height: 50px;
 	color: #a3a3a3 !important;
 }
-.header_search_input::-moz-placeholder /* Firefox 19+ */ 
+.header_search_input::-moz-placeholder /* Firefox 19+ */
 {
 	font-size: 16px !important;
 	font-weight: 300;
 	line-height: 50px;
 	color: #a3a3a3 !important;
-} 
+}
 .header_search_input:-ms-input-placeholder
-{ 
+{
 	font-size: 16px !important;
 	font-weight: 300;
 	line-height: 50px;
 	color: #a3a3a3 !important;
 }
-.header_search_input::input-placeholder
+.header_search_input
 {
 	font-size: 16px !important;
 	font-weight: 300;
@@ -669,7 +669,7 @@ section
 }
 .custom_dropdown_placeholder i
 {
-	
+
 }
 .custom_list
 {
@@ -720,7 +720,7 @@ section
 }
 .custom_list li a:hover
 {
-	color: #6d9dc5;
+	color: #0e8ce4;
 }
 select
 {
@@ -755,7 +755,7 @@ select option
 	right: 0;
 	width: 50px;
 	height: 100%;
-	background: #6d9dc5;
+	background: #0e8ce4;
 	border: none;
 	outline: none;
 	cursor: pointer;
@@ -791,7 +791,7 @@ select option
 }
 .wishlist_text a:hover
 {
-	color: #6d9dc5;
+	color: #0e8ce4;
 }
 .wishlist_count
 {
@@ -806,7 +806,7 @@ select option
 	right: -14px;
 	width: 23px;
 	height: 23px;
-	background: #6d9dc5;
+	background: #0e8ce4;
 	border-radius: 50%;
 	text-align: center;
 }
@@ -843,7 +843,7 @@ select option
 }
 .cart_text a:hover
 {
-	color: #6d9dc5;
+	color: #0e8ce4;
 }
 .cart_price
 {
@@ -883,7 +883,7 @@ select option
 {
 	width: 293px;
 	height: 100%;
-	background: #6d9dc5;
+	background: #0e8ce4;
 	padding-left: 35px;
 	cursor: pointer;
 	z-index: 1;
@@ -979,7 +979,7 @@ select option
 }
 .cat_menu li a:hover
 {
-	color: #6d9dc5;
+	color: #0e8ce4;
 }
 .cat_menu li a i
 {
@@ -1075,7 +1075,7 @@ select option
 .page_menu_content
 {
 	height: 0px;
-	background: #6d9dc5;
+	background: #0e8ce4;
 	padding-left: 15px;
 	padding-right: 15px;
 	overflow: hidden;
@@ -1280,7 +1280,7 @@ select option
 }
 .shop_product_count span
 {
-	color: #6d9dc5;
+	color: #0e8ce4;
 }
 .shop_sorting
 {
@@ -1463,7 +1463,7 @@ select option
 .product_name div
 {
 	width: 100%;
-	
+
 }
 .product_name div a
 {
@@ -1479,7 +1479,7 @@ select option
 }
 .product_name div a:hover
 {
-	color: #6d9dc5;
+	color: #0e8ce4;
 }
 .product_fav
 {
@@ -1558,7 +1558,7 @@ select option
 .product_new
 {
 	display: none;
-	background: #6d9dc5;
+	background: #0e8ce4;
 	visibility: hidden;
 	opacity: 0;
 }
@@ -1574,7 +1574,7 @@ select option
 {
 	display: inline-block;
 	visibility: visible;
-	opacity: 1;	
+	opacity: 1;
 }
 
 /*********************************
@@ -1587,7 +1587,7 @@ select option
 	height: 50px;
 	margin-top: 80px;
 }
-.page_prev, 
+.page_prev,
 .page_next
 {
 	width: 50px;
@@ -1596,7 +1596,7 @@ select option
 	border-radius: 5px;
 	cursor: pointer;
 }
-.page_prev i, 
+.page_prev i,
 .page_next i
 {
 	font-size: 12px;
@@ -1607,7 +1607,7 @@ select option
 	-o-transition: all 200ms ease;
 	transition: all 200ms ease;
 }
-.page_prev:hover i, 
+.page_prev:hover i,
 .page_next:hover i
 {
 	color: #636363;
@@ -1646,7 +1646,7 @@ select option
 }
 .page_nav li:hover a
 {
-	color: #6d9dc5;
+	color: #0e8ce4;
 }
 .page_nav li:last-child
 {
@@ -1690,7 +1690,7 @@ select option
 }
 .sidebar_categories li a:hover
 {
-	color: #6d9dc5;
+	color: #0e8ce4;
 }
 .filter_by_section
 {
@@ -1771,7 +1771,7 @@ select option
 }
 .brand a:hover
 {
-	color: #6d9dc5;
+	color: #0e8ce4;
 }
 
 /*********************************
@@ -1896,7 +1896,7 @@ select option
 }
 .viewed_name a:hover
 {
-	color: #6d9dc5;
+	color: #0e8ce4;
 }
 .item_marks
 {
@@ -1923,7 +1923,7 @@ select option
 }
 .item_new
 {
-	background: #6d9dc5;
+	background: #0e8ce4;
 }
 .viewed_item.discount .item_discount
 {
@@ -2063,7 +2063,7 @@ select option
 	padding-left: 25px;
 	font-size: 16px;
 	outline: none;
-	color: #6d9dc5;
+	color: #0e8ce4;
 }
 .newsletter_input:focus
 {
@@ -2084,17 +2084,13 @@ select option
 {
 	font-size: 16px;
 	color: rgba(0,0,0,0.3);
-} 
-.newsletter_input:-ms-input-placeholder
-{ 
-	font-size: 16px;
-	color: rgba(0,0,0,0.3);
 }
-.newsletter_input::input-placeholder
+.newsletter_input:-ms-input-placeholder
 {
 	font-size: 16px;
 	color: rgba(0,0,0,0.3);
 }
+
 .newsletter_button
 {
 	position: absolute;
@@ -2102,7 +2098,7 @@ select option
 	right: 0;
 	width: 153px;
 	height: 50px;
-	background: #6d9dc5;
+	background: #0e8ce4;
 	color: #FFFFFF;
 	line-height: 50px;
 	font-size: 18px;
@@ -2125,7 +2121,7 @@ select option
 .newsletter_unsubscribe_link a
 {
 	font-size: 10px;
-	color: #6d9dc5;
+	color: #0e8ce4;
 	font-weight: 500;
 	text-transform: uppercase;
 	letter-spacing: 0.1em;
@@ -2154,10 +2150,7 @@ select option
 .footer .logo
 {
 	top: auto;
-	-webkit-transform: transform: none;
-    -moz-transform: transform: none;
-    -ms-transform: transform: none;
-    -o-transform: transform: none;
+
     transform: none;
 }
 .footer .logo a
@@ -2174,7 +2167,7 @@ select option
 {
 	font-size: 18px;
 	font-weight: 500;
-	color: #6d9dc5;
+	color: #0e8ce4;
 	margin-top: 13px;
 }
 .footer_contact_text
@@ -2213,7 +2206,7 @@ select option
 }
 .footer_social ul li:hover i
 {
-	color: #6d9dc5;
+	color: #0e8ce4;
 }
 .footer_subtitle
 {
@@ -2245,11 +2238,11 @@ select option
 }
 .footer_list li a:hover
 {
-	color: #6d9dc5;
+	color: #0e8ce4;
 }
 .footer_list_2
 {
-	margin-top: 42px !important; 
+	margin-top: 42px !important;
 }
 
 .copyright
@@ -2273,7 +2266,7 @@ select option
 }
 .logos
 {
-	
+
 }
 .logos_list li
 {

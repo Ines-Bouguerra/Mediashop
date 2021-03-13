@@ -1,6 +1,3 @@
-/* eslint-env es6 */
-/* eslint-disable */ 
-//Function expression to select elements 
 ;(function ($, document, window) {
     var
     // default settings object.

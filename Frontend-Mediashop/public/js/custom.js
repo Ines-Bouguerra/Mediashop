@@ -1,6 +1,3 @@
-/* eslint-env es6 */
-/* eslint-disable */ 
-//Function expression to select elements 
 /* JS Document */
 
 /******************************
