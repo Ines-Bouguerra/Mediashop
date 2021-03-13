@@ -17,7 +17,8 @@ def registration_view(request):
             account = serializer.save()
             data['response'] = "successfully registred a new user."
             data['email'] = account.email
-            data['username'] = account.username
+            data['first_name'] = account.first_name
+            data['last_name'] = account.last_name
         else:
             data = serializer.errors
         return Response(data)

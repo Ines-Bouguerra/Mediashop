@@ -7,23 +7,22 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
 
 class MyAccountManager(BaseUserManager):
-    def create_user(self, email, username, password=None):
+    def create_user(self, email, password=None, **extra_fields):
         if not email:
             raise ValueError("Users must have an email address")
-        if not username:
-            raise ValueError("Users must have an username")
         user = self.model(
             email=self.normalize_email(email),
-            username=username,
+            **extra_fields,
         )
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, username, password):
+    def create_superuser(self, email, first_name,last_name, password):
         user = self.create_user(
             email=self.normalize_email(email),
-            username=username,
+            first_name=first_name,
+            last_name=last_name,           
             password=password,)
         user.is_admin = True
         user.is_staff = True
@@ -34,7 +33,8 @@ class MyAccountManager(BaseUserManager):
 
 class Account (AbstractBaseUser):
     email = models.EmailField(verbose_name='email', max_length=60, unique=True)
-    username = models.CharField(max_length=30, unique=True)
+    first_name = models.CharField(max_length=30, unique=True)
+    last_name = models.CharField(max_length=30, unique=True)
     date_joined = models.DateTimeField(
         verbose_name='date_joined', auto_now_add=True)
     last_login = models.DateTimeField(
@@ -45,9 +45,15 @@ class Account (AbstractBaseUser):
     is_superuser = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username', ]
+    REQUIRED_FIELDS = ['first_name', 'last_name']
 
     objects = MyAccountManager()
+
+    def get__full__name(self):
+        return self.first_name
+
+    def get__short__name(self):
+        return self.last_name
 
     def __str__(self):
         return self.email
