@@ -22,7 +22,7 @@ class App extends Component {
             <Header />
             <Alert />
             <Switch>
-              <Route exact path="/ProductList" component={ProductList} />
+              <Route exact path="/product-list" component={ProductList} />
               <Route exact path="/Favorites" component={Favorites} />
               <Route exact path="/Register" component={Register} />
               <Route exact path="/Login" component={Login} />
