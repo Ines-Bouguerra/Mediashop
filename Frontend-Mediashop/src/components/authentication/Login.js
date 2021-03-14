@@ -20,7 +20,7 @@ import { connect } from "react-redux";
 import axios from "axios";
 import { login } from "../../actions/auth";
 
-const Login = ({ login }) => {
+const Login = ({ login, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -42,9 +42,9 @@ const Login = ({ login }) => {
       window.location.replace(res.data.authorization_url);
     } catch (err) {}
   };
-  // if (isAuthenticated) {
-  //   return <Redirect to="/" />;
-  // }
+  if (isAuthenticated) {
+    return <Redirect to="/" />;
+  }
   return (
     <div className="section section-signup my-3 p-3">
       <Container>
@@ -120,7 +120,7 @@ const Login = ({ login }) => {
     </div>
   );
 };
-//const mapStateToProps = (state) => ({
-//isAuthenticated
-// });
-export default connect(null, { login })(Login);
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+export default connect(mapStateToProps, { login })(Login);

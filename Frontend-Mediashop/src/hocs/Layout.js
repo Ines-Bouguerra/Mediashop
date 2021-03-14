@@ -2,11 +2,11 @@ import React, { useEffect } from "react";
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import { connect } from "react-redux";
-import { load_user } from "../actions/auth";
+import { checkAuthenticated, load_user } from "../actions/auth";
 
 const Layout = ({ load_user, children }) => {
   useEffect(() => {
-    // checkAuthenticated();
+    checkAuthenticated();
     load_user();
   }, []);
 
@@ -19,4 +19,4 @@ const Layout = ({ load_user, children }) => {
   );
 };
 
-export default connect(null, { load_user })(Layout);
+export default connect(null, { checkAuthenticated, load_user })(Layout);

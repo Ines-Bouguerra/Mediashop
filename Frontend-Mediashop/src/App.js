@@ -9,6 +9,7 @@ import Login from "./components/authentication/Login";
 import ResetPassword from "./components/authentication/ResetPassword";
 import ResetPasswordConfirm from "./components/authentication/ResetPasswordConfirm";
 import Activate from "./components/authentication/Activate";
+import Home from "./components/home/Home"
 
 import Alert from "./components/layouts/Alert";
 import PrivateRoute from "./components/routing/PrivateRoute";
@@ -27,6 +28,7 @@ class App extends Component {
               <Alert />
               <Switch>
                 <Route exact path="/product-list" component={ProductList} />
+                <Route exact path="/" component={Home} />
                 <Route exact path="/favorites" component={Favorites} />
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/login" component={Login} />
