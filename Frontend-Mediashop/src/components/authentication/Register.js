@@ -16,54 +16,49 @@ import {
   Row,
   Col,
 } from "reactstrap";
-import { Card } from 'react-bootstrap';
-import { Link } from 'react-router-dom'
-import { connect } from 'react-redux'
-import { setAlert } from '../../actions/alerts'
-import { register } from '../../actions/auth'
-import PropTypes from 'prop-types'
+import { Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { setAlert } from "../../actions/alerts";
+import { register } from "../../actions/auth";
+import PropTypes from "prop-types";
 
 function Register({ setAlert, register }) {
-
   const [formData, setFormData] = useState({
-    username: '',
+    username: "",
     email: "",
     password: "",
     confirmPassword: "",
     checkbox: "",
   });
   const { username, email, password, confirmPassword, checkbox } = formData;
-  const onChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value })
+  const onChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   const onSubmit = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      setAlert('Password do not match', 'danger')
+      setAlert("Password do not match", "danger");
+    } else {
+      register({ username, email, password, confirmPassword, checkbox });
     }
-    else {
-      register({ username, email, password, confirmPassword, checkbox })
-    }
-  }
+  };
   return (
-
     <div className="section section-signup my-3 p-3">
       <Container>
         <Row className="row-grid justify-content-between align-items-center">
-
           <Col className="mb-lg-auto" lg="4">
             <Card className="card-register">
               <CardHeader>
-                <Card.Img height="100"
-                  alt="..."
-                  src="images/mediashop.png"
-                />
+                <Card.Img height="100" alt="..." src="images/mediashop.png" />
                 <Card.ImgOverlay>
-                  <CardTitle tag="h6" className="py-5 my-2">Register</CardTitle></Card.ImgOverlay>
+                  <CardTitle tag="h6" className="py-5 my-2">
+                    Register
+                  </CardTitle>
+                </Card.ImgOverlay>
               </CardHeader>
-              <Form className="form" onSubmit={e => onSubmit(e)}>
+              <Form className="form" onSubmit={(e) => onSubmit(e)}>
                 <CardBody>
-                  <InputGroup
-                    className="p-3"
-                  >
+                  <InputGroup className="p-3">
                     <InputGroupAddon addonType="prepend">
                       <InputGroupText>
                         <i className="tim-icons icon-single-02" />
@@ -75,13 +70,11 @@ function Register({ setAlert, register }) {
                       id="usernameField"
                       name="username"
                       value={username}
-                      onChange={e => onChange(e)}
+                      onChange={(e) => onChange(e)}
                       required
                     />
                   </InputGroup>
-                  <InputGroup
-                    className="p-3"
-                  >
+                  <InputGroup className="p-3">
                     <InputGroupAddon addonType="prepend">
                       <InputGroupText>
                         <i className="tim-icons icon-email-85" />
@@ -92,13 +85,11 @@ function Register({ setAlert, register }) {
                       type="email"
                       name="email"
                       value={email}
-                      onChange={e => onChange(e)}
+                      onChange={(e) => onChange(e)}
                       required
                     />
                   </InputGroup>
-                  <InputGroup
-                    className="p-3"
-                  >
+                  <InputGroup className="p-3">
                     <InputGroupAddon addonType="prepend">
                       <InputGroupText>
                         <i className="tim-icons icon-lock-circle" />
@@ -109,16 +100,14 @@ function Register({ setAlert, register }) {
                       type="password"
                       name="password"
                       value={password}
-                      onChange={e => onChange(e)}
+                      onChange={(e) => onChange(e)}
                       required
-                      minLength='8'
+                      minLength="8"
                     />
                   </InputGroup>
                   {/* <small className="float-right ">SHOW</small> */}
 
-                  <InputGroup
-                    className="p-3"
-                  >
+                  <InputGroup className="p-3">
                     <InputGroupAddon addonType="prepend">
                       <InputGroupText>
                         <i className="tim-icons icon-lock-circle" />
@@ -129,32 +118,31 @@ function Register({ setAlert, register }) {
                       type="password"
                       name="confirmPassword"
                       value={confirmPassword}
-                      onChange={e => onChange(e)}
+                      onChange={(e) => onChange(e)}
                       required
                     />
                   </InputGroup>
                   {/* <small className="float-right">SHOW</small> */}
-                  <FormGroup check className="text-leftp-3," color="info" >
-                    <Label check >
-                      <Input type="checkbox"
+                  <FormGroup check className="text-leftp-3," color="info">
+                    <Label check>
+                      <Input
+                        type="checkbox"
                         name="checkbox"
                         value={checkbox}
-                        onChange={e => onChange(e)}
-                        required />
+                        onChange={(e) => onChange(e)}
+                        required
+                      />
                       <span className="form-check-sign " />I agree to the{" "}
-                      <Link to="/">
-                        terms and conditions
-                      </Link>
-                      .
+                      <Link to="/">terms and conditions</Link>.
                     </Label>
                   </FormGroup>
                 </CardBody>
                 <CardFooter>
                   <Button color="info" size="md">
                     Sign Up
-                </Button>
+                  </Button>
                   <p className="my-1">
-                    Already have an account? <Link to='/Login'> Sign In</Link>
+                    Already have an account? <Link to="/Login"> Sign In</Link>
                   </p>
                 </CardFooter>
               </Form>
@@ -168,6 +156,6 @@ function Register({ setAlert, register }) {
 Register.propTypes = {
   // ptfr
   setAlert: PropTypes.func.isRequired,
-  register: PropTypes.func.isRequired
-}
-export default connect(null, { setAlert, register })(Register)
+  register: PropTypes.func.isRequired,
+};
+export default connect(null, { setAlert, register })(Register);

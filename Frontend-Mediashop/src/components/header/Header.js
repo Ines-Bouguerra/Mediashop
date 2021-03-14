@@ -130,7 +130,7 @@ const Header = () => {
                     </div>
                     <div className="wishlist_content">
                       <div className="wishlist_text">
-                        <Link to="/Wishlist">Wishlist</Link>
+                        <Link to="/wishlist">Wishlist</Link>
                       </div>
                       <div className="wishlist_count">115</div>
                     </div>

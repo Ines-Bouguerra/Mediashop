@@ -1,6 +1,5 @@
 {
   "name": "mediashop",
-  "proxy": "http://localhost:8080",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -38,11 +37,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "env": "source myenv/Scripts/activate --prefix Backend-Mediashop",
-    "server": "python manage.py runserver 8080 --prefix Backend-Mediashop/mediashop_drf ",
-    "client": "npm start --prefix Frontend-Mediashop",
-    "dev": "concurrently \"npm start env\" \"npm start server\" \"npm start client\""
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [

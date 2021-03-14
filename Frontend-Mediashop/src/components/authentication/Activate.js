@@ -1,9 +1,6 @@
-import React from 'react'
+import React from "react";
+const Activate = () => {
+  return <div></div>;
+};
 
-export const Activate = () => {
-    return (
-        <div>
-            
-        </div>
-    )
-}
+export default Activate;
