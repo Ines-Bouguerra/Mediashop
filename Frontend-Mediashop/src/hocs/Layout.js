@@ -4,7 +4,7 @@ import Footer from "../components/footer/Footer";
 import { connect } from "react-redux";
 import { checkAuthenticated, load_user } from "../actions/auth";
 
-const Layout = ({ load_user, children }) => {
+const Layout = ({ checkAuthenticated, load_user, children }) => {
   useEffect(() => {
     checkAuthenticated();
     load_user();

@@ -18,9 +18,9 @@ import { Card } from "react-bootstrap";
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import axios from "axios";
-import { login } from "../../actions/auth";
+import { signIn } from "../../actions/auth";
 
-const Login = ({ login, isAuthenticated }) => {
+const Login = ({ signIn, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -28,10 +28,10 @@ const Login = ({ login, isAuthenticated }) => {
   const { email, password } = formData;
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
-  const onSubmit = async (e) => {
+  const onSubmit = e => {
     e.preventDefault();
 
-    login(email, password);
+    signIn(email, password);
   };
   const continueWithGoogle = async () => {
     try {
@@ -40,7 +40,7 @@ const Login = ({ login, isAuthenticated }) => {
       );
 
       window.location.replace(res.data.authorization_url);
-    } catch (err) {}
+    } catch (err) { }
   };
   if (isAuthenticated) {
     return <Redirect to="/" />;
@@ -59,7 +59,7 @@ const Login = ({ login, isAuthenticated }) => {
                   </CardTitle>
                 </Card.ImgOverlay>
               </CardHeader>
-              <Form className="form" onSubmit={(e) => onSubmit(e)}>
+              <Form className="form" onSubmit={e => onSubmit(e)}>
                 <CardBody>
                   <InputGroup className="p-3">
                     <InputGroupAddon addonType="prepend">
@@ -95,7 +95,7 @@ const Login = ({ login, isAuthenticated }) => {
                   {/* <small className="float-right ">SHOW</small> */}
                 </CardBody>
                 <CardFooter>
-                  <Button color="info" size="md">
+                  <Button color="info" size="md" type='submit'>
                     Sign In
                   </Button>
                   <p className="my-1">
@@ -120,7 +120,9 @@ const Login = ({ login, isAuthenticated }) => {
     </div>
   );
 };
-const mapStateToProps = (state) => ({
-  isAuthenticated: state.auth.isAuthenticated,
+
+const mapStateToProps = state => ({
+  isAuthenticated: state.authReducer.isAuthenticated
 });
-export default connect(mapStateToProps, { login })(Login);
+export default connect(mapStateToProps, { signIn })(Login);
+
