@@ -12,9 +12,10 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Quick-start development settings - unsuitable for production
@@ -53,7 +54,6 @@ INSTALLED_APPS = [
     # social-auth-app-django
     'social_django',
     'djoser',
-    'social.apps.django_app.default',
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist'
 ]
@@ -96,7 +96,7 @@ TEMPLATES = [
 
 
 WSGI_APPLICATION = 'mediashop_drf.wsgi.application'
-
+CORS_ORIGIN_ALLOW_ALL = True
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
@@ -159,8 +159,8 @@ AUTHENTICATION_BACKENDS = (
 
 SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('JWT',),
-    # 'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
-    # 'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     'AUTH_TOKEN_CLASSES': (
         'rest_framework_simplejwt.tokens.AccessToken',
     )
@@ -179,7 +179,7 @@ DJOSER = {
     'ACTIVATION_URL': 'activate/{uid}/{token}',
     'SEND_ACTIVATION_EMAIL': True,
     'SOCIAL_AUTH_TOKEN_STRATEGY': 'djoser.social.token.jwt.TokenStrategy',
-    'SOCIAL_AUTH_ALLOWED_REDIRECT_URIS': ['http://localhost:8000/google', 'http://localhost:8000/facebook'],
+    'SOCIAL_AUTH_ALLOWED_REDIRECT_URIS': ['http://localhost:8080/google', 'http://localhost:8080/facebook'],
     'SERIALIZERS': {
         'user_create': 'account.serializers.RegistrationSerializer',
         'user': 'account.serializers.RegistrationSerializer',
@@ -212,8 +212,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIR = [
+STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'build/static')
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-CORS_ORIGIN_ALLOW_ALL = True
