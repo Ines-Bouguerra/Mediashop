@@ -1,6 +1,8 @@
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
+  ACTIVATION_SUCCESS,
+  ACTIVATION_FAIL,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   USER_LOADED_SUCCESS,
@@ -137,7 +139,7 @@ export const register = ({
   last_name,
   email,
   password,
-  confirmPassword,
+  re_password,
   checkbox,
 }) => async (dispatch) => {
   const config = {
@@ -150,7 +152,7 @@ export const register = ({
     last_name,
     email,
     password,
-    confirmPassword,
+    re_password,
     checkbox,
   });
   try {
@@ -171,6 +173,29 @@ export const register = ({
     dispatch({
       type: REGISTER_FAIL,
     });
+  }
+};
+//verify 
+
+export const verify = (uid, token) => async dispatch => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+  const body = JSON.stringify({ uid, token });
+
+  try {
+    await axios.post(`${process.env.REACT_APP_API_URL}/auth/users/activation/`, body, config);
+
+    dispatch({
+      type: ACTIVATION_SUCCESS,
+    });
+  } catch (err) {
+    dispatch({
+      type: ACTIVATION_FAIL
+    })
   }
 };
 

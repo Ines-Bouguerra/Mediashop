@@ -35,7 +35,7 @@ function authReducer(state = initialState, action) {
       return {
         ...state,
         ...payload,
-        isAuthenticated: true,
+        isAuthenticated: false,
         loading: false,
       };
 
@@ -80,6 +80,15 @@ function authReducer(state = initialState, action) {
         isAuthenticated: false,
         user: null,
       };
+    case ACTIVATION_SUCCESS:
+    case ACTIVATION_FAIL:
+    case PASSWORD_RESET_SUCCESS:
+    case PASSWORD_RESET_FAIL:
+    case PASSWORD_RESET_CONFIRM_SUCCESS:
+    case PASSWORD_RESET_CONFIRM_FAIL:
+      return {
+        ...state,
+      }
     default:
       return state;
   }

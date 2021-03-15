@@ -17,31 +17,39 @@ import {
   Col,
 } from "reactstrap";
 import { Card } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { setAlert } from "../../actions/alerts";
 import { register } from "../../actions/auth";
-import PropTypes from "prop-types";
 
-function Register({ setAlert, register }) {
+function Register({ setAlert, register, isAuthenticated }) {
+  const [accountCreated, setAccountCreated] = useState(false);
   const [formData, setFormData] = useState({
-    username: "",
+    first_name: "",
+    last_name: "",
     email: "",
     password: "",
-    confirmPassword: "",
+    re_password: "",
     checkbox: "",
   });
-  const { username, email, password, confirmPassword, checkbox } = formData;
+  const { first_name, last_name, email, password, re_password, checkbox } = formData;
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
   const onSubmit = async (e) => {
     e.preventDefault();
-    if (password !== confirmPassword) {
+    if (password !== re_password) {
       setAlert("Password do not match", "danger");
     } else {
-      register({ username, email, password, confirmPassword, checkbox });
+      register({ first_name, last_name, email, password, re_password, checkbox })
+      setAccountCreated(true)
     }
-  };
+  }
+  if (isAuthenticated) {
+    return <Redirect to='/' />
+  }
+  if (accountCreated) {
+    return <Redirect to='/login' />
+  }
   return (
     <div className="section section-signup my-3 p-3">
       <Container>
@@ -65,11 +73,27 @@ function Register({ setAlert, register }) {
                       </InputGroupText>
                     </InputGroupAddon>
                     <Input
-                      placeholder="Full Name"
+                      placeholder="First Name"
                       type="text"
-                      id="usernameField"
-                      name="username"
-                      value={username}
+                      id="firstNameField"
+                      name="first_name"
+                      value={first_name}
+                      onChange={(e) => onChange(e)}
+                      required
+                    />
+                  </InputGroup>
+                  <InputGroup className="p-3">
+                    <InputGroupAddon addonType="prepend">
+                      <InputGroupText>
+                        <i className="tim-icons icon-single-02" />
+                      </InputGroupText>
+                    </InputGroupAddon>
+                    <Input
+                      placeholder="Last Name"
+                      type="text"
+                      id="lastNameField"
+                      name="last_name"
+                      value={last_name}
                       onChange={(e) => onChange(e)}
                       required
                     />
@@ -116,8 +140,8 @@ function Register({ setAlert, register }) {
                     <Input
                       placeholder="Confirm Password"
                       type="password"
-                      name="confirmPassword"
-                      value={confirmPassword}
+                      name="re_password"
+                      value={re_password}
                       onChange={(e) => onChange(e)}
                       required
                     />
@@ -138,11 +162,11 @@ function Register({ setAlert, register }) {
                   </FormGroup>
                 </CardBody>
                 <CardFooter>
-                  <Button color="info" size="md">
+                  <Button color="info" size="md" type='submit'>
                     Sign Up
                   </Button>
                   <p className="my-1">
-                    Already have an account? <Link to="/Login"> Sign In</Link>
+                    Already have an account? <Link to="/login"> Sign In</Link>
                   </p>
                 </CardFooter>
               </Form>
@@ -153,9 +177,8 @@ function Register({ setAlert, register }) {
     </div>
   );
 }
-Register.propTypes = {
-  // ptfr
-  setAlert: PropTypes.func.isRequired,
-  register: PropTypes.func.isRequired,
-};
-export default connect(null, { setAlert, register })(Register);
+
+const mapStateToProps = state => ({
+  isAuthenticated: state.authReducer.isAuthenticated
+});
+export default connect(mapStateToProps, { setAlert, register })(Register)
