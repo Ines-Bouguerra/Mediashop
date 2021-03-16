@@ -55,7 +55,7 @@ INSTALLED_APPS = [
     'social_django',
     'djoser',
     'rest_framework_simplejwt',
-    'rest_framework_simplejwt.token_blacklist'
+    'rest_framework_simplejwt.token_blacklist',
 ]
 
 MIDDLEWARE = [
@@ -79,7 +79,7 @@ ROOT_URLCONF = 'mediashop_drf.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'build')],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -143,14 +143,16 @@ EMAIL_HOST_USER = 'ines.bouguerra2207@gmail.com'
 EMAIL_HOST_PASSWORD = 'jkpyhalfbdadkisf'
 EMAIL_USE_TLS = True
 
-REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated'
-    ],
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ),
-}
+# REST_FRAMEWORK = {
+#     'DEFAULT_PERMISSION_CLASSES': [
+#         'rest_framework.permissions.IsAuthenticated',
+#         'rest_framework.authentication.TokenAuthentication',
+#         'rest_framework.authentication.SessionAuthentication',
+#     ],
+#     'DEFAULT_AUTHENTICATION_CLASSES': (
+#         'rest_framework_simplejwt.authentication.JWTAuthentication',
+#     ),
+# }
 
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.google.GoogleOAuth2',
@@ -187,11 +189,11 @@ DJOSER = {
         'user_delete': 'djoser.serializers.UserDeleteSerializer',
     }
 }
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '445531546776-64nddq0o81ors1lqbhk1aq58sdrf6q7i.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'NWDBrTFj7_2x6o5OCPh7nO8i'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['https://www.googleapis.com/auth/userinfo.email',
-                                   'https://www.googleapis.com/auth/userinfo.profile', 'openid']
-SOCIAL_AUTH_GOOGLE_OAUTH2_EXTRA_DATA = ['first_name', 'last_name']
+# SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '445531546776-64nddq0o81ors1lqbhk1aq58sdrf6q7i.apps.googleusercontent.com'
+# SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'NWDBrTFj7_2x6o5OCPh7nO8i'
+# SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['https://www.googleapis.com/auth/userinfo.email',
+#                                    'https://www.googleapis.com/auth/userinfo.profile', 'openid']
+# SOCIAL_AUTH_GOOGLE_OAUTH2_EXTRA_DATA = ['first_name', 'last_name']
 
 
 # Internationalization
