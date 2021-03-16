@@ -3,9 +3,10 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getProduct } from "../../actions/product";
 import { Spinner } from "react-bootstrap";
+import { Link } from 'react-router-dom'
 
 const ProductList = ({ getProduct, product }) => {
-  const [setProducts] = useState([]);
+  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -221,10 +222,12 @@ const ProductList = ({ getProduct, product }) => {
                   ) : (
                     <div class="row">
                       {product.products.map((product) => (
-                        <div className="product_item is_new col-md-3 mt-3 product">
+                        <div className="product_item is_new col-md-3 mt-3 product" key={product._id}>
                           <div className="product_border" />
                           <div className="product_image d-flex flex-column align-items-center justify-content-center">
-                            <img src={product.image} alt="" />
+                            <Link to={`/product/${product._id}`}>
+                              <img src={product.image} alt="" />
+                            </Link>
                           </div>
                           <div className="product_content">
                             <div className="product_price">
@@ -232,9 +235,9 @@ const ProductList = ({ getProduct, product }) => {
                             </div>
                             <div className="product_name">
                               <div>
-                                <a href="#!" tabIndex={0}>
+                                <Link to={`/product/${product._id}`}>
                                   {product.name}
-                                </a>
+                                </Link>
                               </div>
                             </div>
                           </div>

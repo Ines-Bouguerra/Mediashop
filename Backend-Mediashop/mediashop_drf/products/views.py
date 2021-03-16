@@ -10,12 +10,10 @@ from rest_framework.decorators import api_view
 from products.documents import ProductDocument
 from django.http import HttpResponse
 from django.http import Http404
-# Create your views here.
 
 
 @api_view(['GET', 'POST', 'DELETE'])
 def product_list(request):
-    # GET list of tutorials, POST a new tutorial, DELETE all tutorials
     if request.method == 'GET':
         products = Product.objects.all()
 
