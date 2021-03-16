@@ -15,26 +15,30 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.conf.urls import url, include
-from rest_framework.authtoken.views import obtain_auth_token
+# from rest_framework.authtoken.views import obtain_auth_token
 from django.urls import path, include, re_path
 from django.views.generic import TemplateView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+
     url(r'^', include('products.urls')),
     url(r'^', include('account.urls')),
-    path('authentication/', obtain_auth_token),
-      path('auth/', include('djoser.urls')),
+    url(r'^', include('category.urls')),
+    url(r'^', include('favorite.urls')),
+    url(r'^', include('post.urls')),
+    url(r'^', include('rating.urls')),
+    path('admin/', admin.site.urls),
+    # path('authentication/', obtain_auth_token),
+    path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.jwt')),
     path('auth/', include('djoser.social.urls')),
 
 ]
 
 
-
 # urlpatterns += [re_path(r'^.*', TemplateView.as_view(template_name='index.html'))]
 
 
-admin.site.index_title="Mediashop"
-admin.site.site_header="Mediashop Price Comparison Admin"
-admin.site.site_title="Price Comparison"
+admin.site.index_title = "Mediashop"
+admin.site.site_header = "Mediashop Price Comparison Admin"
+admin.site.site_title = "Price Comparison"

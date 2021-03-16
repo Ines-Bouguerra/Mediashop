@@ -49,8 +49,16 @@ INSTALLED_APPS = [
     'products.apps.ProductsConfig',
     # account application
     'account.apps.AccountConfig',
+    # category application
+    'category.apps.CategoryConfig',
+    # favorite application
+    'favorite.apps.FavoriteConfig',
+    # post application
+    'post.apps.PostConfig',
+    # rating application
+    'rating.apps.RatingConfig',
     # generate auth token
-    'rest_framework.authtoken',
+    # 'rest_framework.authtoken',
     # social-auth-app-django
     'social_django',
     'djoser',
