@@ -7,7 +7,7 @@ ELASTIC_HOST = 'http://localhost:9200/'
 client = elasticsearch.Elasticsearch(hosts=[ELASTIC_HOST])
 INDEXES = ['mediashop_products']
 fields = ['name', 'reference', 'short_description',
-          "description",  'category', "sub_category", "brand", "priceString"]
+          "description",  "sub_category", "brand", "priceString"]
 
 
 def lookup(query, index=INDEXES, fields=fields):
@@ -21,7 +21,6 @@ def lookup(query, index=INDEXES, fields=fields):
         print(result.reference)
         data = {
             "reference": result.reference,
-            "category": result.category,
             "sub_category": result.sub_category,
             "name": result.name,
             "price": result.priceString,

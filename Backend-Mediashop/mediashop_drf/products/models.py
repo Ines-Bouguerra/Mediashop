@@ -1,5 +1,6 @@
 from django.db import models
 from account.models import Account
+# from category.models import Category
 
 
 class Product(models.Model):
@@ -25,4 +26,4 @@ class Product(models.Model):
     marketplaceId = models.CharField(max_length=255)
 
     def __str__(self):
-        return '%s' % self.name
+        return self.name

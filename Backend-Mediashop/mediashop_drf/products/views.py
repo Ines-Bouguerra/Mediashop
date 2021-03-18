@@ -1,15 +1,13 @@
 from .search import lookup
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404
 from django.http.response import JsonResponse
 from rest_framework.parsers import JSONParser
 from rest_framework import status
 
 from products.models import Product
+# from category.models import Category
 from products.serializers import products_Serializer
 from rest_framework.decorators import api_view
-from products.documents import ProductDocument
-from django.http import HttpResponse
-from django.http import Http404
 
 
 @api_view(['GET', 'POST', 'DELETE'])
@@ -37,17 +35,29 @@ def product_list(request):
 def search_view(request):
     query_params = request.GET
     q = query_params.get('q')
-
     context = {}
-
     if q is not None:
         results = lookup(q)
         context['results'] = results
         context['query'] = q
     return JsonResponse(context)
 
-@api_view(['GET'])
-def category_list(request):
-    products = Product.category
-    products__Serializer = products_Serializer(products, many=True)
-    return JsonResponse(products__Serializer.data, safe=False)
+# @api_view(['GET'])
+# def product_list2(request,category_slug=None):
+#     category=None
+#     categories=Category.objects.all()
+#     product=Product.objects.all()
+#     if category_slug:
+#         category = get_object_or_404(Category, slug=category_slug)
+#         product=product.filter(category=category)
+#     products__Serializer = products_Serializer(category, many=True)
+#     return JsonResponse(products__Serializer.data, safe=False)
+
+
+
+
+# @api_view(['GET'])
+# def product_detail(request, id):
+#     product = get_object_or_404(Product, id=id)
+#     products__Serializer = products_Serializer(product)
+#     return JsonResponse(products__Serializer.data, safe=False)
