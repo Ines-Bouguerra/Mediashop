@@ -5,7 +5,6 @@ from rest_framework.parsers import JSONParser
 from rest_framework import status
 
 from products.models import Product
-# from category.models import Category
 from products.serializers import products_Serializer
 from rest_framework.decorators import api_view
 
@@ -41,23 +40,3 @@ def search_view(request):
         context['results'] = results
         context['query'] = q
     return JsonResponse(context)
-
-# @api_view(['GET'])
-# def product_list2(request,category_slug=None):
-#     category=None
-#     categories=Category.objects.all()
-#     product=Product.objects.all()
-#     if category_slug:
-#         category = get_object_or_404(Category, slug=category_slug)
-#         product=product.filter(category=category)
-#     products__Serializer = products_Serializer(category, many=True)
-#     return JsonResponse(products__Serializer.data, safe=False)
-
-
-
-
-# @api_view(['GET'])
-# def product_detail(request, id):
-#     product = get_object_or_404(Product, id=id)
-#     products__Serializer = products_Serializer(product)
-#     return JsonResponse(products__Serializer.data, safe=False)
