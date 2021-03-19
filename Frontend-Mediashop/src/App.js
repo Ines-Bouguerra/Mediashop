@@ -18,6 +18,8 @@ import PrivateRoute from "./components/routing/PrivateRoute";
 import { Provider } from "react-redux";
 import store from "./store";
 import Layout from "./hocs/Layout";
+import CategoryDataProvider from "./components/category/DataProvider";
+import CategoryDisplay from "./components/category/Display";
 class App extends Component {
   render() {
     return (
@@ -43,6 +45,8 @@ class App extends Component {
                   path="/activate/:uid/:token"
                   component={Activate}
                 />
+                <CategoryDataProvider endpoint="/api/categories/category-list" render={data => <CategoryDisplay data={data} />} />
+
               </Switch>
             </Layout>
           </div>
