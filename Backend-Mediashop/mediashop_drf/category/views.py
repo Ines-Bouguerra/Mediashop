@@ -5,8 +5,7 @@ from .serializers import category_Serializer, subcategory_Serializer
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status
-
-
+from rest_framework import permissions
 class category_list(ListAPIView):
     queryset = Category.objects.filter(parent__isnull=True)
     serializer_class = category_Serializer
@@ -22,6 +21,7 @@ def category_details(request, slug):
     """
     Retrieve, update or delete a category instance.
     """
+    permission_classes=(permissions.IsAuthenticatedOrReadOnly,)
     try:
         category = Category.objects.get(slug=slug)
     except Category.DoesNotExist:
