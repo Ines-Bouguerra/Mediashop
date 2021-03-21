@@ -1,30 +1,45 @@
-import PropTypes from "prop-types";
-import React, { useEffect, useState } from "react";
-import { Spinner } from "react-bootstrap";
-import { connect } from "react-redux";
-import { Link } from 'react-router-dom';
-import { getProduct } from "../../actions/product";
+import PropTypes from "prop-types"
+import React, { useEffect, useState } from "react"
+import { Spinner } from "react-bootstrap"
+import { connect } from "react-redux"
+import { Link } from 'react-router-dom'
+import { getCategories } from '../../actions/category'
+import { getProduct } from "../../actions/product"
 
-const ProductList = ({ getProduct, product }) => {
-  const [setProducts] = useState([]);
-  const [loading, setLoading] = useState(false);
-
+const ProductList = ({ getProduct, product, getCategories, category }) => {
+  const [setProducts] = useState([])
+  const [loading, setLoading] = useState(false)
+  const [setCategories] = useState([])
   useEffect(() => {
-    loadAllProducts();
-  }, []);
+    loadAllProducts()
+    loadCategories()
+  }, [])
 
   const loadAllProducts = () => {
-    setLoading(true);
+    setLoading(true)
     getProduct()
       .then((res) => {
-        setProducts(res.data);
-        setLoading(false);
+        setProducts(res.data)
+        setLoading(false)
       })
       .catch((err) => {
-        setLoading(false);
-        console.log(err);
-      });
-  };
+        setLoading(false)
+        console.log(err)
+      })
+  }
+  const loadCategories = () => {
+    setLoading(true)
+    getCategories()
+      .then((res) => {
+        setCategories(res.data)
+        setLoading(false)
+      })
+      .catch((err) => {
+        setLoading(false)
+        console.log(err)
+      })
+  }
+
 
   return (
     <div class="super_container">
@@ -51,33 +66,11 @@ const ProductList = ({ getProduct, product }) => {
                 <div className="sidebar_section">
                   <div className="sidebar_title">Categories</div>
                   <ul className="sidebar_categories">
-                    <li>
-                      <a href="#!">Computers &amp; Laptops</a>
-                    </li>
-                    <li>
-                      <a href="#!">Cameras &amp; Photos</a>
-                    </li>
-                    <li>
-                      <a href="#!">Hardware</a>
-                    </li>
-                    <li>
-                      <a href="#!">Smartphones &amp; Tablets</a>
-                    </li>
-                    <li>
-                      <a href="#!">TV &amp; Audio</a>
-                    </li>
-                    <li>
-                      <a href="#!">Gadgets</a>
-                    </li>
-                    <li>
-                      <a href="#!">Car Electronics</a>
-                    </li>
-                    <li>
-                      <a href="#!">Video Games &amp; Consoles</a>
-                    </li>
-                    <li>
-                      <a href="#!">Accessories</a>
-                    </li>
+                    {category.categories.map((category) => (
+                      <li>
+                        <a href="#!">{category.name}</a>
+                      </li>
+                    ))}
                   </ul>
                 </div>
                 <div className="sidebar_section filter_by_section">
@@ -261,18 +254,21 @@ const ProductList = ({ getProduct, product }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 ProductList.propTypes = {
   getProduct: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   product: PropTypes.object.isRequired,
-};
+  getCategories: PropTypes.func.isRequired,
+  category: PropTypes.object.isRequired
+}
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
   product: state.product,
-});
+  category: state.category,
+})
 
-export default connect(mapStateToProps, { getProduct })(ProductList);
+export default connect(mapStateToProps, { getProduct, getCategories })(ProductList)

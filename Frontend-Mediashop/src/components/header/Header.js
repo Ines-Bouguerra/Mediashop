@@ -1,12 +1,14 @@
 // Header.js
 import PropTypes from "prop-types";
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "../../actions/auth";
+import { getCategories } from '../../actions/category';
 
-const Header = ({ logout, isAuthenticated }) => {
+const Header = ({ logout, isAuthenticated, getCategories, category }) => {
   const [redirect, setRedirect] = useState(false);
+  const [setCategories] = useState([])
 
   const logout_user = () => {
     logout();
@@ -45,7 +47,18 @@ const Header = ({ logout, isAuthenticated }) => {
       </div>
     </div>
   );
-
+  useEffect(() => {
+    loadCategories()
+  }, [])
+  const loadCategories = () => {
+    getCategories()
+      .then((res) => {
+        setCategories(res.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
   return (
     <Fragment>
       {/* Header */}
@@ -110,31 +123,13 @@ const Header = ({ logout, isAuthenticated }) => {
                                   All Categories
                                 </a>
                               </li>
-                              <li>
-                                <a className="clc" href="#!">
-                                  Computers
-                                </a>
-                              </li>
-                              <li>
-                                <a className="clc" href="#!">
-                                  Laptops
-                                </a>
-                              </li>
-                              <li>
-                                <a className="clc" href="#!">
-                                  Cameras
-                                </a>
-                              </li>
-                              <li>
-                                <a className="clc" href="#!">
-                                  Hardware
-                                </a>
-                              </li>
-                              <li>
-                                <a className="clc" href="#!">
-                                  Smartphones
-                                </a>
-                              </li>
+                              {category.categories.map((category) => (
+                                <li>
+                                  <a className="clc" href="!">
+                                    {category.name}
+                                  </a>
+                                </li>
+                              ))}
                             </ul>
                           </div>
                         </div>
@@ -202,112 +197,17 @@ const Header = ({ logout, isAuthenticated }) => {
                       <div className="cat_menu_text">categories</div>
                     </div>
                     <ul className="cat_menu">
-                      <li>
-                        <Link to="/">
-                          Computers &amp; Laptops{" "}
-                          <i className="fas fa-chevron-right ml-auto" />
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="/">
-                          Cameras &amp; Photos
-                          <i className="fas fa-chevron-right" />
-                        </Link>
-                      </li>
-                      <li className="hassubs">
-                        <Link to="/">
-                          Hardware
-                          <i className="fas fa-chevron-right" />
-                        </Link>
-                        <ul>
-                          <li className="hassubs">
-                            <Link to="/">
-                              Menu Item
-                              <i className="fas fa-chevron-right" />
-                            </Link>
-                            <ul>
-                              <li>
-                                <Link to="/">
-                                  Menu Item
-                                  <i className="fas fa-chevron-right" />
-                                </Link>
-                              </li>
-                              <li>
-                                <Link to="/">
-                                  Menu Item
-                                  <i className="fas fa-chevron-right" />
-                                </Link>
-                              </li>
-                              <li>
-                                <Link to="/">
-                                  Menu Item
-                                  <i className="fas fa-chevron-right" />
-                                </Link>
-                              </li>
-                              <li>
-                                <Link to="/">
-                                  Menu Item
-                                  <i className="fas fa-chevron-right" />
-                                </Link>
-                              </li>
-                            </ul>
-                          </li>
-                          <li>
-                            <Link to="/">
-                              Menu Item
-                              <i className="fas fa-chevron-right" />
-                            </Link>
-                          </li>
-                          <li>
-                            <Link to="/">
-                              Menu Item
-                              <i className="fas fa-chevron-right" />
-                            </Link>
-                          </li>
-                          <li>
-                            <Link to="/">
-                              Menu Item
-                              <i className="fas fa-chevron-right" />
-                            </Link>
-                          </li>
-                        </ul>
-                      </li>
-                      <li>
-                        <Link to="/">
-                          Smartphones &amp; Tablets
-                          <i className="fas fa-chevron-right" />
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="/">
-                          TV &amp; Audio
-                          <i className="fas fa-chevron-right" />
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="/">
-                          Gadgets
-                          <i className="fas fa-chevron-right" />
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="/">
-                          Car Electronics
-                          <i className="fas fa-chevron-right" />
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="/">
-                          Video Games &amp; Consoles
-                          <i className="fas fa-chevron-right" />
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="/">
-                          Accessories
-                          <i className="fas fa-chevron-right" />
-                        </Link>
-                      </li>
+                      {category.categories.map((category) => (
+
+                        <li>
+                          <Link to="/">
+                            {category.name}
+                            <i className="fas fa-chevron-right ml-auto" />
+                          </Link>
+                        </li>
+
+
+                      ))}
                     </ul>
                   </div>
                   {/* Main Nav Menu */}
@@ -392,10 +292,15 @@ const Header = ({ logout, isAuthenticated }) => {
 Header.propTypes = {
   logout: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
+  getCategories: PropTypes.func.isRequired,
+  category: PropTypes.object.isRequired
+
 };
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.authReducer.isAuthenticated,
+  category: state.category,
+
 });
 
-export default connect(mapStateToProps, { logout })(Header);
+export default connect(mapStateToProps, { logout, getCategories })(Header);
