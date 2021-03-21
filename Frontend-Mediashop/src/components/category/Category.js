@@ -2,13 +2,17 @@ import PropTypes from "prop-types";
 import React, { useEffect, useState } from 'react';
 import { Spinner } from "react-bootstrap";
 import { connect } from "react-redux";
-import { getCategories } from '../../actions/category';
+import { getCategories,  } from '../../actions/category';
+import { Link } from "react-router-dom";
 
-const Category = ({ getCategories, category }) => {
+const Category = ({ getCategories, category,  }) => {
 
 
-    const [loading, setLoading] = useState(false);
-    const [setCategories] = useState([]);
+    const [loading, setLoading] = useState(false)
+    const [setCategories] = useState([])
+    const [setCategory] = useState({})
+
+
     useEffect(() => {
         loadCategories()
     }, []);
@@ -25,7 +29,7 @@ const Category = ({ getCategories, category }) => {
                 console.log(err);
             });
     };
-
+    
 
     return (
         <div class="shop">
@@ -43,13 +47,14 @@ const Category = ({ getCategories, category }) => {
                     <div class="row">
 
                         {category.categories.map((category) => (
-                            <div className="col-md-3 mt-3 py-3 ">
+                            <div className="col-md-3 mt-3 py-3 " key={category.id}>
                                 <div className="product_border" />
                                 <div className="product_image d-flex flex-column align-items-center justify-content-center">
                                     <img src={category.image} alt="" /></div>
-                                <div className="product_name center">
-                                    {category.name}<br></br>
-                                </div>
+                                <Link to={`/category/${category.slug}`}>
+                                    <div className="product_name center">
+                                        {category.name}<br></br>
+                                    </div></Link>
                                 {category.children.length} products
                             </div>
                         ))}
@@ -57,20 +62,18 @@ const Category = ({ getCategories, category }) => {
                     </div>
                 )}
             </div>
+           
         </div>
     )
 }
 
 Category.propTypes = {
-    getProduct: PropTypes.func.isRequired,
-    auth: PropTypes.object.isRequired,
     category: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-    auth: state.auth,
     category: state.category,
 });
 
 
-export default connect(mapStateToProps, { getCategories })(Category)
+export default connect(mapStateToProps, { getCategories,  })(Category)

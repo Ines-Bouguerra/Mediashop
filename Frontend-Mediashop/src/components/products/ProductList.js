@@ -266,7 +266,7 @@ ProductList.propTypes = {
 }
 
 const mapStateToProps = (state) => ({
-  auth: state.auth,
+  auth: state.authReducer,
   product: state.product,
   category: state.category,
 })
