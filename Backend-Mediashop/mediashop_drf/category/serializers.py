@@ -13,7 +13,7 @@ class category_Serializer(serializers.ModelSerializer):
             'name',
             'slug',
             'parent',
-            # 'children',
+            'children',
             'image',
             'created_at',
             'updated_at'

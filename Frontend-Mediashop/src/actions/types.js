@@ -19,3 +19,5 @@ export const GOOGLE_AUTH_FAIL = 'GOOGLE_AUTH_FAIL';
 export const LOGOUT = 'LOGOUT';
 export const GET_PRODUCT = 'GET_PRODUCT';
 export const PRODUCT_ERROR = 'PRODUCT_ERROR';
+export const GET_CATEGORY = 'GET_CATEGORY';
+export const CATEGORY_ERROR = 'CATEGORY_ERROR';

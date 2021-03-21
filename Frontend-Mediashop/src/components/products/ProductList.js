@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { getProduct } from "../../actions/product";
+import React, { useEffect, useState } from "react";
 import { Spinner } from "react-bootstrap";
-import { Link } from 'react-router-dom'
+import { connect } from "react-redux";
+import { Link } from 'react-router-dom';
+import { getProduct } from "../../actions/product";
 
 const ProductList = ({ getProduct, product }) => {
-  const [products, setProducts] = useState([]);
+  const [setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {

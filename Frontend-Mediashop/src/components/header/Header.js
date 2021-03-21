@@ -1,8 +1,8 @@
 // Header.js
-import React, { Fragment, useState } from "react";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import React, { Fragment, useState } from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { logout } from "../../actions/auth";
 
 const Header = ({ logout, isAuthenticated }) => {
@@ -34,9 +34,9 @@ const Header = ({ logout, isAuthenticated }) => {
   const authLinks = () => (
     <div className="top_bar_content ml-auto">
       <div className="top_bar_user">
-      <div className="user_icon">
-            <img src="images/logout.png" alt="" />
-          </div>
+        <div className="user_icon">
+          <img src="images/logout.png" alt="" />
+        </div>
         <div>
           <Link to="/" onClick={logout_user}>
             Logout
