@@ -7,7 +7,7 @@ class TunisianetspiderSpider(scrapy.Spider):
     name = 'TunisianetSpider'
     allowed_domains = ['tunisianet.com.tn']
     start_urls = ['https://www.tunisianet.com.tn/702-ordinateur-portable', 'https://www.tunisianet.com.tn/700-accessoires-et-peripheriques', 'https://www.tunisianet.com.tn/701-ordinateur-de-bureau', 'https://www.tunisianet.com.tn/377-telephone-portable-tunisie', 'https://www.tunisianet.com.tn/716-swatch',
-                  'https://www.tunisianet.com.tn/385-logiciels-informatique-tunisie', 'https://www.tunisianet.com.tn/375-serveur-informatique-tunisie', 'https://www.tunisianet.com.tn/380-onduleur', 'https://www.tunisianet.com.tn/406-composant-informatique', 'https://www.tunisianet.com.tn/406-composant-informatique']
+                  'https://www.tunisianet.com.tn/385-logiciels-informatique-tunisie', 'https://www.tunisianet.com.tn/375-serveur-informatique-tunisie', 'https://www.tunisianet.com.tn/380-onduleur', 'https://www.tunisianet.com.tn/406-composant-informatique', ]
 
     def parse(self, response):
         products = Selector(response).xpath(
