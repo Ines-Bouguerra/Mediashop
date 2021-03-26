@@ -30,11 +30,11 @@ Frontend-Mediashop/mediashop/public/images
 
 Web-Scraping/mytek/outputMytek.json
 Web-Scraping/Tunisianet/outputStackoverflow.json
-Web-Scraping/Tunisianet/outputTunisianet.csv
+Web-Scraping/jumia/JumiaOutput.json
 
 Web-Scraping/mytek/mytek/__pycache__
 Web-Scraping/Tunisianet/Tunisianet/__pycache__ 
-
+Web-Scraping/jumia/jumia/__pycache__
 
 
 __pycache__/
