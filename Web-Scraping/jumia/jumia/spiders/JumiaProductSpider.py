@@ -7,7 +7,7 @@ class JumiaproductspiderSpider(scrapy.Spider):
     name = 'JumiaProductSpider'
     allowed_domains = ['jumia.com.tn']
     start_urls = ['https://www.jumia.com.tn/pc-portables', 'https://www.jumia.com.tn/peripheriques-logiciels-accessoires/', 'https://www.jumia.com.tn/imprimantes-pc/', 'https://www.jumia.com.tn/telephones-smartphones/',
-                  'https://www.jumia.com.tn/accessoires-mode-femme/', 'https://www.jumia.com.tn/accessoires-hommes-mode/', 'https://www.jumia.com.tn/stockage/', 'https://www.jumia.com.tn/accessoires-telephone/', 'https://www.jumia.com.tn/camera-video/','https://www.jumia.com.tn/electronique-accessoires-fournitures/','https://www.jumia.com.tn/connectiques/','https://www.jumia.com.tn/tvs/']
+                  'https://www.jumia.com.tn/accessoires-mode-femme/', 'https://www.jumia.com.tn/accessoires-hommes-mode/', 'https://www.jumia.com.tn/stockage/', 'https://www.jumia.com.tn/accessoires-telephone/', 'https://www.jumia.com.tn/camera-video/', 'https://www.jumia.com.tn/electronique-accessoires-fournitures/', 'https://www.jumia.com.tn/connectiques/', 'https://www.jumia.com.tn/tvs/']
     DOWNLOAD_DELAY = 50000000    # 1000 ms of delay
 
     def parse(self, response):
