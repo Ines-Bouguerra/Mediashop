@@ -6,13 +6,13 @@ import Login from "./components/authentication/Login"
 import Register from "./components/authentication/Register"
 import ResetPassword from "./components/authentication/ResetPassword"
 import ResetPasswordConfirm from "./components/authentication/ResetPasswordConfirm"
+import CategoryHome from "./components/category/CategoryHome"
 import Favorites from "./components/favorites/Favorites"
 import Home from "./components/home/Home"
 import Alert from "./components/layouts/Alert"
 import ProductList from "./components/products/ProductList"
 import Layout from "./hocs/Layout"
 import store from "./store"
-import CategoryHome from "./components/category/CategoryHome"
 
 class App extends Component {
   render() {
@@ -40,6 +40,8 @@ class App extends Component {
                   component={Activate}
                 />
                 <Route exact path="/category/:slug" component={CategoryHome} />
+                <Route path="/search/:keyword" component={ProductList} />
+
               </Switch>
             </Layout>
           </div>

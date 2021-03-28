@@ -1,6 +1,6 @@
-import axios from "axios";
+import axios from "axios"
+import { GET_PRODUCT, PRODUCT_ERROR } from "./types"
 
-import { GET_PRODUCT, PRODUCT_ERROR } from "./types";
 
 //Get Product
 
@@ -10,12 +10,12 @@ export const getProduct = () => async (dispatch, sort, order, limit) => {
       sort,
       order,
       limit,
-    });
+    })
 
     dispatch({
       type: GET_PRODUCT,
       payload: res.data,
-    });
+    })
 
   } catch (error) {
     dispatch({
@@ -24,6 +24,12 @@ export const getProduct = () => async (dispatch, sort, order, limit) => {
         msg: error.response.statusText,
         status: error.response.status,
       },
-    });
+    })
   }
-};
+}
+export const searchProduct = (keyword = '') => async () => {
+
+  await axios.get(`http://127.0.0.1:8080/api/products/search_view?keyword=${keyword}`)
+
+
+}
