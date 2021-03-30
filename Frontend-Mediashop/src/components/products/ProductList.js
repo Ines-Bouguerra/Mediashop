@@ -1,44 +1,19 @@
-import PropTypes from "prop-types"
-import React, { useEffect, useState } from "react"
+import React, { useEffect, } from "react"
 import { Spinner } from "react-bootstrap"
 import { connect } from "react-redux"
 import { Link } from 'react-router-dom'
 import { getCategories } from '../../actions/category'
 import { getProduct } from "../../actions/product"
+import Filter from "./Filter"
 
-const ProductList = ({ getProduct, product, getCategories, category }) => {
-  const [setProducts] = useState([])
-  const [loading, setLoading] = useState(false)
-  const [setCategories] = useState([])
+const ProductList = ({ getProduct, product: { products }, getCategories, category: { categories }, loading }) => {
+
+
   useEffect(() => {
-    loadAllProducts()
-    loadCategories()
-  }, [])
-
-  const loadAllProducts = () => {
-    setLoading(true)
     getProduct()
-      .then((res) => {
-        setProducts(res.data)
-        setLoading(false)
-      })
-      .catch((err) => {
-        setLoading(false)
-        console.log(err)
-      })
-  }
-  const loadCategories = () => {
-    setLoading(true)
     getCategories()
-      .then((res) => {
-        setCategories(res.data)
-        setLoading(false)
-      })
-      .catch((err) => {
-        setLoading(false)
-        console.log(err)
-      })
-  }
+  }, [getProduct, getCategories])
+
 
 
   return (
@@ -66,7 +41,7 @@ const ProductList = ({ getProduct, product, getCategories, category }) => {
                 <div className="sidebar_section">
                   <div className="sidebar_title">Categories</div>
                   <ul className="sidebar_categories">
-                    {category.categories.map((category) => (
+                    {categories.map((category) => (
                       <li>
                         <a href="#!">{category.name}</a>
                       </li>
@@ -165,43 +140,7 @@ const ProductList = ({ getProduct, product, getCategories, category }) => {
             <div className="col-lg-9">
               {/* Product Content */}
               <div className="shop_content">
-                <div className="shop_bar clearfix">
-                  <div className="shop_product_count">
-                    <span>{product.products.length}</span> products found
-                  </div>
-                  <div className="shop_sorting">
-                    <span>Sort by:</span>
-                    <ul>
-                      <li>
-                        <span className="sorting_text">
-                          highest rated
-                          <i className="fas fa-chevron-down" />
-                          <ul>
-                            <li
-                              className="shop_sorting_button"
-                              data-isotope-option='{ "sortBy": "original-order" }'
-                            >
-                              highest rated
-                            </li>
-                            <li
-                              className="shop_sorting_button"
-                              data-isotope-option='{ "sortBy": "name" }'
-                            >
-                              name
-                            </li>
-                            <li
-                              className="shop_sorting_button"
-                              data-isotope-option='{ "sortBy": "price" }'
-                            >
-                              price
-                            </li>
-                          </ul>
-                        </span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-
+                <Filter />
                 <div className="product_grid ">
                   <div className="product_grid_border" />
                   {/* Product Item */}
@@ -214,7 +153,7 @@ const ProductList = ({ getProduct, product, getCategories, category }) => {
                     </>
                   ) : (
                     <div class="row">
-                      {product.products.map((product) => (
+                      {products.map((product) => (
                         <div className="product_item is_new col-md-3 mt-3 product" key={product._id}>
                           <div className="product_border" />
                           <div className="product_image d-flex flex-column align-items-center justify-content-center">
@@ -257,13 +196,6 @@ const ProductList = ({ getProduct, product, getCategories, category }) => {
   )
 }
 
-ProductList.propTypes = {
-  getProduct: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
-  product: PropTypes.object.isRequired,
-  getCategories: PropTypes.func.isRequired,
-  category: PropTypes.object.isRequired
-}
 
 const mapStateToProps = (state) => ({
   auth: state.authReducer,
