@@ -1,5 +1,4 @@
 // Header.js
-import PropTypes from "prop-types";
 import React, { Fragment, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { Link, Route } from "react-router-dom";
@@ -7,9 +6,9 @@ import { logout } from "../../actions/auth";
 import { getCategories } from '../../actions/category';
 import SearchBox from "../products/SearchBox";
 
-const Header = ({ logout, isAuthenticated, getCategories, category }) => {
+const Header = ({ logout, isAuthenticated, getCategories, category: { categories }, }) => {
   const [redirect, setRedirect] = useState(false);
-  const [setCategories] = useState([])
+
 
   const logout_user = () => {
     logout();
@@ -49,17 +48,9 @@ const Header = ({ logout, isAuthenticated, getCategories, category }) => {
     </div>
   );
   useEffect(() => {
-    loadCategories()
-  }, [])
-  const loadCategories = () => {
     getCategories()
-      .then((res) => {
-        setCategories(res.data)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-  }
+  }, [getCategories])
+
   return (
     <Fragment>
       {/* Header */}
@@ -154,7 +145,7 @@ const Header = ({ logout, isAuthenticated, getCategories, category }) => {
                       <div className="cat_menu_text">categories</div>
                     </div>
                     <ul className="cat_menu">
-                      {category.categories.map((category) => (
+                      {categories.map((category) => (
 
                         <li>
                           <Link to="/">
@@ -244,14 +235,6 @@ const Header = ({ logout, isAuthenticated, getCategories, category }) => {
       </header>
     </Fragment>
   );
-};
-
-Header.propTypes = {
-  logout: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
-  getCategories: PropTypes.func.isRequired,
-  category: PropTypes.object.isRequired
-
 };
 
 const mapStateToProps = (state) => ({
