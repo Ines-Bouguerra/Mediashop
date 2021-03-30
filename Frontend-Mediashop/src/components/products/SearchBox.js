@@ -1,32 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { getCategories } from '../../actions/category';
+import { searchProduct } from "../../actions/product";
 
-const SearchBox = ({ history, getCategories, category }) => {
+const SearchBox = ({ history, getCategories, searchProduct, category }) => {
 
-
-    const [setCategories] = useState([])
-    useEffect(() => {
-        loadCategories()
-    }, [])
-    const loadCategories = () => {
-        getCategories()
-            .then((res) => {
-                setCategories(res.data)
-            })
-            .catch((err) => {
-                console.log(err)
-            })
-    }
     const [keyword, setKeyword] = useState('')
 
+    useEffect(() => {
+        getCategories()
+    }, [getCategories])
+
+
     const submitHandler = (e) => {
-        e.preventDefault()
-        if (keyword.trim()) {
-            history.push(`/search/${keyword}`)
-        } else {
-            history.push('/')
-        }
+        e.preventDefault();
+        searchProduct(keyword)
     }
 
     return (
@@ -39,7 +27,7 @@ const SearchBox = ({ history, getCategories, category }) => {
                                 type="search"
                                 required="required"
                                 name='q'
-                                onChange={(e) => setKeyword(e.target.value)}
+                                onChange={(event) => setKeyword(event.target.value)}
                                 className="header_search_input"
                                 placeholder="Search for products..."
                             />
@@ -80,11 +68,13 @@ const SearchBox = ({ history, getCategories, category }) => {
     )
 }
 
+
 const mapStateToProps = (state) => ({
     isAuthenticated: state.authReducer.isAuthenticated,
     category: state.category,
 
 });
 
-export default connect(mapStateToProps, { getCategories })(SearchBox);
+export default connect(mapStateToProps, { getCategories, searchProduct })(SearchBox);
+
 
