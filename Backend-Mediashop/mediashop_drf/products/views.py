@@ -39,4 +39,14 @@ def search_view(request):
         results = lookup(q)
         context['results'] = results
         context['query'] = q
+    else:
+        products = Product.objects.all()
+
+        name = request.GET.get('name', None)
+        if name is not None:
+            products = products.filter(title__icontains=name)
+
+        products__Serializer = products_Serializer(products, many=True)
+        return JsonResponse(products__Serializer.data, safe=False)
+        # 'safe=False' for objects serialization
     return JsonResponse(context)
