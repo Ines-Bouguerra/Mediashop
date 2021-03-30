@@ -4,39 +4,32 @@ import { GET_CATEGORY, CATEGORY_ERROR } from "./types"
 
 //Get Category
 
-export const getCategories = () => async (dispatch, sort, order, limit) => {
+export const getCategories = () => async (dispatch) => {
     try {
-        const res = await axios.get('http://127.0.0.1:8080/api/categories/category-list', {
-            sort,
-            order,
-            limit,
-        })
-
+        const { data } = await axios.get('http://127.0.0.1:8080/api/categories/category-list')
         dispatch({
             type: GET_CATEGORY,
-            payload: res.data,
+            payload: data,
         })
 
     } catch (error) {
         dispatch({
             type: CATEGORY_ERROR,
-            payload: {
-                msg: error.response.statusText,
-                status: error.response.status,
-            },
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message,
+
         })
     }
 }
+
 export const getCategory = async (slug) =>
     await axios.get(`${process.env.REACT_APP_API_URL}/api/categories/category/${slug}`)
 
-export const getSubCategories = () => async (dispatch, sort, order, limit) => {
+export const getSubCategories = () => async (dispatch) => {
     try {
-        const res = await axios.get('http://127.0.0.1:8080/api/categories/subcategory-list', {
-            sort,
-            order,
-            limit,
-        })
+        const res = await axios.get('http://127.0.0.1:8080/api/categories/subcategory-list')
 
         dispatch({
             type: GET_CATEGORY,

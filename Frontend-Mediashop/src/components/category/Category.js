@@ -1,35 +1,14 @@
-import PropTypes from "prop-types";
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Spinner } from "react-bootstrap";
 import { connect } from "react-redux";
-import { getCategories,  } from '../../actions/category';
 import { Link } from "react-router-dom";
+import { getCategories } from '../../actions/category';
 
-const Category = ({ getCategories, category,  }) => {
-
-
-    const [loading, setLoading] = useState(false)
-    const [setCategories] = useState([])
-    const [setCategory] = useState({})
-
+const Category = ({ getCategories, category: { categories }, loading }) => {
 
     useEffect(() => {
-        loadCategories()
-    }, []);
-
-    const loadCategories = () => {
-        setLoading(true);
         getCategories()
-            .then((res) => {
-                setCategories(res.data);
-                setLoading(false);
-            })
-            .catch((err) => {
-                setLoading(false);
-                console.log(err);
-            });
-    };
-    
+    }, [getCategories]);
 
     return (
         <div class="shop">
@@ -46,7 +25,7 @@ const Category = ({ getCategories, category,  }) => {
                 ) : (
                     <div class="row">
 
-                        {category.categories.map((category) => (
+                        {categories.map((category) => (
                             <div className="col-md-3 mt-3 py-3 " key={category.id}>
                                 <div className="product_border" />
                                 <div className="product_image d-flex flex-column align-items-center justify-content-center">
@@ -62,18 +41,12 @@ const Category = ({ getCategories, category,  }) => {
                     </div>
                 )}
             </div>
-           
         </div>
     )
 }
-
-Category.propTypes = {
-    category: PropTypes.object.isRequired,
-};
 
 const mapStateToProps = (state) => ({
     category: state.category,
 });
 
-
-export default connect(mapStateToProps, { getCategories,  })(Category)
+export default connect(mapStateToProps, { getCategories })(Category)
