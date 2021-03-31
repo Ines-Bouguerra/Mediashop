@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404
 from django.http.response import JsonResponse
 from rest_framework.parsers import JSONParser
 from rest_framework import status
-
+from rest_framework.response import Response
 from products.models import Product
 from products.serializers import products_Serializer
 from rest_framework.decorators import api_view
@@ -29,7 +29,7 @@ def product_list(request):
         products__Serializer = products_Serializer(products, many=True)
         return JsonResponse(products__Serializer.data, safe=False)
         # 'safe=False' for objects serialization
-        
+
     if request.method == 'POST':
         product_data = JSONParser().parse(request)
         products__Serializer = products_Serializer(data=product_data)
@@ -37,6 +37,18 @@ def product_list(request):
             products__Serializer.save()
             return JsonResponse(products__Serializer.data, status=status.HTTP_201_CREATED)
         return JsonResponse(products__Serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+"""
+This Function going to display Detailed view of one perticuler product with the help of pk.
+"""
+
+
+@api_view(['GET'])
+def product_detail(request, pk):
+    products = Product.objects.get(id=pk)
+    serializer = products_Serializer(products, many=False)
+    return JsonResponse(serializer.data, status=status.HTTP_201_CREATED)
 
 
 @api_view(['GET', 'POST', 'DELETE'])
