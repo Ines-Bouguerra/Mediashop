@@ -1,15 +1,8 @@
-import { GET_PRODUCT, PRODUCT_ERROR } from "../actions/types";
+import { GET_PRODUCT, GET_PRODUCT_DETAILS, PRODUCT_DETAILS_ERROR, PRODUCT_ERROR } from '../actions/types'
 
-const initialState = {
-  product: null,
-  products: [],
-  repos: [],
-  loading: true,
-  error: {},
-};
 
-function productReducer(state = initialState, action) {
-  const { type, payload } = action;
+export const productListReducer = (state = { products: [] }, action) =>{
+  const { type, payload } = action
 
   switch (type) {
     case GET_PRODUCT:
@@ -17,8 +10,32 @@ function productReducer(state = initialState, action) {
         ...state,
         products: payload,
         loading: false,
-      };
+      }
     case PRODUCT_ERROR:
+      return {
+        ...state,
+        error: payload,
+        loading: false,
+      }
+    default:
+      return state
+  }
+}
+
+
+export const productDetailsReducer = (  state = { product: {  } }, action) =>{
+  
+ 
+  const { type, payload } = action;
+
+  switch (type) {
+    case GET_PRODUCT_DETAILS:
+      return {
+        ...state,
+        product: payload,
+        loading: false,
+      };
+    case PRODUCT_DETAILS_ERROR:
       return {
         ...state,
         error: payload,
@@ -28,5 +45,3 @@ function productReducer(state = initialState, action) {
       return state;
   }
 }
-
-export default productReducer;
