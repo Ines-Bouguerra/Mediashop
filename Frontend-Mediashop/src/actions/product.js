@@ -1,12 +1,13 @@
-import axios from "axios"
-import { GET_PRODUCT, PRODUCT_ERROR, SEARCH_PRODUCT, SEARCH_PRODUCT_ERROR } from "./types"
+import axios from 'axios'
+import { GET_PRODUCT, GET_PRODUCT_DETAILS, PRODUCT_DETAILS_ERROR, PRODUCT_ERROR, SEARCH_PRODUCT, SEARCH_PRODUCT_ERROR } from './types'
 
 
 //Get Product
 
 export const getProduct = () => async (dispatch) => {
   try {
-    const {data} = await axios.get(`http://localhost:8080/api/products/product_list`)
+    const { data } = await axios.get(`http://localhost:8080/api/products/product_list`)
+    
     dispatch({
       type: GET_PRODUCT,
       payload: data,
@@ -15,13 +16,38 @@ export const getProduct = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: PRODUCT_ERROR,
-      payload: {
-        msg: error.response.statusText,
-        status: error.response.status,
-      },
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+
     })
   }
 }
+
+//Get Product Details
+
+export const getProductDetails = (id) => async (dispatch) => {
+  try {
+    const { data } = await axios.get(`http://127.0.0.1:8080/api/products/product_detail/${id}`)
+    
+    dispatch({
+      type: GET_PRODUCT_DETAILS,
+      payload: data,
+    })
+
+  } catch (error) {
+    dispatch({
+      type: PRODUCT_DETAILS_ERROR,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+
+    })
+  }
+}
+
 
 
 export const searchProduct = query => async dispatch => {
@@ -41,17 +67,5 @@ export const searchProduct = query => async dispatch => {
     })
   }
 }
-
-export const filterProducts = (q) => async (dispatch) => {
-  const res = await axios.get(`http://127.0.0.1:8080/api/products/search_view?q=${q}`)
-  dispatch({
-    type: SEARCH_PRODUCT,
-    payload: {
-
-      products: res.data,
-
-    },
-  });
-};
 
 
