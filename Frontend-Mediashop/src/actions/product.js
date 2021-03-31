@@ -6,10 +6,10 @@ import { GET_PRODUCT, PRODUCT_ERROR, SEARCH_PRODUCT, SEARCH_PRODUCT_ERROR } from
 
 export const getProduct = () => async (dispatch) => {
   try {
-    const res = await axios.get('http://localhost:8080/api/products/product_list')
+    const {data} = await axios.get(`http://localhost:8080/api/products/product_list`)
     dispatch({
       type: GET_PRODUCT,
-      payload: res.data,
+      payload: data,
     })
 
   } catch (error) {
@@ -24,9 +24,9 @@ export const getProduct = () => async (dispatch) => {
 }
 
 
-export const searchProduct = q => async dispatch => {
+export const searchProduct = query => async dispatch => {
   try {
-    const res = await axios.get(`http://127.0.0.1:8080/api/products/search_view?q=${q}`)
+    const res = await axios.get(`http://127.0.0.1:8080/api/products/search_view?q=${query}`)
     dispatch({
       type: SEARCH_PRODUCT,
       payload: res.data,

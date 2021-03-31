@@ -5,7 +5,7 @@ import { searchProduct } from "../../actions/product";
 
 const SearchBox = ({ history, getCategories, searchProduct, category }) => {
 
-    const [keyword, setKeyword] = useState('')
+    const [query, setquery] = useState('')
 
     useEffect(() => {
         getCategories()
@@ -14,7 +14,12 @@ const SearchBox = ({ history, getCategories, searchProduct, category }) => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        searchProduct(keyword)
+        // searchProduct(query)
+        if (query.trim()) {
+            history.push(`/search/${query}`)
+          } else {
+            history.push('/')
+          }
     }
 
     return (
@@ -27,7 +32,7 @@ const SearchBox = ({ history, getCategories, searchProduct, category }) => {
                                 type="search"
                                 required="required"
                                 name='q'
-                                onChange={(event) => setKeyword(event.target.value)}
+                                onChange={(event) => setquery(event.target.value)}
                                 className="header_search_input"
                                 placeholder="Search for products..."
                             />

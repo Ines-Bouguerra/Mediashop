@@ -11,9 +11,17 @@ from rest_framework.decorators import api_view
 
 @api_view(['GET', 'POST', 'DELETE'])
 def product_list(request):
+    # query_params = request.GET
+    # q = query_params.get('q')
+    # context = {}
+    # if q is not None:
+    #     results = lookup(q)
+    #     context['results'] = results
+    #     context['query'] = q
+    #     return JsonResponse(context)
+    # else:
     if request.method == 'GET':
         products = Product.objects.all()
-
         name = request.GET.get('name', None)
         if name is not None:
             products = products.filter(title__icontains=name)
@@ -21,7 +29,8 @@ def product_list(request):
         products__Serializer = products_Serializer(products, many=True)
         return JsonResponse(products__Serializer.data, safe=False)
         # 'safe=False' for objects serialization
-    elif request.method == 'POST':
+        
+    if request.method == 'POST':
         product_data = JSONParser().parse(request)
         products__Serializer = products_Serializer(data=product_data)
         if products__Serializer.is_valid():

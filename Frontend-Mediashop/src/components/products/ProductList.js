@@ -3,15 +3,16 @@ import { Spinner } from "react-bootstrap"
 import { connect } from "react-redux"
 import { Link } from 'react-router-dom'
 import { getCategories } from '../../actions/category'
-import { getProduct } from "../../actions/product"
+import { getProduct, searchProduct } from "../../actions/product"
 import Filter from "./Filter"
 
-const ProductList = ({ getProduct, product: { products }, getCategories, category: { categories }, loading }) => {
-
+const ProductList = ({ getProduct, product: { products }, getCategories, category: { categories }, loading,match }) => {
+  const query = match.params.query
 
   useEffect(() => {
     getProduct()
     getCategories()
+    
   }, [getProduct, getCategories])
 
 

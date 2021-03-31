@@ -40,7 +40,7 @@ class App extends Component {
                   component={Activate}
                 />
                 <Route exact path="/category/:slug" component={CategoryHome} />
-                <Route path="/search/:keyword" component={ProductList} />
+                {/* <Route path="/search/:query" component={ProductList} /> */}
 
               </Switch>
             </Layout>
