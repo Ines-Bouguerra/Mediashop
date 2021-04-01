@@ -1,14 +1,6 @@
 import { GET_CATEGORY, CATEGORY_ERROR } from "../actions/types"
 
-const initialState = {
-    category: null,
-    categories: [],
-    repos: [],
-    loading: true,
-    error: {},
-}
-
-function category(state = initialState, action) {
+export const categoryList = (state = { categories: [] }, action) => {
     const { type, payload } = action
     switch (type) {
         case GET_CATEGORY:
@@ -28,4 +20,3 @@ function category(state = initialState, action) {
     }
 }
 
-export default category

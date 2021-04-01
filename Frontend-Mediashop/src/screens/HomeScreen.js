@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getProduct } from '../actions/product'
 import Loader from '../components/Loader'
 import Filter from '../components/products/Filter'
+import { getCategories } from '../actions/category'
 
 const HomeScreen = () => {
     const dispatch = useDispatch()
@@ -12,8 +13,11 @@ const HomeScreen = () => {
     const productList = useSelector((state) => state.productList)
     const { loading, products } = productList
 
+    const categoryList = useSelector((state) => state.categoryList)
+    const { categories } = categoryList
+
     useEffect(() => {
-        dispatch(getProduct())
+        dispatch(getProduct(), getCategories())
     }, [dispatch])
 
     return (
@@ -41,11 +45,11 @@ const HomeScreen = () => {
                                 <div className='sidebar_section'>
                                     <div className='sidebar_title'>Categories</div>
                                     <ul className='sidebar_categories'>
-                                        {/* {categories.map((category) => (
-                        <li>
-                          <a href='#!'>{category.name}</a>
-                        </li>
-                      ))} */}
+                                        {categories.map((category) => (
+                                            <li>
+                                                <a href='#!'>{category.name}</a>
+                                            </li>
+                                        ))}
                                     </ul>
                                 </div>
                                 <div className='sidebar_section filter_by_section'>

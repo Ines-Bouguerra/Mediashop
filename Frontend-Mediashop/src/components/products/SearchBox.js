@@ -2,14 +2,18 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { getCategories } from '../../actions/category';
 import { searchProduct } from "../../actions/product";
+import { useDispatch, useSelector } from 'react-redux'
 
-const SearchBox = ({ history, getCategories, searchProduct, category }) => {
+const SearchBox = ({ history, searchProduct }) => {
 
     const [query, setquery] = useState('')
+    const dispatch = useDispatch()
 
+    const categoryList = useSelector((state) => state.categoryList)
+    const { categories } = categoryList
     useEffect(() => {
-        getCategories()
-    }, [getCategories])
+        dispatch(getCategories())
+    }, [dispatch])
 
 
     const submitHandler = (e) => {
@@ -17,9 +21,9 @@ const SearchBox = ({ history, getCategories, searchProduct, category }) => {
         // searchProduct(query)
         if (query.trim()) {
             history.push(`/search/${query}`)
-          } else {
+        } else {
             history.push('/')
-          }
+        }
     }
 
     return (
@@ -48,7 +52,7 @@ const SearchBox = ({ history, getCategories, searchProduct, category }) => {
                                                 All Categories
                                 </a>
                                         </li>
-                                        {category.categories.map((category) => (
+                                        {categories.map((category) => (
                                             <li>
                                                 <a className="clc" href="!">
                                                     {category.name}
@@ -76,10 +80,8 @@ const SearchBox = ({ history, getCategories, searchProduct, category }) => {
 
 const mapStateToProps = (state) => ({
     isAuthenticated: state.authReducer.isAuthenticated,
-    category: state.category,
-
 });
 
-export default connect(mapStateToProps, { getCategories, searchProduct })(SearchBox);
+export default connect(mapStateToProps, { searchProduct })(SearchBox);
 
 

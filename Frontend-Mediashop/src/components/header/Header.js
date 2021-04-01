@@ -1,19 +1,23 @@
 // Header.js
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState, } from "react";
 import { connect } from "react-redux";
 import { Link, Route } from "react-router-dom";
 import { logout } from "../../actions/auth";
 import { getCategories } from '../../actions/category';
 import SearchBox from "../products/SearchBox";
-
-const Header = ({ logout, isAuthenticated, getCategories, category: { categories }, }) => {
+import { useDispatch, useSelector } from 'react-redux'
+const Header = ({ logout, isAuthenticated }) => {
+  const dispatch = useDispatch()
   const [redirect, setRedirect] = useState(false);
-
-
   const logout_user = () => {
     logout();
     setRedirect(true);
   };
+  const categoryList = useSelector((state) => state.categoryList)
+  const { categories } = categoryList
+  useEffect(() => {
+    dispatch(getCategories())
+  }, [dispatch])
 
   const guestLinks = () => (
     <Fragment>
@@ -47,9 +51,6 @@ const Header = ({ logout, isAuthenticated, getCategories, category: { categories
       </div>
     </div>
   );
-  useEffect(() => {
-    getCategories()
-  }, [getCategories])
 
   return (
     <Fragment>
@@ -239,8 +240,7 @@ const Header = ({ logout, isAuthenticated, getCategories, category: { categories
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.authReducer.isAuthenticated,
-  category: state.category,
 
 });
 
-export default connect(mapStateToProps, { logout, getCategories })(Header);
+export default connect(mapStateToProps, { logout })(Header);
