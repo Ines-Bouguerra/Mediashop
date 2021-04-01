@@ -14,7 +14,7 @@ const ProductScreen = ({ match }) => {
   }, [dispatch, match])
   return (
     <div className='single_product'>
-      <Link to='/homeScreen'>Go Back</Link>
+      <Link to='/product-list'>Go Back</Link>
       {loading ? (
         <Loader />
       ) : error ? (
