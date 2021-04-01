@@ -11,16 +11,15 @@ from rest_framework.decorators import api_view
 
 @api_view(['GET', 'POST', 'DELETE'])
 def product_list(request):
-    # query_params = request.GET
-    # q = query_params.get('q')
-    # context = {}
-    # if q is not None:
-    #     results = lookup(q)
-    #     context['results'] = results
-    #     context['query'] = q
-    #     return JsonResponse(context)
-    # else:
-    if request.method == 'GET':
+    query_params = request.GET
+    query = query_params.get('query')
+    context = {}
+    if query !='':
+        results = lookup(query)
+        context['results'] = results
+        context['query'] = query
+        return JsonResponse(results, safe=False)
+    else:
         products = Product.objects.all()
         name = request.GET.get('name', None)
         if name is not None:
@@ -60,14 +59,4 @@ def search_view(request):
         results = lookup(q)
         context['results'] = results
         context['query'] = q
-    else:
-        products = Product.objects.all()
-
-        name = request.GET.get('name', None)
-        if name is not None:
-            products = products.filter(title__icontains=name)
-
-        products__Serializer = products_Serializer(products, many=True)
-        return JsonResponse(products__Serializer.data, safe=False)
-        # 'safe=False' for objects serialization
     return JsonResponse(context)
