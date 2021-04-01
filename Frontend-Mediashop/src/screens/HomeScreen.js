@@ -7,9 +7,10 @@ import Loader from '../components/Loader'
 import Filter from '../components/products/Filter'
 import { getCategories } from '../actions/category'
 
-const HomeScreen = () => {
+const HomeScreen = ({ match }) => {
     const dispatch = useDispatch()
-
+    const query = match.params.query
+    
     const productList = useSelector((state) => state.productList)
     const { loading, products } = productList
 
@@ -17,8 +18,8 @@ const HomeScreen = () => {
     const { categories } = categoryList
 
     useEffect(() => {
-        dispatch(getProduct(), getCategories())
-    }, [dispatch])
+        dispatch(getProduct(query), getCategories())
+    }, [dispatch,query])
 
     return (
         <div class='super_container'>

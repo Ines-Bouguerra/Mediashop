@@ -4,7 +4,7 @@ import { getCategories } from '../../actions/category';
 import { searchProduct } from "../../actions/product";
 import { useDispatch, useSelector } from 'react-redux'
 
-const SearchBox = ({ history, searchProduct }) => {
+const SearchBox = ({ history }) => {
 
     const [query, setquery] = useState('')
     const dispatch = useDispatch()
@@ -18,7 +18,6 @@ const SearchBox = ({ history, searchProduct }) => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        // searchProduct(query)
         if (query.trim()) {
             history.push(`/search/${query}`)
         } else {

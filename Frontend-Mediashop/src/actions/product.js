@@ -4,9 +4,9 @@ import { GET_PRODUCT, GET_PRODUCT_DETAILS, PRODUCT_DETAILS_ERROR, PRODUCT_ERROR,
 
 //Get Product
 
-export const getProduct = () => async (dispatch) => {
+export const getProduct = (query = '') => async (dispatch) => {
   try {
-    const { data } = await axios.get(`http://localhost:8080/api/products/product_list`)
+    const { data } = await axios.get(`http://localhost:8080/api/products/product_list?query=${query}`)
     
     dispatch({
       type: GET_PRODUCT,
