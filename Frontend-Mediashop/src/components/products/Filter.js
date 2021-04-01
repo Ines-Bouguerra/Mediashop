@@ -1,13 +1,16 @@
 import React, { useEffect } from "react"
 import { getProduct } from "../../actions/product"
-import { connect } from "react-redux"
+import { useDispatch, useSelector } from 'react-redux'
 
-const Filter = ({ getProduct, product: { products }, loading }) => {
+const Filter = () => {
+  const dispatch = useDispatch()
 
+  const productList = useSelector((state) => state.productList)
+  const { products } = productList
 
   useEffect(() => {
-    getProduct()
-  }, [getProduct])
+    dispatch(getProduct())
+  }, [dispatch])
 
   return (
     <div className="shop_bar clearfix">
@@ -49,8 +52,5 @@ const Filter = ({ getProduct, product: { products }, loading }) => {
   )
 }
 
-const mapStateToProps = (state) => ({
-  product: state.product,
-})
 
-export default connect(mapStateToProps, { getProduct, })(Filter)
+export default Filter
