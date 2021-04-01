@@ -10,7 +10,6 @@ import CategoryHome from './components/category/CategoryHome'
 import Favorites from './components/favorites/Favorites'
 import Home from './components/home/Home'
 import Alert from './components/layouts/Alert'
-import ProductList from './components/products/ProductList'
 import Layout from './hocs/Layout'
 import HomeScreen from './screens/HomeScreen'
 import ProductScreen from './screens/ProductScreen'
@@ -25,7 +24,6 @@ class App extends Component {
             <Layout>
               <Alert />
               <Switch>
-                <Route exact path='/product-list' component={ProductList} />
                 <Route exact path='/' component={Home} />
                 <Route exact path='/favorites' component={Favorites} />
                 <Route exact path='/register' component={Register} />
@@ -38,7 +36,7 @@ class App extends Component {
                 <Route path='/activate/:uid/:token' component={Activate} />
                 <Route path='/category/:slug' component={CategoryHome} />
                 {/* <Route path='/search/:query' component={ProductList} /> */}
-                <Route exact path='/homeScreen' component={HomeScreen} />
+                <Route exact path='/product-list' component={HomeScreen} />
                 <Route path='/product/:id' component={ProductScreen} />
               </Switch>
             </Layout>
