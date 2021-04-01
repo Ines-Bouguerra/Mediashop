@@ -89,7 +89,7 @@ ROOT_URLCONF = 'mediashop_drf.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        # 'DIRS': [BASE_DIR / 'templates',os.path.join(BASE_DIR, 'build'),],
+        'DIRS': [os.path.join(BASE_DIR, 'build')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -200,11 +200,11 @@ DJOSER = {
         'user_delete': 'djoser.serializers.UserDeleteSerializer',
     }
 }
-# SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '445531546776-64nddq0o81ors1lqbhk1aq58sdrf6q7i.apps.googleusercontent.com'
-# SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'NWDBrTFj7_2x6o5OCPh7nO8i'
-# SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['https://www.googleapis.com/auth/userinfo.email',
-#                                    'https://www.googleapis.com/auth/userinfo.profile', 'openid']
-# SOCIAL_AUTH_GOOGLE_OAUTH2_EXTRA_DATA = ['first_name', 'last_name']
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '445531546776-64nddq0o81ors1lqbhk1aq58sdrf6q7i.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'NWDBrTFj7_2x6o5OCPh7nO8i'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['https://www.googleapis.com/auth/userinfo.email',
+                                    'https://www.googleapis.com/auth/userinfo.profile', 'openid']
+SOCIAL_AUTH_GOOGLE_OAUTH2_EXTRA_DATA = ['first_name', 'last_name']
 
 
 # Internationalization
@@ -228,3 +228,4 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'build/static'),
 ]
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
