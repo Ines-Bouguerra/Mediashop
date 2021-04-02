@@ -16,10 +16,11 @@ def product_list(request):
     query = query_params.get('query')
     context = {}
     if query != '':
+        paginator = ProductPageNumberPagination()
         results = lookup(query)
-        context['results'] = results
-        context['query'] = query
-        return JsonResponse(results, safe=False)
+        context['results'] = paginator.paginate_queryset(results, request)
+        context['query'] = paginator.paginate_queryset(query, request)
+        return paginator.get_paginated_response(results)
     else:
         paginator = ProductPageNumberPagination()
         products = Product.objects.all()

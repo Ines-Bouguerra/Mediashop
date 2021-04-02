@@ -10,7 +10,7 @@ export const getProduct = (query = '') => async (dispatch) => {
     
     dispatch({
       type: GET_PRODUCT,
-      payload: data,
+      payload: data.results,
     })
 
   } catch (error) {
