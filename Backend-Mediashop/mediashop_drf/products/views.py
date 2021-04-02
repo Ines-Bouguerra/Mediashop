@@ -7,6 +7,7 @@ from rest_framework.response import Response
 from products.models import Product
 from products.serializers import products_Serializer
 from rest_framework.decorators import api_view
+from products.pagination import ProductPageNumberPagination
 
 
 @api_view(['GET', 'POST', 'DELETE'])
@@ -14,19 +15,21 @@ def product_list(request):
     query_params = request.GET
     query = query_params.get('query')
     context = {}
-    if query !='':
+    if query != '':
         results = lookup(query)
         context['results'] = results
         context['query'] = query
         return JsonResponse(results, safe=False)
     else:
+        paginator = ProductPageNumberPagination()
         products = Product.objects.all()
+        context = paginator.paginate_queryset(products, request)
         name = request.GET.get('name', None)
         if name is not None:
             products = products.filter(title__icontains=name)
 
-        products__Serializer = products_Serializer(products, many=True)
-        return JsonResponse(products__Serializer.data, safe=False)
+        products__Serializer = products_Serializer(context, many=True)
+        return paginator.get_paginated_response(products__Serializer.data)
         # 'safe=False' for objects serialization
 
     if request.method == 'POST':
