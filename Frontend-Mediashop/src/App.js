@@ -14,7 +14,7 @@ import Layout from './hocs/Layout'
 import HomeScreen from './screens/HomeScreen'
 import ProductScreen from './screens/ProductScreen'
 import store from './store'
-
+import Google from './components/authentication/Google'
 class App extends Component {
   render() {
     return (
@@ -28,6 +28,7 @@ class App extends Component {
                 <Route exact path='/favorites' component={Favorites} />
                 <Route exact path='/register' component={Register} />
                 <Route exact path='/login' component={Login} />
+                <Route exact path='/google' component={Google} />
                 <Route exact path='/reset-password' component={ResetPassword} />
                 <Route
                   path='/password/reset/confirm/:uid/:token'

@@ -45,6 +45,7 @@ function authReducer(state = initialState, action) {
         isAuthenticated: true,
       };
     case LOGIN_SUCCESS:
+    case GOOGLE_AUTH_SUCCESS:
       localStorage.setItem("access", payload.access);
       localStorage.setItem("refresh", payload.refresh);
       return {
@@ -70,6 +71,7 @@ function authReducer(state = initialState, action) {
       };
     case REGISTER_FAIL:
     case LOGIN_FAIL:
+    case GOOGLE_AUTH_FAIL:
     case LOGOUT:
       localStorage.removeItem("access");
       localStorage.removeItem("refresh");
