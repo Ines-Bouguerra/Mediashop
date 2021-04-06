@@ -37,7 +37,9 @@ class App extends Component {
                 <Route path='/activate/:uid/:token' component={Activate} />
                 <Route path='/category/:slug' component={CategoryHome} />
                 <Route exact path='/product-list' component={HomeScreen} />
-                <Route exact path='/search/:query' component={HomeScreen} /> 
+                <Route exact path='/search/:query' component={HomeScreen} />
+                <Route exact path='/page/:pageNumber' component={HomeScreen} />
+                <Route exact path='/search/:query/page/:pageNumber' component={HomeScreen} />
                 <Route path='/product/:id' component={ProductScreen} />
               </Switch>
             </Layout>

@@ -1,14 +1,17 @@
 import { GET_PRODUCT, GET_PRODUCT_DETAILS, PRODUCT_DETAILS_ERROR, PRODUCT_ERROR } from '../actions/types'
 
 
-export const productListReducer = (state = { products: [] }, action) =>{
+export const productListReducer = (state = { products: [] }, action) => {
   const { type, payload } = action
 
   switch (type) {
     case GET_PRODUCT:
       return {
         ...state,
-        products: payload,
+        products: payload.results,
+        pages: payload.count,
+        next: payload.next,
+        prev: payload.previous,
         loading: false,
       }
     case PRODUCT_ERROR:
@@ -23,9 +26,9 @@ export const productListReducer = (state = { products: [] }, action) =>{
 }
 
 
-export const productDetailsReducer = (  state = { product: {  } }, action) =>{
-  
- 
+export const productDetailsReducer = (state = { product: {} }, action) => {
+
+
   const { type, payload } = action;
 
   switch (type) {

@@ -4,13 +4,13 @@ import { GET_PRODUCT, GET_PRODUCT_DETAILS, PRODUCT_DETAILS_ERROR, PRODUCT_ERROR,
 
 //Get Product
 
-export const getProduct = (query = '') => async (dispatch) => {
+export const getProduct = (query = '', pageNumber = 1) => async (dispatch) => {
   try {
-    const { data } = await axios.get(`http://localhost:8080/api/products/product_list?query=${query}`)
-    
+    const { data } = await axios.get(`http://localhost:8080/api/products/product_list?page=${pageNumber}&query=${query}`)
+
     dispatch({
       type: GET_PRODUCT,
-      payload: data.results,
+      payload: data,
     })
 
   } catch (error) {
@@ -30,7 +30,7 @@ export const getProduct = (query = '') => async (dispatch) => {
 export const getProductDetails = (id) => async (dispatch) => {
   try {
     const { data } = await axios.get(`http://127.0.0.1:8080/api/products/product_detail/${id}`)
-    
+
     dispatch({
       type: GET_PRODUCT_DETAILS,
       payload: data,
