@@ -28,7 +28,14 @@
     font-size: 1.5rem;
     font-style:  normal;
 }
-
+.btn-circle.btn-md {
+    width: 50px;
+    height: 50px;
+    padding: 7px 10px;
+    border-radius: 25px;
+    font-size: 10px;
+    text-align: center;
+}
 .home__form {
     position: relative;
     text-align: left;

@@ -17,6 +17,7 @@ const Product = ({ product, category, loading }) => {
             <Link to={`/product/${product._id}`}>{product.name}</Link>
           </div>
         </div>
+        <button className="btn btn-info btn-circle btn-md">Compare</button>
       </div>
       <div className="product_fav">
         <i className="fas fa-heart" />
