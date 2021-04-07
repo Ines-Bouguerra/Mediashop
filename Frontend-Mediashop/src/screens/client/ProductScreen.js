@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { getProductDetails } from '../../actions/product'
@@ -21,10 +20,19 @@ const ProductScreen = ({ match }) => {
       ) : (
         <div className='container'>
           <div className='row'>
+            {/* Images */}
+            <div className="col-lg-2 order-lg-1 order-2">
+              <ul className="image_list">
+                <li data-image="images/single_4.jpg"><img src={product.image} alt="" /></li>
+                <li data-image="images/single_2.jpg"><img src={product.image} alt="" /></li>
+                <li data-image="images/single_3.jpg"><img src={product.image} alt="" /></li>
+              </ul>
+            </div>
+
             {/* Selected Image */}
             <div className='col-lg-5 order-lg-2 order-1'>
               <div className='image_selected'>
-                <img src={product.image} alt='' />
+                <img src={product.image} alt={product.name} />
               </div>
             </div>
             {/* Description */}
@@ -32,14 +40,20 @@ const ProductScreen = ({ match }) => {
               <div className='product_description'>
                 <div className='product_category'>{product.category}</div>
                 <div className='product_name'>{product.name}</div>
-                <div className='product_price'>{product.price} TN</div>
+                <div className="rating_r rating_r_4 product_rating"><i></i><i></i><i></i><i></i><i></i></div>
                 <div className='product_text'>
                   <p>
-                  {product.marketplace}<br></br><br></br>
+                    {product.marketplace}<br></br><br></br>
                     {product.description}<br></br><br></br>
                     {product.short_description}<br></br>
                   </p>
                 </div>
+                <div className="product_price">{product.price} TN</div>
+                <div className="button_container">
+                  <button type="button" className="button cart_button">Compare</button>
+                  <div className="product_fav"><i className="fas fa-heart"></i></div>
+                </div>
+
               </div>
             </div>
           </div>
