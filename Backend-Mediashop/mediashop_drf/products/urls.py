@@ -7,4 +7,6 @@ urlpatterns = [
     path('api/products/product_detail/<int:pk>',
          views.product_detail, name='product_detail'),
     url(r'^api/products/search_view$', views.search_view, name='search_view'),
+    url(r'^api/products/compare_product$',
+        views.compare_product, name='compare_product'),
 ]

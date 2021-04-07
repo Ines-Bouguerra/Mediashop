@@ -64,3 +64,33 @@ def search_view(request):
         context['results'] = results
         context['query'] = q
     return JsonResponse(context)
+
+
+@api_view(['GET', 'POST', 'DELETE'])
+def compare_product(request):
+    query_params = request.GET
+    name = query_params.get('name')
+    reference = query_params.get('reference')
+    priceString = query_params.get('priceString')
+    products = Product.objects.all()
+    context = {}
+    q_results = []
+    for product in products:
+        if product.name == name and product.reference == reference and product.priceString == priceString:
+            data = {
+                'reference': product.reference,
+                'name': product.name,
+                'priceString': product.priceString,
+                'brand': product.brand,
+                'short_description': product.short_description,
+                'description': product.description,
+                'image': product.image,
+                'discount': product.discount,
+                'sub_category': product.sub_category,
+            }
+            q_results.append(data)
+            product = +1
+        else:
+            print("error")
+    context['results'] = q_results
+    return JsonResponse(context, safe=False)
