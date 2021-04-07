@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { GET_PRODUCT, GET_PRODUCT_DETAILS, PRODUCT_DETAILS_ERROR, PRODUCT_ERROR, SEARCH_PRODUCT, SEARCH_PRODUCT_ERROR } from './types'
+import { GET_PRODUCT, GET_PRODUCT_DETAILS, PRODUCT_DETAILS_ERROR, PRODUCT_ERROR, SEARCH_PRODUCT, SEARCH_PRODUCT_ERROR,COMPARE_PRODUCT,COMPARE_PRODUCT_ERROR } from './types'
 
 
 //Get Product
@@ -49,7 +49,7 @@ export const getProductDetails = (id) => async (dispatch) => {
 }
 
 
-
+//search Product
 export const searchProduct = query => async dispatch => {
   try {
     const res = await axios.get(`http://127.0.0.1:8080/api/products/search_view?q=${query}`)
@@ -69,3 +69,25 @@ export const searchProduct = query => async dispatch => {
 }
 
 
+//Compare Product
+
+export const compareProduct = (name = '',price='',reference='' ) => async (dispatch) => {
+  try {
+    const { data } = await axios.get(`http://localhost:8080/api/products/product_list?name=${name}&reference=${reference}&price=${price}`)
+
+    dispatch({
+      type: COMPARE_PRODUCT,
+      payload: data,
+    })
+
+  } catch (error) {
+    dispatch({
+      type: COMPARE_PRODUCT_ERROR,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+
+    })
+  }
+}

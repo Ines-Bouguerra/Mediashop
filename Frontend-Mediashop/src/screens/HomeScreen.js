@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Product from "../components/products/Product";
 import { useDispatch, useSelector } from "react-redux";
 
-import { getProduct } from "../actions/product";
+import { compareProduct, getProduct } from "../actions/product";
 import Loader from "../components/Loader";
 import Filter from "../components/products/Filter";
 import { getCategories } from "../actions/category";
@@ -12,7 +12,9 @@ const HomeScreen = ({ match }) => {
     const dispatch = useDispatch();
     const query = match.params.query;
     const pageNumber = match.params.pageNumber || 1;
-
+    const name = match.params.name;
+    const reference = match.params.reference;
+    const price = match.params.price;
     const productList = useSelector((state) => state.productList);
     const { loading, products, page, pages } = productList;
 
@@ -20,8 +22,8 @@ const HomeScreen = ({ match }) => {
     const { categories } = categoryList;
 
     useEffect(() => {
-        dispatch(getProduct(query, pageNumber), getCategories());
-    }, [dispatch, query, pageNumber]);
+        dispatch(getProduct(query, pageNumber), getCategories(), compareProduct(name, reference, price));
+    }, [dispatch, query, pageNumber, name, reference, price]);
 
     return (
         <div class="super_container">
@@ -161,7 +163,7 @@ const HomeScreen = ({ match }) => {
                                                         className="product_item is_new col-md-3 mt-3 product"
                                                         key={product._id}
                                                     >
-                                                        <Product product={product} />
+                                                        <Product product={product} name={product.name} reference={product.reference} price={product.price} />
                                                     </div>
                                                 ))}
                                             </div>

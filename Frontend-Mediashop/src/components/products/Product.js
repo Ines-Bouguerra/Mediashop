@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "react-router-dom"
 
-const Product = ({ product, category, loading }) => {
+const Product = ({ product, category, loading,name,reference,price,}) => {
   return (
     <>
       <div className="product_border" />
@@ -17,7 +17,7 @@ const Product = ({ product, category, loading }) => {
             <Link to={`/product/${product._id}`}>{product.name}</Link>
           </div>
         </div>
-        <button className="btn btn-info btn-circle btn-md">Compare</button>
+        <Link to={`/compare/${name}/${reference}/${price}`} className="btn btn-info btn-circle btn-md">Compare</Link>
       </div>
       <div className="product_fav">
         <i className="fas fa-heart" />

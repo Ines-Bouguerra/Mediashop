@@ -40,6 +40,7 @@ class App extends Component {
                 <Route exact path='/search/:query' component={HomeScreen} />
                 <Route exact path='/page/:pageNumber' component={HomeScreen} />
                 <Route exact path='/search/:query/page/:pageNumber' component={HomeScreen} />
+                <Route exact path='/compare/:name/:reference/:price' component={HomeScreen} />
                 <Route path='/product/:id' component={ProductScreen} />
               </Switch>
             </Layout>
