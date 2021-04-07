@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
-import Product from "../components/products/Product";
+import Product from "../../components/products/Product";
 import { useDispatch, useSelector } from "react-redux";
 
-import { compareProduct, getProduct } from "../actions/product";
-import Loader from "../components/Loader";
-import Filter from "../components/products/Filter";
-import { getCategories } from "../actions/category";
-import Paginate from "../components/products/Paginate";
+import { compareProduct, getProduct } from "../../actions/product";
+import Loader from "../../components/Loader";
+import Filter from "../../components/products/Filter";
+import { getCategories } from "../../actions/category";
+import Paginate from "../../components/products/Paginate";
 
 const HomeScreen = ({ match }) => {
     const dispatch = useDispatch();

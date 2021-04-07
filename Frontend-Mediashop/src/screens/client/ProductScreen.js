@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { getProductDetails } from '../actions/product'
-import Loader from '../components/Loader'
-import Message from '../components/Message'
+import { getProductDetails } from '../../actions/product'
+import Loader from '../../components/Loader'
+import Message from '../../components/Message'
 const ProductScreen = ({ match }) => {
   const dispatch = useDispatch()
   const productDetails = useSelector((state) => state.productDetails)
