@@ -6,7 +6,7 @@ const Product = ({ product, category, loading,name,reference,price,}) => {
     <>
       <div className="product_border" />
       <div className="product_image d-flex flex-column align-items-center justify-content-center">
-        <Link to={`/product/${product._id}`}>
+        <Link to={`/product/${product.id}`}>
           <img src={product.image} alt="" />
         </Link>
       </div>
@@ -14,7 +14,7 @@ const Product = ({ product, category, loading,name,reference,price,}) => {
         <div className="product_price">{product.price} TN</div>
         <div className="product_name">
           <div>
-            <Link to={`/product/${product._id}`}>{product.name}</Link>
+            <Link to={`/product/${product.id}`}>{product.name}</Link>
           </div>
         </div>
         <Link to={`/compare/${name}/${reference}/${price}`} className="btn btn-info btn-circle btn-md">Compare</Link>

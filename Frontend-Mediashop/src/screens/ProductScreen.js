@@ -14,7 +14,6 @@ const ProductScreen = ({ match }) => {
   }, [dispatch, match])
   return (
     <div className='single_product'>
-      <Link to='/product-list'>Go Back</Link>
       {loading ? (
         <Loader />
       ) : error ? (
@@ -25,7 +24,7 @@ const ProductScreen = ({ match }) => {
             {/* Selected Image */}
             <div className='col-lg-5 order-lg-2 order-1'>
               <div className='image_selected'>
-                <img src='images/single_4.jpg' alt='' />
+                <img src={product.image} alt='' />
               </div>
             </div>
             {/* Description */}
@@ -33,10 +32,12 @@ const ProductScreen = ({ match }) => {
               <div className='product_description'>
                 <div className='product_category'>{product.category}</div>
                 <div className='product_name'>{product.name}</div>
-                <div className='product_price'>{product.price}</div>
+                <div className='product_price'>{product.price} TN</div>
                 <div className='product_text'>
                   <p>
-                    {product.description}
+                  {product.marketplace}<br></br><br></br>
+                    {product.description}<br></br><br></br>
+                    {product.short_description}<br></br>
                   </p>
                 </div>
               </div>
