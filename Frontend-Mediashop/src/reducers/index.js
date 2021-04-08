@@ -5,6 +5,7 @@ import { categoryList } from './category';
 import { compareReducer, productDetailsReducer, productListReducer } from './product';
 export default combineReducers({
   alert,
+  user:authReducer,
   authReducer,
   productList: productListReducer,
   productDetails: productDetailsReducer,
