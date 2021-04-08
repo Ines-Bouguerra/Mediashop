@@ -15,6 +15,10 @@ import HomeScreen from './screens/client/HomeScreen'
 import ProductScreen from './screens/client/ProductScreen'
 import store from './store'
 import Google from './components/authentication/Google'
+
+import HeaderAdmin from "./components/header/HeaderAdmin";
+import UserRoute from './components/routing/UserRoute'
+
 class App extends Component {
   render() {
     return (
@@ -25,7 +29,7 @@ class App extends Component {
               <Alert />
               <Switch>
                 <Route exact path='/' component={Home} />
-                <Route exact path='/favorites' component={Favorites} />
+                <UserRoute exact path='/wishlist' component={Favorites} />
                 <Route exact path='/register' component={Register} />
                 <Route exact path='/login' component={Login} />
                 <Route exact path='/google' component={Google} />
@@ -45,6 +49,7 @@ class App extends Component {
               </Switch>
             </Layout>
           </div>
+          <Route exact path='/admin/header' component={HeaderAdmin} />
         </Router>
       </Provider>
     )
