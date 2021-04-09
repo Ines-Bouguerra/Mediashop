@@ -15,10 +15,9 @@ import HomeScreen from './screens/client/HomeScreen'
 import ProductScreen from './screens/client/ProductScreen'
 import store from './store'
 import Google from './components/authentication/Google'
-
-import HeaderAdmin from "./components/header/HeaderAdmin";
+import CompareScreen from './screens/client/CompareScreen'
+import HeaderAdmin from "./components/header/HeaderAdmin"
 import UserRoute from './components/routing/UserRoute'
-import AdminRoute from './components/routing/AdminRoute'
 
 class App extends Component {
   render() {
@@ -45,8 +44,8 @@ class App extends Component {
                 <Route exact path='/search/:query' component={HomeScreen} />
                 <Route exact path='/page/:pageNumber' component={HomeScreen} />
                 <Route exact path='/search/:query/page/:pageNumber' component={HomeScreen} />
-                <Route exact path='/compare/:name/:reference/:price' component={HomeScreen} />
                 <Route path='/product/:id' component={ProductScreen} />
+                <Route path='/compare/:name/:reference/:price' component={CompareScreen} />
               </Switch>
             </Layout>
           </div>

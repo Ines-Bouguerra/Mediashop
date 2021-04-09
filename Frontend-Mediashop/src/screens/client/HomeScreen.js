@@ -25,7 +25,7 @@ const HomeScreen = ({ match }) => {
     const { subcategories } = subcategoryList;
 
     useEffect(() => {
-        dispatch(getProduct(query, pageNumber), getCategories(),getSubCategories(), compareProduct(name, reference, price));
+        dispatch(getProduct(query, pageNumber), getCategories(), getSubCategories(), compareProduct(name, reference, price));
     }, [dispatch, query, pageNumber, name, reference, price]);
 
     return (
@@ -71,17 +71,10 @@ const HomeScreen = ({ match }) => {
                                     <div className="filter_price">
                                         <div id="slider-range" className="slider_range" />
                                         <p>Range: </p>
-                                        <p>
-                                            <input
-                                                type="text"
-                                                id="amount"
-                                                className="amount"
-                                                readOnly
-                                                style={{ border: 0, fontWeight: "bold" }}
-                                            />
-                                        </p>
+                                        <p><input type="text" id="amount" className="amount" readOnly style={{ border: 0, fontWeight: 'bold' }} /></p>
                                     </div>
                                 </div>
+
                                 <div className="sidebar_section">
                                     <div className="sidebar_subtitle brands_subtitle">Brands</div>
                                     <ul className="brands_list">
@@ -130,7 +123,7 @@ const HomeScreen = ({ match }) => {
                                                         className="product_item is_new col-md-3 mt-3 product"
                                                         key={product._id}
                                                     >
-                                                        <Product product={product} name={product.name} reference={product.reference} price={product.price} />
+                                                        <Product product={product}  />
                                                     </div>
                                                 ))}
                                             </div>

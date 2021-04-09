@@ -71,7 +71,7 @@ export const searchProduct = query => async dispatch => {
 
 //Compare Product
 
-export const compareProduct = (name = '',price='',reference='' ) => async (dispatch) => {
+export const compareProduct = (name,price,reference) => async (dispatch) => {
   try {
     const { data } = await axios.get(`http://localhost:8080/api/products/product_list?name=${name}&reference=${reference}&price=${price}`)
 
