@@ -61,9 +61,16 @@
     text-align: center;
     display: block;
     font-size: 1.6rem;
-    color: #119da4;
+    color: #6d9dc5;
 }
 
+.browse-category__link_category {
+    text-decoration: none;
+    text-align: center;
+    display: block;
+    font-size: 1.6rem;
+    color: #6d9dc5;
+}
 .recommandation {
     background-color: #fff;
     background-image: url(/assets/img/blue_pattern_250x110.35fc95f….png);
@@ -157,8 +164,8 @@
 .browse-category__link:after {
     content: "";
     display: block;
-    border-left: 2px solid #119da4;
-    border-bottom: 2px solid #119da4;
+    border-left: 2px solid #6d9dc5;
+    border-bottom: 2px solid #6d9dc5;
     transform: rotate(-45deg);
     height: 10px;
     width: 10px;

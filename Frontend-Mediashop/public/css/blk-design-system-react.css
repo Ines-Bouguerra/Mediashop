@@ -3855,7 +3855,7 @@ input[type="button"].btn-block {
   border-color: #e14eca; }
 
 .page-item.disabled .page-link {
-  color: #6c757d;
+  color: #6d9dc5;
   pointer-events: none;
   cursor: auto;
   background-color: transparent;
@@ -11964,7 +11964,7 @@ hr {
   outline: none; }
   .pagination .page-item .page-link:hover, .pagination .page-item .page-link:focus {
     background-color: rgba(255, 255, 255, 0.1);
-    color: #ffffff;
+    color: #6d9dc5;
     border: none;
     box-shadow: none; }
 
