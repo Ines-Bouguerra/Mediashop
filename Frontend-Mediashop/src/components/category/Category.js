@@ -30,10 +30,10 @@ const Category = () => {
                                 <div className='product_image d-flex flex-column align-items-center justify-content-center'>
                                     <img src={category.image} alt='' /></div>
                                 <Link to={`/category/${category.slug}`}>
-                                    <div className='product_name center'>
+                                    <div className='product_name browse-category__link_category '>
                                         {category.name}<br></br>
                                     </div></Link>
-                                {category.children.length} products
+                                
                             </div>
                         ))}
 
