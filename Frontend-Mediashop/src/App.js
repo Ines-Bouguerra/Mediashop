@@ -18,6 +18,7 @@ import Google from './components/authentication/Google'
 
 import HeaderAdmin from "./components/header/HeaderAdmin";
 import UserRoute from './components/routing/UserRoute'
+import AdminRoute from './components/routing/AdminRoute'
 
 class App extends Component {
   render() {
@@ -49,7 +50,7 @@ class App extends Component {
               </Switch>
             </Layout>
           </div>
-          <Route exact path='/admin/header' component={HeaderAdmin} />
+          <Route exact path='/admin/header' component={HeaderAdmin}/>
         </Router>
       </Provider>
     )
