@@ -14,7 +14,7 @@ const Paginate = ({ pages, page, query = '' }) => {
                 </li>
                 {[...Array(pages).keys()].map((x) => (
                     <li className="page-item">
-                        <LinkContainer className="m-1"
+                        <LinkContainer className="m-1 page_nav"
                             key={x + 1}
                             to={query ? `/search/${query}/page/${x + 1}` : `/page/${x + 1}`}
 

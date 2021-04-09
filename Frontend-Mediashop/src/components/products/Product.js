@@ -11,7 +11,7 @@ const Product = ({ product, category, loading,name,reference,price,}) => {
         </Link>
       </div>
       <div className="product_content">
-        <div className="product_price">{product.price} TN</div>
+        <div className="product_price">{product.price} {product.currency}</div>
         <div className="product_name">
           <div>
             <Link to={`/product/${product.id}`}>{product.name}</Link>

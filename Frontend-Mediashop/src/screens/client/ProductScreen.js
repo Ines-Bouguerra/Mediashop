@@ -48,7 +48,7 @@ const ProductScreen = ({ match }) => {
                     {product.short_description}<br></br>
                   </p>
                 </div>
-                <div className="product_price">{product.price} TN</div>
+                <div className="product_price">{product.price} {product.currency}</div>
                 <div className="button_container">
                   <button type="button" className="button cart_button">Compare</button>
                   <div className="product_fav"><i className="fas fa-heart"></i></div>
