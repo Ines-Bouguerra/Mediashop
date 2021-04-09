@@ -19,7 +19,7 @@ def product_list(request):
         paginator = ProductPageNumberPagination()
         results = lookup(query)
         context['results'] = paginator.paginate_queryset(results, request)
-        context['query'] = paginator.paginate_queryset(query, request)
+        context['query'] = JsonResponse(query, safe=False)
         return paginator.get_paginated_response(results)
     else:
         paginator = ProductPageNumberPagination()
