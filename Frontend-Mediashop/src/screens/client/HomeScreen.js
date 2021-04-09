@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { compareProduct, getProduct } from "../../actions/product";
 import Loader from "../../components/Loader";
 import Filter from "../../components/products/Filter";
-import { getCategories } from "../../actions/category";
+import { getCategories, getSubCategories } from "../../actions/category";
 import Paginate from "../../components/products/Paginate";
 
 const HomeScreen = ({ match }) => {
@@ -21,8 +21,11 @@ const HomeScreen = ({ match }) => {
     const categoryList = useSelector((state) => state.categoryList);
     const { categories } = categoryList;
 
+    const subcategoryList = useSelector((state) => state.subcategoryList);
+    const { subcategories } = subcategoryList;
+
     useEffect(() => {
-        dispatch(getProduct(query, pageNumber), getCategories(), compareProduct(name, reference, price));
+        dispatch(getProduct(query, pageNumber), getCategories(),getSubCategories(), compareProduct(name, reference, price));
     }, [dispatch, query, pageNumber, name, reference, price]);
 
     return (
@@ -52,6 +55,16 @@ const HomeScreen = ({ match }) => {
                                         ))}
                                     </ul>
                                 </div>
+                                <div className="sidebar_section">
+                                    <div className="sidebar_title">Sub Categories</div>
+                                    <ul className="sidebar_categories">
+                                        {subcategories.map((subcategory) => (
+                                            <li>
+                                                <a href="#!">{subcategory.name}</a>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
                                 <div className="sidebar_section filter_by_section">
                                     <div className="sidebar_title">Filter By</div>
                                     <div className="sidebar_subtitle">Price</div>
@@ -68,47 +81,6 @@ const HomeScreen = ({ match }) => {
                                             />
                                         </p>
                                     </div>
-                                </div>
-                                <div className="sidebar_section">
-                                    <div className="sidebar_subtitle color_subtitle">Color</div>
-                                    <ul className="colors_list">
-                                        <li className="color">
-                                            <a href="#!" style={{ background: "#b19c83" }}>
-                                                {" "}
-                                            </a>{" "}
-                                        </li>
-                                        <li className="color">
-                                            <a href="#!" style={{ background: "#000000" }}>
-                                                {" "}
-                                            </a>{" "}
-                                        </li>
-                                        <li className="color">
-                                            <a href="#!" style={{ background: "#999999" }}>
-                                                {" "}
-                                            </a>
-                                        </li>
-                                        <li className="color">
-                                            <a href="#!" style={{ background: "#0e8ce4" }}>
-                                                {" "}
-                                            </a>
-                                        </li>
-                                        <li className="color">
-                                            <a href="#!" style={{ background: "#df3b3b" }}>
-                                                {" "}
-                                            </a>
-                                        </li>
-                                        <li className="color">
-                                            <a
-                                                href="#!"
-                                                style={{
-                                                    background: "#ffffff",
-                                                    border: "solid 1px #e1e1e1",
-                                                }}
-                                            >
-                                                {" "}
-                                            </a>
-                                        </li>
-                                    </ul>
                                 </div>
                                 <div className="sidebar_section">
                                     <div className="sidebar_subtitle brands_subtitle">Brands</div>
@@ -163,6 +135,10 @@ const HomeScreen = ({ match }) => {
                                                 ))}
                                             </div>
                                             {/* Product Page Navigation */}
+                                            <br></br>
+                                            <br></br>
+                                            <br></br>
+
                                             <Paginate
                                                 pages={pages}
                                                 page={page}
