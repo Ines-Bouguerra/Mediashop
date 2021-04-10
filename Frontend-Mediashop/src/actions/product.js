@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { GET_PRODUCT, GET_PRODUCT_DETAILS, PRODUCT_DETAILS_ERROR, PRODUCT_ERROR, SEARCH_PRODUCT, SEARCH_PRODUCT_ERROR,COMPARE_PRODUCT,COMPARE_PRODUCT_ERROR } from './types'
+import { GET_PRODUCT, GET_PRODUCT_DETAILS, PRODUCT_DETAILS_ERROR, PRODUCT_ERROR, SEARCH_PRODUCT, SEARCH_PRODUCT_ERROR, COMPARE_PRODUCT, COMPARE_PRODUCT_ERROR, TOP_PROMOTION, TOP_PROMOTION_ERROR } from './types'
 
 
 //Get Product
@@ -71,7 +71,7 @@ export const searchProduct = query => async dispatch => {
 
 //Compare Product
 
-export const compareProduct = (name,price,reference) => async (dispatch) => {
+export const compareProduct = (name, price, reference) => async (dispatch) => {
   try {
     const { data } = await axios.get(`http://localhost:8080/api/products/product_list?name=${name}&reference=${reference}&price=${price}`)
 
@@ -88,6 +88,29 @@ export const compareProduct = (name,price,reference) => async (dispatch) => {
           ? error.response.data.message
           : error.message,
 
+    })
+  }
+}
+
+// Top Promotion
+
+export const listTopProducts = () => async (dispatch) => {
+  try {
+
+
+    const { data } = await axios.get(`http://localhost:8080/api/products/top_promotion`)
+
+    dispatch({
+      type: TOP_PROMOTION,
+      payload: data,
+    })
+  } catch (error) {
+    dispatch({
+      type: TOP_PROMOTION_ERROR,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
     })
   }
 }

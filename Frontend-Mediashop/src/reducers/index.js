@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import alert from './alert';
 import authReducer from './authReducer';
 import { categoryList, subcategoryList } from './category';
-import { compareReducer, productDetailsReducer, productListReducer } from './product';
+import { compareReducer, productDetailsReducer, productListReducer, productTopPromotionReducer } from './product';
 export default combineReducers({
   alert,
   user:authReducer,
@@ -12,4 +12,5 @@ export default combineReducers({
   categoryList: categoryList,
   subcategoryList: subcategoryList,
   compare: compareReducer,
+  productTopPromotion:productTopPromotionReducer
 });

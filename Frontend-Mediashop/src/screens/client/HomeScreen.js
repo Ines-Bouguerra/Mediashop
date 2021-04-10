@@ -1,43 +1,43 @@
-import React, { useEffect } from "react";
-import Product from "../../components/products/Product";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect } from "react"
+import Product from "../../components/products/Product"
+import { useDispatch, useSelector } from "react-redux"
 
-import { compareProduct, getProduct } from "../../actions/product";
-import Loader from "../../components/Loader";
-import Filter from "../../components/products/Filter";
-import { getCategories, getSubCategories } from "../../actions/category";
-import Paginate from "../../components/products/Paginate";
+import { compareProduct, getProduct } from "../../actions/product"
+import Loader from "../../components/Loader"
+import Filter from "../../components/products/Filter"
+import { getCategories, getSubCategories } from "../../actions/category"
+import Paginate from "../../components/products/Paginate"
+import ProductCarousel from "../../components/products/ProductCarousel"
 
 const HomeScreen = ({ match }) => {
-    const dispatch = useDispatch();
-    const query = match.params.query;
-    const pageNumber = match.params.pageNumber || 1;
-    const name = match.params.name;
-    const reference = match.params.reference;
-    const price = match.params.price;
-    const productList = useSelector((state) => state.productList);
-    const { loading, products, page, pages } = productList;
+    const dispatch = useDispatch()
+    const query = match.params.query
+    const pageNumber = match.params.pageNumber || 1
+    const name = match.params.name
+    const reference = match.params.reference
+    const price = match.params.price
+    const productList = useSelector((state) => state.productList)
+    const { loading, products, page, pages } = productList
 
-    const categoryList = useSelector((state) => state.categoryList);
-    const { categories } = categoryList;
+    const categoryList = useSelector((state) => state.categoryList)
+    const { categories } = categoryList
 
-    const subcategoryList = useSelector((state) => state.subcategoryList);
-    const { subcategories } = subcategoryList;
+    const subcategoryList = useSelector((state) => state.subcategoryList)
+    const { subcategories } = subcategoryList
 
     useEffect(() => {
-        dispatch(getProduct(query, pageNumber), getCategories(), getSubCategories(), compareProduct(name, reference, price));
-    }, [dispatch, query, pageNumber, name, reference, price]);
+        dispatch(
+            getProduct(query, pageNumber),
+            getCategories(),
+            getSubCategories(),
+            compareProduct(name, reference, price)
+        )
+    }, [dispatch, query, pageNumber, name, reference, price])
 
     return (
         <div class="super_container">
             {/* Home */}
-            <div class="home">
-                <div class="home_overlay"></div>
-                <div class="home_content d-flex flex-column align-items-center justify-content-center">
-                    <h2 class="home_title">Smartphones & Tablets</h2>
-                </div>
-            </div>
-
+            <ProductCarousel />
             {/* Shop */}
             <div className="shop">
                 <div className="container">
@@ -71,7 +71,15 @@ const HomeScreen = ({ match }) => {
                                     <div className="filter_price">
                                         <div id="slider-range" className="slider_range" />
                                         <p>Range: </p>
-                                        <p><input type="text" id="amount" className="amount" readOnly style={{ border: 0, fontWeight: 'bold' }} /></p>
+                                        <p>
+                                            <input
+                                                type="text"
+                                                id="amount"
+                                                className="amount"
+                                                readOnly
+                                                style={{ border: 0, fontWeight: "bold" }}
+                                            />
+                                        </p>
                                     </div>
                                 </div>
 
@@ -123,7 +131,7 @@ const HomeScreen = ({ match }) => {
                                                         className="product_item is_new col-md-3 mt-3 product"
                                                         key={product._id}
                                                     >
-                                                        <Product product={product}  />
+                                                        <Product product={product} />
                                                     </div>
                                                 ))}
                                             </div>
@@ -146,7 +154,7 @@ const HomeScreen = ({ match }) => {
                 </div>
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default HomeScreen;
+export default HomeScreen

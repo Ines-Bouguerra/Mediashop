@@ -8,6 +8,7 @@ from products.models import Product
 from products.serializers import products_Serializer
 from rest_framework.decorators import api_view
 from products.pagination import ProductPageNumberPagination
+from rest_framework.generics import ListAPIView
 
 
 @api_view(['GET', 'POST', 'DELETE'])
@@ -94,3 +95,15 @@ def compare_product(request):
             print("error")
     context['results'] = q_results
     return JsonResponse(context, safe=False)
+
+
+# Top Promotions
+
+
+class top_promotion(ListAPIView):
+    discount = '21%'
+    queryset = Product.objects.all().filter(discount=discount)
+    serializer_class = products_Serializer
+
+
+# Top rated products

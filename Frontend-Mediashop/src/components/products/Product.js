@@ -11,13 +11,13 @@ const Product = ({ product, category, loading}) => {
         </Link>
       </div>
       <div className="product_content">
-        <div className="product_price">{product.price} {product.currency}</div>
+        <div className="product_price">{product.priceString} {product.currency}</div>
         <div className="product_name">
           <div>
             <Link to={`/product/${product.id}`}>{product.name}</Link>
           </div>
         </div>
-        <Link to={`/compare/${product.name}/${product.reference}/${product.price}`} className="btn btn-info btn-circle btn-md"></Link>
+        <Link to={`/compare/${product.name}/${product.reference}/${product.priceString}`} className="btn btn-info btn-circle btn-md"></Link>
       </div>
       <div className="product_fav">
         <i className="fas fa-heart" />

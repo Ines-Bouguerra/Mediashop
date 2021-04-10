@@ -9,4 +9,6 @@ urlpatterns = [
     url(r'^api/products/search_view$', views.search_view, name='search_view'),
     url(r'^api/products/compare_product$',
         views.compare_product, name='compare_product'),
+    path('api/products/top_promotion',
+         views.top_promotion.as_view(), name='top_promotion'),
 ]
