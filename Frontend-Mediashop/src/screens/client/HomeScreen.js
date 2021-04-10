@@ -8,6 +8,7 @@ import Filter from "../../components/products/Filter"
 import { getCategories, getSubCategories } from "../../actions/category"
 import Paginate from "../../components/products/Paginate"
 import ProductCarousel from "../../components/products/ProductCarousel"
+import { Link } from "react-router-dom"
 
 const HomeScreen = ({ match }) => {
     const dispatch = useDispatch()
@@ -37,7 +38,12 @@ const HomeScreen = ({ match }) => {
     return (
         <div class="super_container">
             {/* Home */}
-            <ProductCarousel />
+            {!query ? (
+                <ProductCarousel />
+            ) : (
+                <>
+                </>
+            )}
             {/* Shop */}
             <div className="shop">
                 <div className="container">
