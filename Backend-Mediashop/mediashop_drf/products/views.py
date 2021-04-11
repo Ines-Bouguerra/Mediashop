@@ -9,7 +9,7 @@ from products.serializers import products_Serializer
 from rest_framework.decorators import api_view
 from products.pagination import ProductPageNumberPagination
 from rest_framework.generics import ListAPIView
-
+from category.models import Category
 
 @api_view(['GET', 'POST', 'DELETE'])
 def product_list(request):
@@ -107,3 +107,19 @@ class top_promotion(ListAPIView):
 
 
 # Top rated products
+
+# Filter Product By Category
+@api_view(['GET'])
+
+def product_list_by_category(request,  category_slug=None):
+
+    category = None
+    categories = Category.objects.all()
+    products = Product.objects.all()
+
+    if category_slug:
+        category = get_object_or_404(Category, slug=category_slug)
+        products = products.filter(category=category)
+        products__Serializer = products_Serializer(products, many=True)
+        return JsonResponse(products__Serializer.data,safe=False)
+

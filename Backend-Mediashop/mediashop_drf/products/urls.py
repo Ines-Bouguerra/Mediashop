@@ -11,4 +11,6 @@ urlpatterns = [
         views.compare_product, name='compare_product'),
     path('api/products/top_promotion',
          views.top_promotion.as_view(), name='top_promotion'),
+    path('api/products/product_list_by_category/<str:category_slug>',
+         views.product_list_by_category, name='product_list_by_category'),
 ]
