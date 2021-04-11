@@ -10,6 +10,9 @@ from rest_framework.decorators import api_view
 from products.pagination import ProductPageNumberPagination
 from rest_framework.generics import ListAPIView
 from category.models import Category
+import speech_recognition as sr
+import webbrowser as web
+
 
 @api_view(['GET', 'POST', 'DELETE'])
 def product_list(request):
@@ -109,8 +112,8 @@ class top_promotion(ListAPIView):
 # Top rated products
 
 # Filter Product By Category
-@api_view(['GET'])
 
+@api_view(['GET'])
 def product_list_by_category(request,  category_slug=None):
 
     category = None
@@ -121,5 +124,32 @@ def product_list_by_category(request,  category_slug=None):
         category = get_object_or_404(Category, slug=category_slug)
         products = products.filter(category=category)
         products__Serializer = products_Serializer(products, many=True)
-        return JsonResponse(products__Serializer.data,safe=False)
+        return JsonResponse(products__Serializer.data, safe=False)
 
+# speech recognition
+
+
+@api_view(['GET', 'POST', 'DELETE'])
+def speech_to_text(request):
+
+    path = "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe %s"
+
+    data = request.POST.get('record')
+    r = sr.Recognizer()
+
+    with sr.Microphone() as source:
+        r.adjust_for_ambient_noise(source)
+
+        print('Please Say something ')
+        audio = r.listen(source)
+        print(' Recognizing Now ... ')
+
+        try:
+            output = r.recognize_google(audio)
+            print('You have said : '+output)
+            data = output
+            web.get(path).open(output)
+        except Exception as e:
+            print('Error :'+str(e))
+
+    return JsonResponse({'data': data})

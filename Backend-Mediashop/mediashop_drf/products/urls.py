@@ -13,4 +13,6 @@ urlpatterns = [
          views.top_promotion.as_view(), name='top_promotion'),
     path('api/products/product_list_by_category/<str:category_slug>',
          views.product_list_by_category, name='product_list_by_category'),
+    path('api/speech_to_text',
+         views.speech_to_text, name='speech_to_text'),
 ]
