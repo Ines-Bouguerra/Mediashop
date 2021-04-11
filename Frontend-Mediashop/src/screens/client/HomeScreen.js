@@ -8,7 +8,6 @@ import Filter from "../../components/products/Filter"
 import { getCategories, getSubCategories } from "../../actions/category"
 import Paginate from "../../components/products/Paginate"
 import ProductCarousel from "../../components/products/ProductCarousel"
-import { Link } from "react-router-dom"
 
 const HomeScreen = ({ match }) => {
     const dispatch = useDispatch()
@@ -135,7 +134,7 @@ const HomeScreen = ({ match }) => {
                                                 {products.map((product) => (
                                                     <div
                                                         className="product_item is_new col-md-3 mt-3 product"
-                                                        key={product._id}
+                                                        key={product.id}
                                                     >
                                                         <Product product={product} />
                                                     </div>

@@ -6,7 +6,7 @@ import Login from './components/authentication/Login'
 import Register from './components/authentication/Register'
 import ResetPassword from './components/authentication/ResetPassword'
 import ResetPasswordConfirm from './components/authentication/ResetPasswordConfirm'
-import CategoryHome from './components/category/CategoryHome'
+import CategoryScreen from './screens/client/CategoryScreen'
 import Favorites from './components/favorites/Favorites'
 import Home from './components/home/Home'
 import Alert from './components/layouts/Alert'
@@ -39,7 +39,7 @@ class App extends Component {
                   component={ResetPasswordConfirm}
                 />
                 <Route path='/activate/:uid/:token' component={Activate} />
-                <Route path='/category/:slug' component={CategoryHome} />
+                <Route path='/category/:slug' component={CategoryScreen} />
                 <Route exact path='/product-list' component={HomeScreen} />
                 <Route exact path='/search/:query' component={HomeScreen} />
                 <Route exact path='/page/:pageNumber' component={HomeScreen} />

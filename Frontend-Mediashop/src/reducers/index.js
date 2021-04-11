@@ -2,15 +2,16 @@ import { combineReducers } from 'redux';
 import alert from './alert';
 import authReducer from './authReducer';
 import { categoryList, subcategoryList } from './category';
-import { compareReducer, productDetailsReducer, productListReducer, productTopPromotionReducer } from './product';
+import { compareReducer, productByCategoryReducer, productDetailsReducer, productListReducer, productTopPromotionReducer } from './product';
 export default combineReducers({
   alert,
-  user:authReducer,
+  user: authReducer,
   authReducer,
-  productList: productListReducer,
-  productDetails: productDetailsReducer,
   categoryList: categoryList,
   subcategoryList: subcategoryList,
+  productList: productListReducer,
+  productDetails: productDetailsReducer,
   compare: compareReducer,
-  productTopPromotion:productTopPromotionReducer
+  productTopPromotion: productTopPromotionReducer,
+  productByCategory: productByCategoryReducer
 });

@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { GET_PRODUCT, GET_PRODUCT_DETAILS, PRODUCT_DETAILS_ERROR, PRODUCT_ERROR, SEARCH_PRODUCT, SEARCH_PRODUCT_ERROR, COMPARE_PRODUCT, COMPARE_PRODUCT_ERROR, TOP_PROMOTION, TOP_PROMOTION_ERROR } from './types'
+import { GET_PRODUCT, GET_PRODUCT_DETAILS, PRODUCT_DETAILS_ERROR, PRODUCT_ERROR, SEARCH_PRODUCT, SEARCH_PRODUCT_ERROR, COMPARE_PRODUCT, COMPARE_PRODUCT_ERROR, TOP_PROMOTION, TOP_PROMOTION_ERROR, GET_PRODUCT_BY_CATEGORY, GET_PRODUCT_BY_CATEGORY_ERROR} from './types'
 
 
 //Get Product
@@ -111,6 +111,27 @@ export const listTopProducts = () => async (dispatch) => {
         error.response && error.response.data.message
           ? error.response.data.message
           : error.message,
+    })
+  }
+}
+
+
+// Get Products By Category
+
+export const getProductByCategory = (slug='') => async (dispatch) => {
+  try {
+    const { data } = await axios.get(`http://localhost:8080/api/products/product_list_by_category/${slug}`)
+    dispatch({
+      type: GET_PRODUCT_BY_CATEGORY,
+      payload: data,
+    })
+  } catch (error) {
+    dispatch({
+      type: GET_PRODUCT_BY_CATEGORY_ERROR,
+      payload: {
+        msg: error.response.statusText,
+        status: error.response.status,
+      },
     })
   }
 }
