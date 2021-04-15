@@ -7,13 +7,14 @@ from rest_framework.decorators import api_view
 from rest_framework import status
 from rest_framework import permissions
 from rest_framework.views import APIView
-
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.parsers import MultiPartParser, FormParser
 
 class category_list(ListAPIView):
     queryset = Category.objects.filter(parent__isnull=True)
+    filter_backends =(DjangoFilterBackend,)
+    filter_fields=('name','slug','created_at','updated_at')
     serializer_class = category_Serializer
-
 
 class subcategory_list(ListAPIView):
     queryset = Category.objects.filter(parent__isnull=False)

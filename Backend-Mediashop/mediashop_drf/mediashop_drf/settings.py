@@ -60,12 +60,16 @@ INSTALLED_APPS = [
     'rating.apps.RatingConfig',
     # generate auth token
     # 'rest_framework.authtoken',
-    # social-auth-app-django
+    # auth & social-auth-app-django
     'social_django',
     'djoser',
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist',
+    #tree category & subcategory
     'mptt',
+    # filter
+    'django_filters'
+
 ]
 
 MIDDLEWARE = [

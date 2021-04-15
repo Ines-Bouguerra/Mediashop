@@ -12,6 +12,7 @@ from rest_framework.generics import ListAPIView
 from category.models import Category
 import speech_recognition as sr
 import webbrowser as web
+from django_filters.rest_framework import DjangoFilterBackend
 
 
 @api_view(['GET', 'POST', 'DELETE'])
@@ -153,3 +154,9 @@ def speech_to_text(request):
             print('Error :'+str(e))
 
     return JsonResponse({'data': data})
+# filter 
+class filter_product_list(ListAPIView):
+    queryset = Product.objects.all()
+    filter_backends =(DjangoFilterBackend,)
+    filter_fields=('category','name','reference','brand','retailer','marketplaceId')
+    serializer_class = products_Serializer
