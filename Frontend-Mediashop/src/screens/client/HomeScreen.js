@@ -8,7 +8,8 @@ import Filter from "../../components/products/Filter"
 import { getCategories, getSubCategories } from "../../actions/category"
 import Paginate from "../../components/products/Paginate"
 import ProductCarousel from "../../components/products/ProductCarousel"
-
+import Typography from '@material-ui/core/Typography';
+import Slider from '@material-ui/core/Slider';
 const HomeScreen = ({ match }) => {
     const dispatch = useDispatch()
     const query = match.params.query
@@ -33,6 +34,16 @@ const HomeScreen = ({ match }) => {
             compareProduct(name, reference, price)
         )
     }, [dispatch, query, pageNumber, name, reference, price])
+
+    // Our States
+    const [value, setValue] = React.useState([2, 100000000]);
+
+    // Changing State when volume increases/decreases
+    const rangeSelector = (event, newValue) => {
+        setValue(newValue);
+        console.log(newValue)
+    };
+
 
     return (
         <div class="super_container">
@@ -73,21 +84,25 @@ const HomeScreen = ({ match }) => {
                                 <div className="sidebar_section filter_by_section">
                                     <div className="sidebar_title">Filter By</div>
                                     <div className="sidebar_subtitle">Price</div>
+                                    <div style={{
+            margin: 'auto',
+            display: 'block',
+            width: 'fit-content'
+          }}>
                                     <div className="filter_price">
                                         <div id="slider-range" className="slider_range" />
-                                        <p>Range: </p>
-                                        <p>
-                                            <input
-                                                type="text"
-                                                id="amount"
-                                                className="amount"
-                                                readOnly
-                                                style={{ border: 0, fontWeight: "bold" }}
-                                            />
-                                        </p>
-                                    </div>
+                                        <Typography id="range-slider" gutterBottom>
+                                            Select Price Range:
+                                        </Typography>
+                                        <Slider
+                                            value={value}
+                                            onChange={rangeSelector}
+                                            valueLabelDisplay="auto"
+                                        />
+                                        <p>Range:  {value[0]} - {value[1]} </p>
+                                     </div>
+                                     </div>
                                 </div>
-
                                 <div className="sidebar_section">
                                     <div className="sidebar_subtitle brands_subtitle">Brands</div>
                                     <ul className="brands_list">
