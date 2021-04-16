@@ -24,7 +24,6 @@ urlpatterns = [
     url(r'^', include('products.urls')),
     url(r'^', include('account.urls')),
     url(r'^', include('category.urls')),
-    url(r'^', include('favorite.urls')),
     url(r'^', include('post.urls')),
     url(r'^', include('rating.urls')),
     path('admin/', admin.site.urls),

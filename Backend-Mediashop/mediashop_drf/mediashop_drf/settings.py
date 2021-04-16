@@ -52,8 +52,6 @@ INSTALLED_APPS = [
     'account.apps.AccountConfig',
     # category application
     'category.apps.CategoryConfig',
-    # favorite application
-    'favorite.apps.FavoriteConfig',
     # post application
     'post.apps.PostConfig',
     # rating application
