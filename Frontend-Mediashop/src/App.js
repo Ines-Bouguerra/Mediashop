@@ -18,6 +18,7 @@ import Google from './components/authentication/Google'
 import CompareScreen from './screens/client/CompareScreen'
 import HeaderAdmin from "./components/header/HeaderAdmin"
 import UserRoute from './components/routing/UserRoute'
+import { AdminLayout } from './hocs/AdminLayout'
 
 class App extends Component {
   render() {
@@ -48,8 +49,10 @@ class App extends Component {
                 <Route path='/compare/:name/:reference/:price' component={CompareScreen} />
               </Switch>
             </Layout>
+            <AdminLayout>
+              <Route exact path='/admin' component={HeaderAdmin} />
+            </AdminLayout>
           </div>
-          <Route exact path='/admin/header' component={HeaderAdmin}/>
         </Router>
       </Provider>
     )
