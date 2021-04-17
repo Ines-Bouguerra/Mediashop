@@ -20,7 +20,7 @@ import Google from "./components/authentication/Google";
 import CompareScreen from "./screens/client/CompareScreen";
 import HeaderAdmin from "./components/header/HeaderAdmin";
 import UserRoute from "./components/routing/UserRoute";
-import AdminLayout from "./hocs/adminLayout";
+import AdminLayout from "./hocs/AdminLayout";
 class App extends Component {
   render() {
     return (

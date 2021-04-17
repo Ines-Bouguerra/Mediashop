@@ -11,7 +11,7 @@ import {
   AUTHENTICATED_FAIL,
   GOOGLE_AUTH_SUCCESS,
   GOOGLE_AUTH_FAIL,
-  LOGOUT,
+  LOGOUT,WISHLIST_ADDED,WISHLIST_ADDED_ERROR,
 } from "./types";
 import axios from "axios";
 import { setAlert } from "./alerts";
@@ -234,3 +234,33 @@ export const signIn = (email, password) => async (dispatch) => {
 export const logout = () => (dispatch) => {
   dispatch({ type: LOGOUT });
 };
+
+// WishList
+export const getWishlist = async (authtoken) =>
+  await axios.get(`${process.env.REACT_APP_API}/wishlist`, {
+    headers: {
+      authtoken,
+    },
+  });
+
+export const removeWishlist = async (productId, authtoken) =>
+  await axios.put(
+    `${process.env.REACT_APP_API}/wishlist/${productId}`,
+    {},
+    {
+      headers: {
+        authtoken,
+      },
+    }
+  );
+
+export const addToWishlist = async (productId, authtoken) =>
+  await axios.post(
+    `${process.env.REACT_APP_API}/wishlist`,
+    { productId },
+    {
+      headers: {
+        authtoken,
+      },
+    }
+  );
