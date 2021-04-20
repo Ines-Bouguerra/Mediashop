@@ -4,6 +4,10 @@ import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import { getProductDetails } from "../../actions/product";
 import Loader from "../../components/Loader";
 import Message from "../../components/Message";
+import { toast } from "react-toastify";
+import { useHistory } from "react-router-dom";
+import { addToWishlist } from "../../actions/auth";
+import { MDBBtn, MDBIcon } from 'mdb-react-ui-kit';
 const ProductScreen = ({ match }) => {
   const dispatch = useDispatch();
   const productDetails = useSelector((state) => state.productDetails);
@@ -11,6 +15,22 @@ const ProductScreen = ({ match }) => {
   useEffect(() => {
     dispatch(getProductDetails(match.params.id));
   }, [dispatch, match]);
+
+  // redux
+  const { user } = useSelector((state) => ({ ...state }));
+  // router
+  let history = useHistory();
+  const handleAddToWishlist = (e) => {
+    e.preventDefault();
+    addToWishlist(product.id, user.token).then((res) => {
+      console.log("ADDED TO WISHLIST", res.data);
+      toast.success("Added to wishlist");
+      history.push("/wishlist");
+    });
+  };
+
+
+
   return (
     <div className="single_product">
       {loading ? (
@@ -49,7 +69,8 @@ const ProductScreen = ({ match }) => {
             <div className="col-lg-5 order-3">
               <div className="product_description">
                 <div className="product_category">{product.category}</div>
-                <div className="product_name">{product.name} wishlist</div>
+                <div className="product_name">{product.name}
+                </div>
                 <div className="rating_r rating_r_4 product_rating">
                   <i></i>
                   <i></i>
@@ -69,8 +90,13 @@ const ProductScreen = ({ match }) => {
                     <br></br>
                   </p>
                 </div>
-                <div className="product_price">
+                <div className="">
                   {product.price} {product.currency}
+                  <div className="product_price m-4">
+                    <MDBBtn className='mx-2' tag='a' color='danger' outline floating onClick={handleAddToWishlist}>
+                      <MDBIcon fas icon='heart' />
+                    </MDBBtn>
+                  </div>
                 </div>
                 <div className="">chart Evolution prix</div>
               </div>

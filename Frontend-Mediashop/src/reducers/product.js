@@ -9,7 +9,7 @@ export const productListReducer = (state = { products: [] }, action) => {
       return {
         ...state,
         products: payload.results,
-        pages: payload.count/2,
+        pages: payload.count,
         next: payload.next,
         prev: payload.previous,
         loading: false,

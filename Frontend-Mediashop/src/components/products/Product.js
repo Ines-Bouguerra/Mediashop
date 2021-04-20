@@ -1,7 +1,8 @@
 import React from "react"
 import { Link } from "react-router-dom"
-
-const Product = ({ product, category, loading}) => {
+import { MDBBtn } from 'mdb-react-ui-kit';
+import 'mdb-react-ui-kit/dist/css/mdb.min.css'
+const Product = ({ product, category, loading }) => {
   return (
     <>
       <div className="product_border" />
@@ -17,7 +18,8 @@ const Product = ({ product, category, loading}) => {
             <Link to={`/product/${product.id}`}>{product.name}</Link>
           </div>
         </div>
-        <Link to={`/compare/${product.name}/${product.reference}/${product.priceString}`} className="btn btn-info btn-circle btn-md"></Link>
+        <Link to={`/compare/${product.name}/${product.reference}/${product.priceString}`} >
+          <MDBBtn outline rounded className='mx-2  mb-2' color='info'>Compare</MDBBtn></Link>
       </div>
       <div className="product_fav">
         <i className="fas fa-heart" />
