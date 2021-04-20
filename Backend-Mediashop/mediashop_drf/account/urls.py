@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from account.views import registration_view, wishlist, add_to_wishlist
+from account.views import registration_view
 from django.urls import path
 from . import views
 app_name = "account"
