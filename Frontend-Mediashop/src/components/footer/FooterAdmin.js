@@ -3,7 +3,8 @@ import { MDBFooter } from 'mdb-react-ui-kit'
 
 const FooterAdmin = () => {
     return (
-        <MDBFooter backgroundColor='light' className='text-center text-lg-left'>          
+        <div className="footeradmin">
+        <MDBFooter backgroundColor='light'  className=' text-center text-lg-left'>          
           <div className='text-white text-center p-3' style={{ backgroundColor: '#0097A7' }}>
             &copy; {new Date().getFullYear()} Copyright:{' '}
             <a className='text-white' href='https://www.medianet.tn/fr'>
@@ -11,6 +12,7 @@ const FooterAdmin = () => {
         </a>
         </div>
         </MDBFooter>
+        </div>
     )
 }
 export default FooterAdmin

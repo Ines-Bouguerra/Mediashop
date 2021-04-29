@@ -16,9 +16,9 @@ const HeaderAdmin = () => {
 
   return (
     
-    <MDBNavbar expand="lg" dark bgColor="dark">
+    <MDBNavbar expand="lg"  style={{ backgroundColor: '#0097A7' }}>
       <MDBContainer fluid>
-        <MDBNavbarBrand href="#">Mediashop</MDBNavbarBrand>
+        <MDBNavbarBrand href="#"  className="text-white">Mediashop</MDBNavbarBrand>
         <MDBNavbarToggler
           type="button"
           data-target="#navbarColor02"
@@ -32,15 +32,15 @@ const HeaderAdmin = () => {
         <MDBCollapse show={showNavColorSecond} navbar id="navbarColor02">
           <MDBNavbarNav className="me-auto mb-2 mb-lg-0">
             <MDBNavbarItem className="active">
-              <MDBNavbarLink aria-current="page" href="#">
+              <MDBNavbarLink aria-current="page" href="#"  className="text-white">
                 Home
               </MDBNavbarLink>
             </MDBNavbarItem>
             <MDBNavbarItem>
-              <MDBNavbarLink href="#">Pricing</MDBNavbarLink>
+              <MDBNavbarLink href="#"  className="text-white">Pricing</MDBNavbarLink>
             </MDBNavbarItem>
             <MDBNavbarItem>
-              <MDBNavbarLink href="#">About</MDBNavbarLink>
+              <MDBNavbarLink href="#"  className="text-white">About</MDBNavbarLink>
             </MDBNavbarItem>
           </MDBNavbarNav>
         </MDBCollapse>
