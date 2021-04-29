@@ -20,6 +20,7 @@ import Google from "./components/authentication/Google";
 import CompareScreen from "./screens/client/CompareScreen";
 import UserRoute from "./components/routing/UserRoute";
 import AdminLayout from "./hocs/AdminLayout";
+import Product  from "./components/admin/Product";
 class App extends Component {
   render() {
     return (
@@ -30,6 +31,8 @@ class App extends Component {
             <Route path="/admin/:path?" exact>
                 <AdminLayout>
                   <Switch>
+                  <Route exact path="/admin/productList" component={Product} />
+
                   </Switch>
                 </AdminLayout>
               </Route>
