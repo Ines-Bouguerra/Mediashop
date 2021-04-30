@@ -2,6 +2,7 @@ from sqlalchemy import create_engine, Column, Integer, String, DateTime
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.engine.url import URL
 from scrapy.utils.project import get_project_settings
+from datetime import datetime
 
 DeclarativeBase = declarative_base()
 
@@ -23,7 +24,17 @@ class Products(DeclarativeBase):
     __tablename__ = "products"
 
     id = Column(Integer, primary_key=True)
+    url = Column('url', String)
+    image = Column('image', String)
     reference = Column('reference', String)
     title = Column('title', String)
+    pricestring = Column('pricestring', String)
     price = Column('price', String)
     brand = Column('brand', String)
+    category = Column('category', String)
+    subcategory = Column('subcategory', String)
+    timestamp= Column('timestamp', DateTime)
+    currency= Column('currency', String)
+    country= Column('country', String)
+    domain= Column('domain',String)
+    description= Column('description',String)
