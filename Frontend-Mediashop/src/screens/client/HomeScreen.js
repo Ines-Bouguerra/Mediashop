@@ -16,7 +16,7 @@ const HomeScreen = ({ match }) => {
     const pageNumber = match.params.pageNumber || 1
     const name = match.params.name
     const reference = match.params.reference
-    const price = match.params.price
+    const priceString = match.params.priceString
     const productList = useSelector((state) => state.productList)
     const { loading, products, page, pages } = productList
 
@@ -31,9 +31,9 @@ const HomeScreen = ({ match }) => {
             getProduct(query, pageNumber),
             getCategories(),
             getSubCategories(),
-            compareProduct(name, reference, price)
+            compareProduct(name, reference, priceString)
         )
-    }, [dispatch, query, pageNumber, name, reference, price])
+    }, [dispatch, query, pageNumber, name, reference, priceString])
 
     // Our States
     const [value, setValue] = React.useState([2, 100000000]);
@@ -139,7 +139,7 @@ const HomeScreen = ({ match }) => {
                                                         className="product_item is_new col-md-3 mt-3 product"
                                                         key={product.id}
                                                     >
-                                                        <Product product={product} />
+                                                        <Product product={product} name={product.name} price={product.priceString} reference={product.reference}/>
                                                     </div>
                                                 ))}
                                             </div>

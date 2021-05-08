@@ -49,29 +49,6 @@ export const productDetailsReducer = (state = { product: {} }, action) => {
   }
 }
 
-
-export const compareReducer = (state = { products:[] }, action) => {
-  const { type, payload } = action
-
-  switch (type) {
-    case COMPARE_PRODUCT:
-      return {
-        ...state,
-        products: payload.results,
-        loading: false,
-      }
-    case COMPARE_PRODUCT_ERROR:
-      return {
-        ...state,
-        error: payload,
-        loading: false,
-      }
-    default:
-      return state
-  }
-}
-
-
 export const productTopPromotionReducer = (state = { products: [] }, action) => {
   switch (action.type) {
 

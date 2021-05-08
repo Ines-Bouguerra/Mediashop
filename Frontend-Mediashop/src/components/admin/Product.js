@@ -46,12 +46,12 @@ const Product = ({ match }) => {
                                         </MDBCardText>
                                     </MDBCardBody>
                                     <MDBCardFooter background='info' >
-                                        <MDBBtn className='ms-2 m-3' tag='a' backgroundColor= '#0097A7' floating>
+                                        <MDBBtn className='ms-2 m-3' tag='a' color='warning' floating>
                                         <i class="fas fa-plus-circle"></i>
                                         </MDBBtn>
-                                        <MDBBtn className='ms-2 m-3' tag='a' backgroundColor= '#0097A7' floating>
+                                        <MDBBtn className='ms-2 m-3' tag='a' color='warning' floating>
                                         <i class="fas fa-edit"></i>
-                                        </MDBBtn><MDBBtn className='ms-2 m-3' tag='a' backgroundColor= '#0097A7' floating>
+                                        </MDBBtn><MDBBtn className='ms-2 m-3' tag='a' color='warning' floating>
                                             <MDBIcon class="fas fa-trash" />
                                         </MDBBtn>
                                         <br/>

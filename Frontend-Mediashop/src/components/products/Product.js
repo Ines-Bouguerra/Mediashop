@@ -18,7 +18,8 @@ const Product = ({ product, category, loading }) => {
             <Link to={`/product/${product.id}`}>{product.name}</Link>
           </div>
         </div>
-        <Link to={`/compare/${product.name}/${product.reference}/${product.priceString}`} >
+        {/* <Link to={`/compare/${product.name}/${product.reference}/${product.priceString}`} > */}
+        <Link to={`/compare`} >
           <MDBBtn outline rounded className='mx-2  mb-2' color='info'>Compare</MDBBtn></Link>
       </div>
       <div className="product_fav">

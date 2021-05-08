@@ -17,10 +17,10 @@ import HomeScreen from "./screens/client/HomeScreen";
 import ProductScreen from "./screens/client/ProductScreen";
 import store from "./store";
 import Google from "./components/authentication/Google";
-import CompareScreen from "./screens/client/CompareScreen";
 import UserRoute from "./components/routing/UserRoute";
 import AdminLayout from "./hocs/AdminLayout";
 import Product  from "./components/admin/Product";
+import CompareList from "./components/products/CompareList";
 class App extends Component {
   render() {
     return (
@@ -39,10 +39,13 @@ class App extends Component {
               <Route path="" exact>
                 <Layout>
                   <Switch>
+                  <Route exact path="/login">
+                        <Login />
+                  </Route>
+
                     <Route exact path="/" component={Home} />
                     <UserRoute exact path="/wishlist" component={Favorites} />
                     <Route exact path="/register" component={Register} />
-                    <Route exact path="/login" component={Login} />
                     <Route exact path="/google" component={Google} />
                     <Route exact path="/reset-password" component={ResetPassword} />
                     <Route path="/password/reset/confirm/:uid/:token" component={ResetPasswordConfirm} />
@@ -53,7 +56,7 @@ class App extends Component {
                     <Route exact path="/page/:pageNumber" component={HomeScreen} />
                     <Route exact path="/search/:query/page/:pageNumber" component={HomeScreen} />
                     <Route path="/product/:id" component={ProductScreen} />
-                    <Route path="/compare/:name/:reference/:price" component={CompareScreen} />
+                    <Route path="/compare" component={CompareList} />
                   </Switch>
                 </Layout>
               </Route>
