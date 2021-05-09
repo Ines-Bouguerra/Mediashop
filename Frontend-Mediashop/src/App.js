@@ -21,6 +21,8 @@ import UserRoute from "./components/routing/UserRoute";
 import AdminLayout from "./hocs/AdminLayout";
 import Product  from "./components/admin/Product";
 import CompareList from "./components/products/CompareList";
+import Contact from "./components/contact/Contact";
+
 class App extends Component {
   render() {
     return (
@@ -57,6 +59,7 @@ class App extends Component {
                     <Route exact path="/search/:query/page/:pageNumber" component={HomeScreen} />
                     <Route path="/product/:id" component={ProductScreen} />
                     <Route path="/compare" component={CompareList} />
+                    <Route path="/contact" component={Contact} />
                   </Switch>
                 </Layout>
               </Route>
