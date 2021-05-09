@@ -139,7 +139,7 @@ const HomeScreen = ({ match }) => {
                                                         className="product_item is_new col-md-3 mt-3 product"
                                                         key={product.id}
                                                     >
-                                                        <Product product={product} name={product.name} price={product.priceString} reference={product.reference}/>
+                                                        <Product product={product} />
                                                     </div>
                                                 ))}
                                             </div>
