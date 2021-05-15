@@ -19,6 +19,10 @@ from django.conf.urls import url, include
 from django.urls import path, include, re_path
 from django.views.generic import TemplateView
 
+
+
+
+
 urlpatterns = [
 
     url(r'^', include('products.urls')),
@@ -26,11 +30,13 @@ urlpatterns = [
     url(r'^', include('category.urls')),
     url(r'^', include('post.urls')),
     url(r'^', include('rating.urls')),
+    url(r'^', include('contact.urls')),
     path('admin/', admin.site.urls),
     # path('authentication/', obtain_auth_token),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.jwt')),
     path('auth/', include('djoser.social.urls')),
+
 
 ]
 
@@ -41,3 +47,4 @@ urlpatterns += [re_path(r'^.*',
 admin.site.index_title = "Mediashop"
 admin.site.site_header = "Mediashop Price Comparison Admin"
 admin.site.site_title = "Price Comparison"
+

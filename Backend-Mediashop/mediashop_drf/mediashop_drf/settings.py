@@ -56,6 +56,8 @@ INSTALLED_APPS = [
     'post.apps.PostConfig',
     # rating application
     'rating.apps.RatingConfig',
+     # contact application
+    'contact.apps.ContactConfig',
     # generate auth token
     # 'rest_framework.authtoken',
     # auth & social-auth-app-django
@@ -66,7 +68,11 @@ INSTALLED_APPS = [
     #tree category & subcategory
     'mptt',
     # filter
-    'django_filters'
+    'django_filters',
+    #django_phone_field
+    'phone_field',
+   
+  
 
 ]
 
