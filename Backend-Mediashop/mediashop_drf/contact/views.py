@@ -8,18 +8,22 @@ from rest_framework.parsers import JSONParser
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework import viewsets, generics
 
-    
+
 class CreateContact(APIView):
 
-    def post(self, request, format=None):
-        serializer = contact_Serializer(data=JSONParser().parse(request))
-        if serializer.is_valid():
+    def post(self, request):
+        try:
+            serializer = contact_Serializer(
+                data=request.data, context={"request": request})
+            serializer.is_valid(raise_exception=True)
             serializer.save()
-            success_url = reverse_lazy("thanks")
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            dict_response = {"error": False,
+                             "message": "Contact Saved Successfully"}
+        except:
+            dict_response = {"error": True,
+                             "message": "Error During Saving Contact Data"}
+        return Response(dict_response)
 
-def thanks(request):
-    return HttpResponse("Thank you! Will get in touch soon.")
+
