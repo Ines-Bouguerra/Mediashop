@@ -56,8 +56,10 @@ INSTALLED_APPS = [
     'post.apps.PostConfig',
     # rating application
     'rating.apps.RatingConfig',
-     # contact application
+    # contact application
     'contact.apps.ContactConfig',
+    # brand application
+    'brand.apps.BrandConfig',
     # generate auth token
     # 'rest_framework.authtoken',
     # auth & social-auth-app-django
