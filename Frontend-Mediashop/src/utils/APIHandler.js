@@ -66,7 +66,7 @@ class APIHandler {
 
 
         var response = await Axios.put(
-            Config.employeeApiURL + "" + id + "/",
+            Config.brandDetailApiURL + "" + id + "/",
             {
                 name: name,
                 slug: slug,
