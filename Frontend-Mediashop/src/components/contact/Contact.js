@@ -1,7 +1,9 @@
 import React from 'react'
 import { MDBBtn } from 'mdb-react-ui-kit';
 import APIHandler from '../../utils/APIHandler';
-class Contact extends React.Component {
+import MapComponent from './MapComponent';
+
+export default class Contact extends React.Component {
     constructor(props) {
         super(props);
         this.formSubmit = this.formSubmit.bind(this);
@@ -11,7 +13,7 @@ class Contact extends React.Component {
         errorMessage: "",
         btnMessage: 0,
         sendData: false,
-   contactDataList: [],
+        contactDataList: [],
         dataLoaded: false,
     };
 
@@ -32,9 +34,9 @@ class Contact extends React.Component {
         this.setState({ errorMessage: response.data.message });
         this.setState({ sendData: true });
     }
- 
 
- 
+
+
 
     render() {
         return (
@@ -156,17 +158,15 @@ class Contact extends React.Component {
                 <div className="contact_map">
                     <div id="google_map" className="google_map">
                         <div className="map_container">
-                            <div id="map" />
+                        <MapComponent />
                         </div>
                     </div>
                 </div>
+                
+                
             </div>
 
         )
     }
 }
-
-
-export default Contact
-
 
