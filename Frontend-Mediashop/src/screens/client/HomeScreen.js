@@ -74,6 +74,7 @@ const HomeScreen = ({ match }) => {
                                 </div>
                                 <div className="sidebar_section">
                                     <div className="sidebar_title">Sub Categories</div>
+                                    <br />
                                     <ul className="sidebar_categories">
                                         {subcategories.map((subcategory) => (
                                             <li>
@@ -94,6 +95,7 @@ const HomeScreen = ({ match }) => {
 
                                 <div className="sidebar_section">
                                     <div class="sidebar_subtitle brands_subtitle">Brands</div>
+                                    <br />
                                     <Brand />
                                 </div>
                             </div>
