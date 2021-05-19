@@ -22,6 +22,7 @@ import AdminLayout from "./hocs/AdminLayout";
 import Product  from "./components/admin/Product";
 import CompareList from "./components/products/CompareList";
 import Contact from "./components/contact/Contact";
+import Brand from "./components/brand/Brand";
 
 class App extends Component {
   render() {
@@ -60,6 +61,7 @@ class App extends Component {
                     <Route path="/product/:id" component={ProductScreen} />
                     <Route path="/compare" component={CompareList} />
                     <Route path="/contact" component={Contact} />
+                    <Route path="/brand" component={Brand} />
                   </Switch>
                 </Layout>
               </Route>

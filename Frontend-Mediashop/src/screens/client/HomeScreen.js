@@ -10,6 +10,7 @@ import Paginate from "../../components/products/Paginate"
 import ProductCarousel from "../../components/products/ProductCarousel"
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
+import Brand from "../../components/brand/Brand"
 const HomeScreen = ({ match }) => {
     const dispatch = useDispatch()
     const query = match.params.query
@@ -92,33 +93,8 @@ const HomeScreen = ({ match }) => {
                                 </div>
 
                                 <div className="sidebar_section">
-                                    <div className="sidebar_subtitle brands_subtitle">Brands</div>
-                                    <ul className="brands_list">
-                                        <li className="brand">
-                                            <a href="#!">Apple</a>
-                                        </li>
-                                        <li className="brand">
-                                            <a href="#!">Beoplay</a>
-                                        </li>
-                                        <li className="brand">
-                                            <a href="#!">Google</a>
-                                        </li>
-                                        <li className="brand">
-                                            <a href="#!">Meizu</a>
-                                        </li>
-                                        <li className="brand">
-                                            <a href="#!">OnePlus</a>
-                                        </li>
-                                        <li className="brand">
-                                            <a href="#!">Samsung</a>
-                                        </li>
-                                        <li className="brand">
-                                            <a href="#!">Sony</a>
-                                        </li>
-                                        <li className="brand">
-                                            <a href="#!">Xiaomi</a>
-                                        </li>
-                                    </ul>
+                                    <div class="sidebar_subtitle brands_subtitle">Brands</div>
+                                    <Brand />
                                 </div>
                             </div>
                         </div>
