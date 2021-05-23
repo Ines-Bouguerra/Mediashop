@@ -17,7 +17,9 @@ def db_connect():
 def create_products_table(engine):
     """"""
     DeclarativeBase.metadata.create_all(engine)
-
+def create_category_table(engine):
+    """"""
+    DeclarativeBase.metadata.create_all(engine)
 
 class Products(DeclarativeBase):
     """Sqlalchemy deals model"""
@@ -38,3 +40,12 @@ class Products(DeclarativeBase):
     country= Column('country', String)
     domain= Column('domain',String)
     description= Column('description',String)
+
+
+class Category(DeclarativeBase):
+    __tablename__ = "category"
+
+    id = Column(Integer, primary_key=True)
+   
+    category = Column('name', String)
+  

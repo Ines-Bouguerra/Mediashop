@@ -8,7 +8,7 @@
 from itemadapter import ItemAdapter
 import psycopg2
 from sqlalchemy.orm import sessionmaker
-from Tunisianet.models import Products, db_connect, create_products_table
+from Tunisianet.models import Products,Category, db_connect, create_products_table,create_category_table
 class TunisianetPipeline(object):
 
     """Livingsocial pipeline for storing scraped items in the database"""
@@ -31,6 +31,28 @@ class TunisianetPipeline(object):
 
         try:
             session.add(product)
+            session.commit()
+        except:
+            session.rollback()
+            raise
+        finally:
+            session.close()
+
+        return item
+class TunisianetCategoryPipeline(object):
+    
+    def __init__(self):
+     
+        engine = db_connect()
+        create_category_table(engine)
+        self.Session = sessionmaker(bind=engine)
+    def process_item(self, item, spider):
+      
+        session = self.Session()
+        category = Category(**item)
+
+        try:
+            session.add(category)
             session.commit()
         except:
             session.rollback()

@@ -1,11 +1,12 @@
 
 BOT_NAME = 'Tunisianet'
 
-SPIDER_MODULES = ['Tunisianet.spiders']
+SPIDER_MODULES = ['Tunisianet.spiders',]
 NEWSPIDER_MODULE = 'Tunisianet.spiders'
 
 ITEM_PIPELINES = {
     'Tunisianet.pipelines.TunisianetPipeline': 300,
+     'Tunisianet.pipelines.TunisianetCategoryPipeline': 300,
 }
 
 DATABASE = {
