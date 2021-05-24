@@ -2,14 +2,23 @@ from django.db import models
 from account.models import Account
 
 
+class Tag(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+
+def upload_to(instance, filename):
+    return 'post/{filename}'.format(filename=filename)
 class Post(models.Model):
-    post_created_by = models.ForeignKey(
-        Account, on_delete=models.CASCADE, related_name="user_creator_post")
-    post_text = models.CharField(max_length=255, blank=False)
-    created_at = models.DateTimeField(auto_now_add=True)
+
+    title = models.CharField(max_length=100, blank=True)
+    text = models.TextField(max_length=250, blank=True)
+    tags=models.ManyToManyField(Tag, related_name='posts', blank=True)
+    author=models.ForeignKey(
+        Account, related_name='posts', on_delete=models.CASCADE, blank=True, null=True)
+    image=models.ImageField(null=True, blank=True,upload_to=upload_to)
+    created_at=models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        verbose_name_plural = 'Posts'
+        verbose_name_plural='Posts'
 
     def __str__(self):
-        return '%s' % self.post_text
+        return '%s' % self.title
