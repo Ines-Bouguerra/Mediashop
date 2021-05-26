@@ -1,5 +1,6 @@
 from django.db import models
 from category.models import Category
+from brand.models import Brand
 
 
 class Product(models.Model):
@@ -12,7 +13,7 @@ class Product(models.Model):
     discount = models.CharField(max_length=255)
     url = models.URLField()
     timestamp = models.DateField(auto_now_add=True)
-    brand = models.CharField(max_length=255)
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE, related_name="brand")
     priceString = models.CharField(max_length=255)
     retailer = models.CharField(max_length=255)
     marketplace = models.CharField(max_length=255)

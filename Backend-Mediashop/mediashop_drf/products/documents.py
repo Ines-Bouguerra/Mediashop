@@ -25,7 +25,6 @@ class ProductDocument(Document):
             'discount',
             'url',
             'timestamp',
-            'brand',
             'priceString',
             'retailer',
             'marketplace',
