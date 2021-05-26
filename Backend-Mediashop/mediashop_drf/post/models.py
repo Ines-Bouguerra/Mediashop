@@ -1,9 +1,8 @@
 from django.db import models
 from account.models import Account
+from products.models import Product
 
 
-class Tag(models.Model):
-    name = models.CharField(max_length=100, unique=True)
 
 def upload_to(instance, filename):
     return 'post/{filename}'.format(filename=filename)
@@ -11,7 +10,8 @@ class Post(models.Model):
 
     title = models.CharField(max_length=100, blank=True)
     text = models.TextField(max_length=250, blank=True)
-    tags=models.ManyToManyField(Tag, related_name='posts', blank=True)
+    product=models.ForeignKey(
+        Product, related_name='posts', on_delete=models.CASCADE, blank=True, null=True)
     author=models.ForeignKey(
         Account, related_name='posts', on_delete=models.CASCADE, blank=True, null=True)
     image=models.ImageField(null=True, blank=True,upload_to=upload_to)

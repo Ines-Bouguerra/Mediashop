@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from post.models import Post, Tag
+from post.models import Post
 
 
 class PostTestCase(TestCase):
@@ -27,18 +27,5 @@ class PostTestCase(TestCase):
         inactive_posts = Post.objects.inactive()
         self.assertEquals(
             inactive_posts.count(),
-            1
-        )
-
-
-class TagTestCase(TestCase):
-    def test_tag(self):
-        self.assertEquals(
-            Tag.objects.count(),
-            0
-        )
-        Tag.objects.create(name='name')
-        self.assertEquals(
-            Tag.objects.count(),
             1
         )

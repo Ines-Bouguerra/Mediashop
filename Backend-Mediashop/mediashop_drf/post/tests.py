@@ -5,7 +5,7 @@ from django.urls import reverse
 from rest_framework.test import APITestCase
 from rest_framework.views import status
 
-from post.models import Post, Tag
+from post.models import Post
 
 
 class PostListCreateAPIView(APITestCase):
@@ -38,11 +38,8 @@ class PostListCreateAPIView(APITestCase):
         )
 
     def test_get_post_list(self):
-        tag = Tag(name='tag_name')
-        tag.save()
         post = Post(title='title1', text='text1')
         post.save()
-        post.tags.add(tag)
 
         response = self.client.get(self.url)
         response_json = response.json()
@@ -63,10 +60,7 @@ class PostListCreateAPIView(APITestCase):
             data['text'],
             post.text
         )
-        self.assertEquals(
-            data['tags'][0]['name'],
-            tag.name
-        )
+        
 
 
 class PostDetailsAPIViewTest(APITestCase):
