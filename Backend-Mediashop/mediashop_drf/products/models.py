@@ -4,6 +4,7 @@ from brand.models import Brand
 
 
 class Product(models.Model):
+    id=models.AutoField(primary_key=True)
     category = models.ForeignKey(
         Category, on_delete=models.CASCADE, related_name="category")
     description = models.TextField(max_length=255)

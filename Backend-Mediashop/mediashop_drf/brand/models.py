@@ -4,7 +4,7 @@ from audioop import reverse
 def upload_to(instance, filename):
     return 'brand/{filename}'.format(filename=filename)
 class Brand(models.Model):
-
+    id=models.AutoField(primary_key=True)
     name = models.CharField(max_length=50)
     slug = models.SlugField(unique=True)
     image = models.ImageField(("Image"), upload_to=upload_to)

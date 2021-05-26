@@ -3,6 +3,7 @@ from account.models import Account
 
 
 class Rating(models.Model):
+    id=models.AutoField(primary_key=True)
     rating_created_by = models.ForeignKey(
         Account, on_delete=models.CASCADE, related_name="user_creator_rating")
     created_at = models.DateTimeField(auto_now_add=True)

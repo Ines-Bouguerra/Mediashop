@@ -4,6 +4,7 @@ from django.core.validators import RegexValidator
 
 
 class Contact(models.Model):
+    id=models.AutoField(primary_key=True)
     name = models.CharField(max_length=50)
     email = models.EmailField(max_length=255)
     phone_regex = RegexValidator(

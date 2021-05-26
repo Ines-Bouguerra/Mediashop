@@ -7,6 +7,7 @@ from mptt.models import MPTTModel
 def upload_to(instance, filename):
     return 'categories/{filename}'.format(filename=filename)
 class Category(MPTTModel):
+    id=models.AutoField(primary_key=True)
     parent = TreeForeignKey('self', on_delete=models.CASCADE,
                             null=True, blank=True, related_name='children')
     name = models.CharField(max_length=150, unique=True)
