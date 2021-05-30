@@ -1,7 +1,8 @@
-import React from "react"
-import { Link } from "react-router-dom"
-import { MDBBtn } from 'mdb-react-ui-kit';
-import 'mdb-react-ui-kit/dist/css/mdb.min.css'
+import React from "react";
+import { Link } from "react-router-dom";
+import "@fortawesome/fontawesome-free/css/all.min.css";
+import "bootstrap-css-only/css/bootstrap.min.css";
+
 const Product = ({ product, category, loading }) => {
   return (
     <>
@@ -12,15 +13,20 @@ const Product = ({ product, category, loading }) => {
         </Link>
       </div>
       <div className="product_content">
-        <div className="product_price">{product.priceString} {product.currency}</div>
+        <div className="product_price">
+          {product.priceString} {product.currency}
+        </div>
         <div className="product_name">
           <div>
             <Link to={`/product/${product.id}`}>{product.name}</Link>
           </div>
         </div>
         {/* <Link to={`/compare/${product.name}/${product.reference}/${product.priceString}`} > */}
-        <Link to={`/compare`} >
-          <MDBBtn outline rounded className='mx-2  mb-2' color='info'>Compare</MDBBtn></Link>
+        <Link to={`/compare`}>
+          <button rounded outline className="mx-2  mb-2" color="info">
+            Compare
+          </button>
+        </Link>
       </div>
       <div className="product_fav">
         <i className="fas fa-heart" />
@@ -31,7 +37,7 @@ const Product = ({ product, category, loading }) => {
         </li>
       </ul>
     </>
-  )
-}
+  );
+};
 
-export default Product
+export default Product;
