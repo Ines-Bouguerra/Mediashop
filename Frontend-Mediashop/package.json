@@ -10,6 +10,8 @@
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.7.1",
+    "admin-lte": "^3.1.0",
+    "adminbsb-materialdesign": "^1.0.7",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "email-validator": "^2.0.4",
@@ -21,20 +23,23 @@
     "mdb-react-ui-kit": "^1.0.0-beta2",
     "mdb-ui-kit": "^3.5.0",
     "mdbreact": "^5.0.2",
-    "prettier": "^2.2.1",
     "react": "^17.0.1",
     "react-bootstrap": "^1.5.1",
     "react-dom": "^17.0.1",
+    "react-google-font-loader": "^1.1.0",
     "react-google-maps": "^9.4.5",
+    "react-minimal-side-navigation": "^1.8.0",
     "react-redux": "^7.2.2",
     "react-router-bootstrap": "^0.25.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.2",
     "react-toastify": "^7.0.3",
+    "reactjs-localstorage": "^1.0.1",
     "reactstrap": "^8.9.0",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",
+    "startbootstrap-sb-admin-2": "^4.1.4",
     "uuid": "^8.3.2",
     "web-vitals": "^1.1.0",
     "yup": "^0.32.9"
@@ -72,5 +77,12 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "devDependencies": {
+    "prettier": "2.3.0"
   }
 }
