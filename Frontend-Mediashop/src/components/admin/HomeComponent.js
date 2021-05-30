@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PowerBIDashbordKmeans from "./PowerBIDashbordKmeans";
 
 export default class HomeComponent extends Component {
   render() {
@@ -19,10 +20,10 @@ export default class HomeComponent extends Component {
                   <div className="text">NEW TASKS</div>
                   <div
                     className="number count-to"
-                    data-from={0}
-                    data-to={125}
-                    data-speed={15}
-                    data-fresh-interval={20}
+                    data-from="0"
+                    data-to="125"
+                    data-speed="15"
+                    data-fresh-interval="20"
                   >
                     125
                   </div>
@@ -38,10 +39,10 @@ export default class HomeComponent extends Component {
                   <div className="text">NEW TICKETS</div>
                   <div
                     className="number count-to"
-                    data-from={0}
-                    data-to={257}
-                    data-speed={1000}
-                    data-fresh-interval={20}
+                    data-from="0"
+                    data-to="257"
+                    data-speed="1000"
+                    data-fresh-interval="20"
                   >
                     257
                   </div>
@@ -57,10 +58,10 @@ export default class HomeComponent extends Component {
                   <div className="text">NEW COMMENTS</div>
                   <div
                     className="number count-to"
-                    data-from={0}
-                    data-to={243}
-                    data-speed={1000}
-                    data-fresh-interval={20}
+                    data-from="0"
+                    data-to="243"
+                    data-speed="1000"
+                    data-fresh-interval="20"
                   >
                     243
                   </div>
@@ -76,10 +77,10 @@ export default class HomeComponent extends Component {
                   <div className="text">NEW VISITORS</div>
                   <div
                     className="number count-to"
-                    data-from={0}
-                    data-to={1225}
-                    data-speed={1000}
-                    data-fresh-interval={20}
+                    data-from="0"
+                    data-to="1225"
+                    data-speed="1000"
+                    data-fresh-interval="20"
                   >
                     1225
                   </div>
@@ -87,6 +88,7 @@ export default class HomeComponent extends Component {
               </div>
             </div>
           </div>
+          <PowerBIDashbordKmeans />
         </div>
       </section>
     );
