@@ -18,11 +18,15 @@ import ProductScreen from "./screens/client/ProductScreen";
 import store from "./store";
 import Google from "./components/authentication/Google";
 import UserRoute from "./components/routing/UserRoute";
-import AdminLayout from "./hocs/AdminLayout";
-import Product  from "./components/admin/Product";
 import CompareList from "./components/products/CompareList";
 import Contact from "./components/contact/Contact";
 import Brand from "./components/brand/Brand";
+
+
+import AdminLayout from "./hocs/AdminLayout";
+import Product  from "./components/admin/Product";
+import AdminLogin  from "./components/admin/Login";
+import MainComponent from "./components/admin/MainComponent";
 
 class App extends Component {
   render() {
@@ -34,8 +38,9 @@ class App extends Component {
             <Route path="/admin/:path?" exact>
                 <AdminLayout>
                   <Switch>
+                  <Route exact path="/admin/Login" component={AdminLogin} />
                   <Route exact path="/admin/productList" component={Product} />
-
+                  <Route exact path="/admin/home" component={MainComponent} />
                   </Switch>
                 </AdminLayout>
               </Route>
