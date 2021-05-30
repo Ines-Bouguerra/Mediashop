@@ -61,20 +61,20 @@ INSTALLED_APPS = [
     # brand application
     'brand.apps.BrandConfig',
     # generate auth token
-    # 'rest_framework.authtoken',
+    'rest_framework.authtoken',
     # auth & social-auth-app-django
     'social_django',
     'djoser',
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist',
-    #tree category & subcategory
+    # tree category & subcategory
     'mptt',
     # filter
     'django_filters',
-    #django_phone_field
+    # django_phone_field
     'phone_field',
-   
-  
+
+
 
 ]
 
@@ -164,15 +164,14 @@ EMAIL_HOST_PASSWORD = 'jkpyhalfbdadkisf'
 EMAIL_USE_TLS = True
 
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [
-        # 'rest_framework.permissions.IsAuthenticated',
-        # 'rest_framework.authentication.TokenAuthentication',
-        # 'rest_framework.authentication.SessionAuthentication',
-        # 'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    'DEFAULT_AUTHENTICATION': [
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+
     ],
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.AllowAny',
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly'
+    )
 }
 
 AUTHENTICATION_BACKENDS = (
@@ -213,7 +212,7 @@ DJOSER = {
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '445531546776-64nddq0o81ors1lqbhk1aq58sdrf6q7i.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'NWDBrTFj7_2x6o5OCPh7nO8i'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['https://www.googleapis.com/auth/userinfo.email',
-                                    'https://www.googleapis.com/auth/userinfo.profile', 'openid']
+                                   'https://www.googleapis.com/auth/userinfo.profile', 'openid']
 SOCIAL_AUTH_GOOGLE_OAUTH2_EXTRA_DATA = ['first_name', 'last_name']
 
 
@@ -239,3 +238,11 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'build/static'),
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
+CORS_ORIGIN_WHITELIST = [
+
+    "http://localhost:3000",
+
+]
