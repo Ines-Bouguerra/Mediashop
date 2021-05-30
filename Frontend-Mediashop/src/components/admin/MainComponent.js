@@ -1,8 +1,6 @@
 import React from "react";
-import HomeComponent from "./HomeComponent";
 import Navbar from "./Navbar";
 import Overlay from "./Overlay";
-import PageLoader from "./PageLoader";
 import Sidebar from "./Sidebar";
 import GoogleFontLoader from "react-google-font-loader";
 import "adminbsb-materialdesign/plugins/bootstrap/css/bootstrap.css"
@@ -30,19 +28,18 @@ import "adminbsb-materialdesign/js/admin.js"
 import "adminbsb-materialdesign/js/pages/index.js"
 import "adminbsb-materialdesign/js/demo.js"
 
-
 class MainComponent extends React.Component {
   state = {
-    bodyClass: "theme-red ls-closed",
+    bodyClass: "theme-cyan ls-closed",
     displayOverlay: "none",
     width: window.screen.width,
   };
   onBarClick = () => {
-    if (this.state.bodyClass === "theme-red ls-closed overlay-open") {
-      this.setState({ bodyClass: "theme-red ls-closed" });
+    if (this.state.bodyClass === "theme-cyan ls-closed overlay-open") {
+      this.setState({ bodyClass: "theme-cyan ls-closed" });
       this.setState({ displayOverlay: "none" });
-    } else if (this.state.bodyClass === "theme-red ls-closed") {
-      this.setState({ bodyClass: "theme-red ls-closed overlay-open" });
+    } else if (this.state.bodyClass === "theme-cyan ls-closed") {
+      this.setState({ bodyClass: "theme-cyan ls-closed overlay-open" });
       this.setState({ displayOverlay: "block" });
     }
   };
@@ -77,13 +74,13 @@ class MainComponent extends React.Component {
   render() {
     console.log(this.props);
     if (this.state.width > 1150) {
-      document.getElementById("root").className = "theme-red";
+      document.getElementById("root").className = "theme-cyan";
     } else {
       document.getElementById("root").className = this.state.bodyClass;
     }
-
+    var Page = this.props.page;
     return (
-      <>
+      <React.Fragment>
       <GoogleFontLoader
           fonts={[
             {
@@ -101,13 +98,14 @@ class MainComponent extends React.Component {
           ]}
         />
         <Overlay display={this.state.displayOverlay}/>
-        <PageLoader />
+        {/* <PageLoader /> */}
         <Navbar onBarClick={this.onBarClick} />
-        <Sidebar />
-        <HomeComponent />
-      </>
+        <Sidebar activepage={this.props.activepage} />
+        <Page {...this.props} />
+      </React.Fragment>
     );
   }
 }
 
-export default MainComponent;
+
+export default  MainComponent
