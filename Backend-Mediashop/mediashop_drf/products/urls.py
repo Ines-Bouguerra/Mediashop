@@ -17,4 +17,6 @@ urlpatterns = [
          views.speech_to_text, name='speech_to_text'),
      path('api/products/filter',
          views.filter_product_list.as_view(), name='filter_product_list'),
+      path('api/products/order',
+         views.productsListView.as_view(), name='productsListView'),
 ]

@@ -154,9 +154,29 @@ def speech_to_text(request):
             print('Error :'+str(e))
 
     return JsonResponse({'data': data})
-# filter 
+# filter
+
+
 class filter_product_list(ListAPIView):
     queryset = Product.objects.all()
-    filter_backends =(DjangoFilterBackend,)
-    filter_fields=('category','name','reference','brand','retailer','marketplaceId')
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = ('category', 'name', 'reference',
+                     'brand', 'retailer', 'marketplaceId')
+    serializer_class = products_Serializer
+
+
+class productsListView(ListAPIView):
+
+    model = Product
+
+    def get_queryset(self):
+        order_by = self.request.GET.get("orderby","id")
+        prod = Product.objects.all().order_by(order_by)
+
+    def get_context_data(self, **kwargs):
+        context = super(productsListView, self).get_context_data(**kwargs)
+        context["orderby"] = self.request.GET.get("orderby", "id")
+        context["all_table_fields"] = Product._meta.get_fields()
+        return context
+    
     serializer_class = products_Serializer
