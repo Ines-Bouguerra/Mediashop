@@ -1,15 +1,12 @@
-import "admin-lte/dist/css/adminlte.min.css";
-import "admin-lte/dist/js/adminlte.min.js";
-import "admin-lte/plugins/bootstrap/js/bootstrap.bundle.min.js";
-import "admin-lte/plugins/fontawesome-free/css/all.min.css";
-import "admin-lte/plugins/icheck-bootstrap/icheck-bootstrap.min.css";
-import "admin-lte/plugins/jquery/jquery.min.js";
+import "adminbsb-materialdesign/css/style.css";
+import "adminbsb-materialdesign/plugins/animate-css/animate.css";
+import "adminbsb-materialdesign/plugins/bootstrap/css/bootstrap.css";
+import "adminbsb-materialdesign/plugins/node-waves/waves.css";
 import React from "react";
-import { Card } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import GoogleFontLoader from "react-google-font-loader";
+import { Redirect } from "react-router-dom";
 import AuthHandler from "../../utils/AuthHandler";
 import Config from "../../utils/Config";
-
 
 class Login extends React.Component {
   state = {
@@ -74,88 +71,105 @@ class Login extends React.Component {
   };
 
   render() {
-    document.body.className = "hold-transition login-page";
+    if (AuthHandler.loggedIn()) {
+      return <Redirect to={Config.homeUrl} />;
+    }
+    document.body.className = "login-page";
     return (
-      <div className="login-box">
-        {/* /.login-logo */}
-        <div className="card card-outline card-primary">
-          <div className="card-header text-center">
-            <Card className="card-register">
-              <Card.Img height="100" alt="..." src="/images/Mediashop.png" />
-              <Card.ImgOverlay>
-
-              </Card.ImgOverlay>
-            </Card>
+      <React.Fragment>
+        <GoogleFontLoader
+          fonts={[
+            {
+              font: "Roboto",
+              weights: [400, 700],
+            },
+          ]}
+          subsets={["latin", "cyrillic-ext"]}
+        />
+        <GoogleFontLoader
+          fonts={[
+            {
+              font: "Material+Icons",
+            },
+          ]}
+        />
+        <div className="login-box">
+          <div className="logo">
+            <a href="#x">
+              <br></br>
+            </a>
           </div>
-          <div className="card-body">
-            <p className="login-box-msg">Sign in to start your session</p>
-            <form id="sign_in" method="POST" onSubmit={this.formSubmit}>
-              <div className="input-group mb-3">
-                <input
-                  type="email"
-                  className="form-control"
-                  name="email"
-                  placeholder="Email"
-                  required
-                  autofocus
-                  onChange={this.saveInputs} />
-                <div className="input-group-append">
-                  <div className="input-group-text">
-                    <span className="fas fa-envelope" />
+          <div className="card">
+            <img height="100" alt="..." src="/images/Mediashop.png" />
+            <div className="body">
+              <form id="sign_in" method="POST" onSubmit={this.formSubmit}>
+                <div className="msg">Sign in</div>
+                <div className="input-group">
+                  <span className="input-group-addon">
+                    <i className="material-icons">person</i>
+                  </span>
+                  <div className="form-line">
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="email"
+                      placeholder="email"
+                      required
+                      autofocus
+                      onChange={this.saveInputs}
+                    />
                   </div>
                 </div>
-              </div>
-              <div className="input-group mb-3">
-                <input
-                  type="password"
-                  className="form-control"
-                  name="password"
-                  placeholder="Password"
-                  required
-                  onChange={this.saveInputs} />
-                <div className="input-group-append">
-                  <div className="input-group-text">
-                    <span className="fas fa-lock" />
+                <div className="input-group">
+                  <span className="input-group-addon">
+                    <i className="material-icons">lock</i>
+                  </span>
+                  <div className="form-line">
+                    <input
+                      type="password"
+                      className="form-control"
+                      name="password"
+                      placeholder="Password"
+                      required
+                      onChange={this.saveInputs}
+                    />
                   </div>
                 </div>
-              </div>
-              <div className="row">
-                <div className="col-8">
-                  <div className="icheck-primary">
-                    <input type="checkbox" id="remember" />
-                    <label htmlFor="remember">
-                      Remember Me
-              </label>
+                <div className="row">
+                  <div className="col-xs-8 p-t-5">
+                    <input
+                      type="checkbox"
+                      name="rememberme"
+                      id="rememberme"
+                      className="filled-in chk-col-pink"
+                    />
+                    <label for="rememberme">Remember Me</label>
+                  </div>
+                  <div className="col-xs-4">
+                    <button
+                      className="btn btn-block bg-pink waves-effect"
+                      type="submit"
+                      disabled={this.state.btnDisabled}
+                    >
+                      SIGN IN
+                    </button>
                   </div>
                 </div>
-                {/* /.col */}
-                <div className="col-4">
-                  <button type="submit" className="btn btn-primary btn-block" disabled={this.state.btnDisabled}>Sign In</button>
+                <div className="row m-t-15 m-b--20">
+                  <div className="col-xs-6">
+                    <a href="sign-up.html">Register Now!</a>
+                  </div>
+                  <div className="col-xs-6 align-right">
+                    <a href="forgot-password.html">Forgot Password?</a>
+                  </div>
+                  <div className="col-xs-12">{this.getMessages()}</div>
                 </div>
-                {/* /.col */}
-              </div>
-            </form>
-            <div className="social-auth-links text-center mt-2 mb-3">
-
-              <Link href="#c" className="btn btn-block btn-danger">
-                <i className="fab fa-google-plus mr-2" /> Sign in using Google+
-        </Link>
+              </form>
             </div>
-            {/* /.social-auth-links */}
-            <p className="mb-1">
-              <Link href="forgot-password.html">I forgot my password</Link>
-            </p>
-            <p className="mb-0">
-              <Link href="register.html" className="text-center">Register a new membership</Link>
-            </p>
-            <div className="col-xs-12">{this.getMessages()}</div>
           </div>
-          {/* /.card-body */}
         </div>
-        {/* /.card */}
-      </div>
-
-    )
+      </React.Fragment>
+    );
   }
 }
 
