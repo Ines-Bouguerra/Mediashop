@@ -1,6 +1,5 @@
 from django.db import models
 from account.models import Account
-from products.models import Product
 
 
 def upload_to(instance, filename):
@@ -12,8 +11,8 @@ class Post(models.Model):
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=100, blank=True)
     text = models.TextField(max_length=250, blank=True)
-    product = models.ForeignKey(
-        Product, related_name='posts', on_delete=models.CASCADE, blank=True, null=True)
+    # product = models.ForeignKey(
+    #     Product, related_name='posts', on_delete=models.CASCADE, blank=True, null=True)
     author = models.ForeignKey(
         Account, related_name='posts', on_delete=models.CASCADE, blank=True, null=True)
     image = models.ImageField(null=True, blank=True, upload_to=upload_to)

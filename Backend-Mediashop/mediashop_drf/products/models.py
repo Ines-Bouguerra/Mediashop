@@ -1,10 +1,10 @@
 from django.db import models
 from category.models import Category
 from brand.models import Brand
-
-
+from post.models import Post
+from account.models import Account
 class Product(models.Model):
-    id=models.AutoField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     category = models.ForeignKey(
         Category, on_delete=models.CASCADE, related_name="category")
     description = models.TextField(max_length=255)
@@ -14,7 +14,8 @@ class Product(models.Model):
     discount = models.CharField(max_length=255)
     url = models.URLField()
     timestamp = models.DateField(auto_now_add=True)
-    brand = models.ForeignKey(Brand, on_delete=models.CASCADE, related_name="brand")
+    brand = models.ForeignKey(
+        Brand, on_delete=models.CASCADE, related_name="brand")
     priceString = models.CharField(max_length=255)
     retailer = models.CharField(max_length=255)
     marketplace = models.CharField(max_length=255)
@@ -26,5 +27,8 @@ class Product(models.Model):
     old_price = models.FloatField()
     image = models.URLField()
     marketplaceId = models.CharField(max_length=255)
+    posts = models.ManyToManyField(Post, related_name='products', blank=True)
+    users_wishlist = models.ManyToManyField(Account, related_name="users_wishlist", blank=True)
+
     def __str__(self):
         return self.name
