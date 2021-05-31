@@ -23,7 +23,12 @@ const Product = ({ product, category, loading }) => {
         </div>
         {/* <Link to={`/compare/${product.name}/${product.reference}/${product.priceString}`} > */}
         <Link to={`/compare`}>
-          <button rounded outline className="mx-2  mb-2" color="info">
+          <button
+            type="button"
+            rounded
+            outline
+            className="btn bg-teal btn-block waves-effect"
+          >
             Compare
           </button>
         </Link>

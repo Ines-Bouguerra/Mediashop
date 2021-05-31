@@ -1,38 +1,47 @@
-import React from 'react'
-import { Pagination } from 'react-bootstrap'
-import { LinkContainer } from 'react-router-bootstrap'
+import React from "react";
+import { Link } from "react-router-dom";
 
-const Paginate = ({ pages, page, query = '' }) => {
-    return (
-        pages > 1 && (
-            <Pagination class="d-flex flex-row  -contenjustifyt-end">
-                <li className="page_nav m-1">
-                    <a class="page-link" href="#," aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                        <span className="sr-only">Previous</span>
-                    </a>
-                </li>
-                {[...Array(pages).keys()].map((x) => (
-                    <li className="page-item">
-                        <LinkContainer className="m-1 page_nav"
-                            key={x + 1}
-                            to={query ? `/search/${query}/page/${x + 1}` : `/page/${x + 1}`}
+const Paginate = ({ pages, page, query = "" }) => {
+  return (
+    pages > 1 && (
+      <nav className="align-center">
+        <ul className="pagination">
+          <li>
+            <a
+              href=";"
+              className="waves-effect"
+              style={{ height: 33, width: 50 }}
+            >
+              <i className="material-icons">chevron_left</i>
+            </a>
+          </li>
 
-                        >
-                            <Pagination.Item active={x + 1 === page}>{x + 1}</Pagination.Item>
-                        </LinkContainer>
+          {[...Array(pages).keys()].map((x) => (
+            <li>
+              <Link
+                className="waves-effect align-center"
+                style={{ height: 33, width: 50 }}
+                key={x + 1}
+                to={query ? `/search/${query}/page/${x + 1}` : `/page/${x + 1}`}
+              >
+                <span active={x + 1 === page}>{x + 1}</span>
+              </Link>
+            </li>
+          ))}
 
-                    </li>
-                ))}
-                <li className="page_nav m-1">
-                    <a className="page-link" href="#," aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                        <span className="sr-only">Next</span>
-                    </a>
-                </li>
-            </Pagination>
-        )
+          <li>
+            <a
+              href=";"
+              className="waves-effect"
+              style={{ height: 33, width: 50 }}
+            >
+              <i className="material-icons">chevron_right</i>
+            </a>
+          </li>
+        </ul>
+      </nav>
     )
-}
+  );
+};
 
-export default Paginate
+export default Paginate;
