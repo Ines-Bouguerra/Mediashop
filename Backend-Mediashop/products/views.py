@@ -86,12 +86,13 @@ def compare_product(request):
                 'reference': product.reference,
                 'name': product.name,
                 'priceString': product.priceString,
-                'brand': product.brand,
+                'retailer': product.retailer,
                 'short_description': product.short_description,
                 'description': product.description,
                 'image': product.image,
                 'discount': product.discount,
                 'sub_category': product.sub_category,
+                'url': product.url,
             }
             q_results.append(data)
             product = +1

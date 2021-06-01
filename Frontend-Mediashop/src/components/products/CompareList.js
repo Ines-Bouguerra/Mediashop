@@ -4,44 +4,20 @@ import "adminbsb-materialdesign/js/pages/tables/jquery-datatable.js";
 import "adminbsb-materialdesign/plugins/bootstrap/css/bootstrap.css";
 import "adminbsb-materialdesign/plugins/jquery-datatable/jquery.dataTables.js";
 import "adminbsb-materialdesign/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css";
-import axios from "axios";
 import React from "react";
 import GoogleFontLoader from "react-google-font-loader";
 import { Link } from "react-router-dom";
-
 export default class CompareList extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       products: [],
-      name: "",
-      priceString: "",
-      reference: "",
+     
     };
   }
-
-  async componentDidMount() {
-    axios
-      .get(`http://localhost:8080/api/products/compare_product`, {
-        params: {
-          name: "test creme 2",
-          priceString: "139.00",
-          reference: "Creme",
-        },
-      })
-
-      .then((res) => {
-        const products = res.data.results;
-        this.setState({ products });
-        console.log(
-          "TCL ~ file: CompareList.js ~ line 41 ~ CompareList ~ render ~ this.state.products",
-          products
-        );
-        console.table([products]);
-      });
-  }
-
+ 
+ 
   render() {
     let products = this.state.products;
     document.body.className = "theme-red";
@@ -133,6 +109,7 @@ export default class CompareList extends React.Component {
                               </thead>
 
                               <tbody>
+                              {this.state.products.map((product) => (
                                 <tr role="row" className="odd">
                                   <td className="sorting_1">{products.name}</td>
                                   <td>{products.priceString}</td>
@@ -148,47 +125,12 @@ export default class CompareList extends React.Component {
                                     </button>
                                   </td>
                                 </tr>
+                                 ))} 
                               </tbody>
                             </table>
                           </div>
                         </div>
-                        {/* <div className="row col-sm-12">
-                          <nav className="align-center ">
-                            <ul className="pagination">
-                              <li>
-                                <a
-                                  href=";"
-                                  className="waves-effect"
-                                  style={{ height: 33, width: 50 }}
-                                >
-                                  <i className="material-icons">chevron_left</i>
-                                </a>
-                              </li>
-
-                              <li>
-                                <Link
-                                  className="waves-effect align-center"
-                                  style={{ height: 33, width: 50 }}
-                                  to=""
-                                >
-                                  <span>1</span>
-                                </Link>
-                              </li>
-
-                              <li>
-                                <a
-                                  href=";"
-                                  className="waves-effect"
-                                  style={{ height: 33, width: 50 }}
-                                >
-                                  <i className="material-icons">
-                                    chevron_right
-                                  </i>
-                                </a>
-                              </li>
-                            </ul>
-                          </nav>
-                        </div> */}
+                        
                       </div>
                     </div>
                   </div>
