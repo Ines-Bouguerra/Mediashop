@@ -1,79 +1,203 @@
-import axios from 'axios';
-import { MDBTable, MDBTableBody, MDBTableHead } from 'mdb-react-ui-kit';
-import React from 'react';
-
+import "adminbsb-materialdesign/css/style.css";
+import "adminbsb-materialdesign/css/themes/all-themes.css";
+import "adminbsb-materialdesign/js/pages/tables/jquery-datatable.js";
+import "adminbsb-materialdesign/plugins/bootstrap/css/bootstrap.css";
+import "adminbsb-materialdesign/plugins/jquery-datatable/jquery.dataTables.js";
+import "adminbsb-materialdesign/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css";
+import axios from "axios";
+import React from "react";
+import GoogleFontLoader from "react-google-font-loader";
+import { Link } from "react-router-dom";
 
 export default class CompareList extends React.Component {
-
   constructor(props) {
     super(props);
 
     this.state = {
       products: [],
-      name: '',
-      priceString: '',
-      reference: ''
-    }
+      name: "",
+      priceString: "",
+      reference: "",
+    };
   }
 
   async componentDidMount() {
+    axios
+      .get(`http://localhost:8080/api/products/compare_product`, {
+        params: {
+          name: "test creme 2",
+          priceString: "139.00",
+          reference: "Creme",
+        },
+      })
 
-    axios.get(`http://localhost:8080/api/products/compare_product`, {
-      params: {
-        name: 'test creme 2',
-        priceString: '139.00',
-        reference: 'Creme'
-      }
-    })
-
-      .then(res => {
+      .then((res) => {
         const products = res.data.results;
         this.setState({ products });
-        console.log("TCL ~ file: CompareList.js ~ line 41 ~ CompareList ~ render ~ this.state.products", products)
+        console.log(
+          "TCL ~ file: CompareList.js ~ line 41 ~ CompareList ~ render ~ this.state.products",
+          products
+        );
         console.table([products]);
-      })
+      });
   }
 
-
-
   render() {
-    let products = this.state.products
+    let products = this.state.products;
+    document.body.className = "theme-red";
     return (
-      <div className=" m-5">
-        <MDBTable>
-          <MDBTableHead dark bordered>
-            <tr>
-              <th>REFERENCE</th>
-              <th>NAME</th>
-              <th>PRICE</th>
-              <th>BRAND</th>
-              <th>SHORT DESCRIPTION</th>
-              <th>DESCRIPTION</th>
-              <th>IMAGE</th>
-              <th>DISCOUNT</th>
-              <th>SUB CATEGORY</th>
-            </tr>
-          </MDBTableHead>
-          <MDBTableBody>
-           
-              {products.map((product) => (
-                <tr>
+      <React.Fragment>
+        <GoogleFontLoader
+          fonts={[
+            {
+              font: "Roboto",
+              weights: [400, 700],
+            },
+          ]}
+          subsets={["latin", "cyrillic-ext"]}
+        />
+        <GoogleFontLoader
+          fonts={[
+            {
+              font: "Material+Icons",
+            },
+          ]}
+        />
 
-                  <td >{product.reference}</td>
-                  <td>{product.name}</td>
-                  <td>{product.priceString}  TND</td>
-                  <td>{product.brand}</td>
-                  <td>{product.short_description}  TND</td>
-                  <td>{product.description}</td>
-                  <td ><img src={product.image} alt="" width="40%" height="40%" /></td>
-                  <td>{product.discount}</td>
-                  <td>{product.sub_category}</td>
-                </tr>
-              ))}
-           
-          </MDBTableBody>
-        </MDBTable>
-      </div>
-    )
+        <section className="content">
+          <div className="container-fluid">
+            <div className="row clearfix">
+              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div>
+                  <div className="body">
+                    <div className="table-responsive col-sm-12">
+                      <div
+                        id="DataTables_Table_0_wrapper"
+                        className="dataTables_wrapper form-inline dt-bootstrap "
+                      >
+                        <div className="row">
+                          <div className="col-sm-12">
+                            <img src={products.image} alt=""></img>
+                            <table
+                              className="table table-bordered table-striped table-hover js-basic-example dataTable"
+                              id="DataTables_Table_0"
+                              role="grid"
+                              aria-describedby="DataTables_Table_0_info"
+                            >
+                              <thead>
+                                <tr role="row">
+                                  <th
+                                    className="sorting_asc"
+                                    tabIndex="0"
+                                    aria-controls="DataTables_Table_0"
+                                    rowSpan="1"
+                                    colSpan="1"
+                                    style={{ width: 122 }}
+                                    aria-sort="ascending"
+                                    aria-label="Name: activate to sort column descending"
+                                  >
+                                    Name
+                                  </th>
+                                  <th
+                                    className="sorting"
+                                    tabIndex="0"
+                                    aria-controls="DataTables_Table_0"
+                                    rowSpan="1"
+                                    colSpan="1"
+                                    style={{ width: 122 }}
+                                    aria-label="Position: activate to sort column ascending"
+                                  >
+                                    Price
+                                  </th>
+                                  <th
+                                    className="sorting"
+                                    tabIndex="0"
+                                    aria-controls="DataTables_Table_0"
+                                    rowSpan="1"
+                                    colSpan="1"
+                                    style={{ width: 122 }}
+                                    aria-label="Office: activate to sort column ascending"
+                                  >
+                                    Marketplace
+                                  </th>
+                                  <th
+                                    className="sorting align-center"
+                                    tabIndex="0"
+                                    aria-controls="DataTables_Table_0"
+                                    rowSpan="1"
+                                    colSpan="1"
+                                    style={{ width: 209 }}
+                                    aria-label="Age: activate to sort column ascending"
+                                  ></th>
+                                </tr>
+                              </thead>
+
+                              <tbody>
+                                <tr role="row" className="odd">
+                                  <td className="sorting_1">{products.name}</td>
+                                  <td>{products.priceString}</td>
+                                  <td>{products.retailer}</td>
+                                  <td>
+                                    <button
+                                      type="submit"
+                                      class="btn bg-teal btn-block btn-lg waves-effect"
+                                    >
+                                      <span className="font-bold">
+                                        see the offer
+                                      </span>
+                                    </button>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                        {/* <div className="row col-sm-12">
+                          <nav className="align-center ">
+                            <ul className="pagination">
+                              <li>
+                                <a
+                                  href=";"
+                                  className="waves-effect"
+                                  style={{ height: 33, width: 50 }}
+                                >
+                                  <i className="material-icons">chevron_left</i>
+                                </a>
+                              </li>
+
+                              <li>
+                                <Link
+                                  className="waves-effect align-center"
+                                  style={{ height: 33, width: 50 }}
+                                  to=""
+                                >
+                                  <span>1</span>
+                                </Link>
+                              </li>
+
+                              <li>
+                                <a
+                                  href=";"
+                                  className="waves-effect"
+                                  style={{ height: 33, width: 50 }}
+                                >
+                                  <i className="material-icons">
+                                    chevron_right
+                                  </i>
+                                </a>
+                              </li>
+                            </ul>
+                          </nav>
+                        </div> */}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </React.Fragment>
+    );
   }
 }

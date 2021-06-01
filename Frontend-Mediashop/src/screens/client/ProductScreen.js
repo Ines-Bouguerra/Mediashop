@@ -1,13 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Breadcrumb from 'react-bootstrap/Breadcrumb'
+import Breadcrumb from "react-bootstrap/Breadcrumb";
 import { getProductDetails } from "../../actions/product";
 import Loader from "../../components/Loader";
 import Message from "../../components/Message";
 import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
 import { addToWishlist } from "../../actions/auth";
-import { MDBBtn, MDBIcon } from 'mdb-react-ui-kit';
 const ProductScreen = ({ match }) => {
   const dispatch = useDispatch();
   const productDetails = useSelector((state) => state.productDetails);
@@ -29,8 +28,6 @@ const ProductScreen = ({ match }) => {
     });
   };
 
-
-
   return (
     <div className="single_product">
       {loading ? (
@@ -40,7 +37,9 @@ const ProductScreen = ({ match }) => {
       ) : (
         <div className="container">
           <Breadcrumb>
-            <Breadcrumb.Item Link to="/">{product.category}</Breadcrumb.Item>
+            <Breadcrumb.Item Link to="/">
+              {product.category}
+            </Breadcrumb.Item>
             <Breadcrumb.Item active>{product.name}</Breadcrumb.Item>
           </Breadcrumb>
           <div className="row">
@@ -69,8 +68,7 @@ const ProductScreen = ({ match }) => {
             <div className="col-lg-5 order-3">
               <div className="product_description">
                 <div className="product_category">{product.category}</div>
-                <div className="product_name">{product.name}
-                </div>
+                <div className="product_name">{product.name}</div>
                 <div className="rating_r rating_r_4 product_rating">
                   <i></i>
                   <i></i>
@@ -80,22 +78,25 @@ const ProductScreen = ({ match }) => {
                 </div>
                 <div className="product_text">
                   <p>
-                    {product.marketplace}
+                    {product.reference}
                     <br></br>
                     <br></br>
                     {product.description}
                     <br></br>
                     <br></br>
-                    {product.short_description}
+                    {product.retailer}
                     <br></br>
                   </p>
                 </div>
                 <div className="">
                   {product.price} {product.currency}
                   <div className="product_price m-4">
-                    <MDBBtn className='mx-2' tag='a' color='danger' outline floating onClick={handleAddToWishlist}>
-                      <MDBIcon fas icon='heart' />
-                    </MDBBtn>
+                    <button
+                      type="submit"
+                      className="btn bg-pink btn-circle waves-effect waves-circle waves-float"
+                    >
+                      <i class="material-icons ">favorite</i>
+                    </button>
                   </div>
                 </div>
                 <div className="">chart Evolution prix</div>
@@ -104,10 +105,9 @@ const ProductScreen = ({ match }) => {
           </div>
         </div>
       )}
-      <br></br><br></br>
-      <div className="container">
-
-      </div>
+      <br></br>
+      <br></br>
+      <div className="container"></div>
     </div>
   );
 };

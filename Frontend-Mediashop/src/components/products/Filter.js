@@ -15,7 +15,7 @@ const Filter = () => {
   return (
     <div className="shop_bar clearfix">
       <div className="shop_product_count">
-        <span>{products.length}</span> products found
+        <span className="col-teal font-bold">{products.length}</span> products found
         </div>
       <div className="shop_sorting">
         <span>Sort by:</span>

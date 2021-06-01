@@ -33,9 +33,9 @@ const Product = ({ product, category, loading }) => {
           </button>
         </Link>
       </div>
-      <div className="product_fav">
+      <Link to="/product-list" className="product_fav">
         <i className="fas fa-heart" />
-      </div>
+      </Link>
       <ul className="product_marks">
         <li className="product_mark product_new product_discount">
           {product.discount}

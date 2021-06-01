@@ -105,7 +105,7 @@ def compare_product(request):
 
 
 class top_promotion(ListAPIView):
-    discount = '21%'
+    discount = '10%'
     queryset = Product.objects.all().filter(discount=discount)
     serializer_class = products_Serializer
 
