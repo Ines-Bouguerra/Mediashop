@@ -33,14 +33,20 @@ const Product = ({ product, category, loading }) => {
           </button>
         </Link>
       </div>
-      <Link to="/product-list" className="product_fav">
-        <i className="fas fa-heart" />
-      </Link>
-      <ul className="product_marks">
-        <li className="product_mark product_new product_discount">
-          {product.discount}
-        </li>
-      </ul>
+      <div>
+        <link to="/wishlist" />
+        <div className="product_fav">
+          <i className="fas fa-heart" />
+        </div>
+      </div>
+
+      {product.discount !== "0 %" ? (
+        <ul className="product_marks">
+          <li className="product_mark product_new product_discount">
+            {product.discount}
+          </li>
+        </ul>
+      ) : null}
     </>
   );
 };
