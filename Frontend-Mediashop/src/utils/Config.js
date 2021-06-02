@@ -7,8 +7,12 @@ class Config {
     static contactApiURL = "http://localhost:8080/api/contact";
     static brandApiURL = "http://localhost:8080/api/brand";
     static brandDetailApiURL = "http://localhost:8080/api/brand/<int:pk>";
+    static postApiURL = "http://localhost:8080/api/posts/";
+    static postDetailApiURL = "http://localhost:8080/api/posts/<int:pk>/";
     static loginUrl = "http://localhost:8080/api/gettoken/";
     static refreshApiUrl = "http://127.0.0.1:8080/api/resfresh_token/";
+    static wishlistApiURL = "http://localhost:8080/api/wishlist1/";
+    static wishlistDetailApiURL = "http://localhost:8080/api/wishlist1/<int:pk>";
 
     static homeUrl = "/admin/home";
     static logoutPageUrl = "/admin/logout";
