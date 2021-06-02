@@ -30,8 +30,10 @@ import BrandComponent from "./components/admin/BrandComponent";
 import PrivateRouteNew from "./utils/PrivateRouteNew";
 import Config from "./utils/Config";
 import LogoutComponent from "./components/admin/LogoutComponent";
+import Post from "./components/post/Post";
 
 class App extends Component {
+
   render() {
     return (
       <Provider store={store}>
@@ -92,6 +94,7 @@ class App extends Component {
 
                     <Route exact path="/" component={Home} />
                     <UserRoute exact path="/wishlist" component={Favorites} />
+                    
                     <Route exact path="/register" component={Register} />
                     <Route exact path="/google" component={Google} />
                     <Route
@@ -121,6 +124,7 @@ class App extends Component {
                     <Route path="/compare" component={CompareList} />
                     <Route path="/contact" component={Contact} />
                     <Route path="/brand" component={Brand} />
+                    <Route path="/post" component={Post} />
                   </Switch>
                 </Layout>
               </Route>
