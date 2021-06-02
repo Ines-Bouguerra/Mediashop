@@ -1,7 +1,7 @@
 from django.conf.urls import url
 from django.urls import path
 from products import views
-
+from .views import WishlistListCreateAPIView, WishlistDetailsAPIView
 urlpatterns = [
     url(r'^api/products/product_list$', views.product_list, name='product_list'),
     path('api/products/product_detail/<int:pk>',
@@ -15,8 +15,18 @@ urlpatterns = [
          views.product_list_by_category, name='product_list_by_category'),
     path('api/speech_to_text',
          views.speech_to_text, name='speech_to_text'),
-     path('api/products/filter',
+    path('api/products/filter',
          views.filter_product_list.as_view(), name='filter_product_list'),
-      path('api/products/order',
+    path('api/products/order',
          views.productsListView.as_view(), name='productsListView'),
+    path('api/wishlist/', WishlistListCreateAPIView.as_view(),
+         name='api-wishlist-list'),
+    path('api/wishlist/<int:pk>/', WishlistDetailsAPIView.as_view(),
+         name='api-wishlist-details'),
+    path('api/wishlist1/',
+         views. WishlistItemViewset.as_view(), name='Wishlist'),
+    path('api/wishlist1/<int:pk>',
+         views. WishlistItemDetail.as_view(), name='WishlistDetail'),
+
+
 ]
