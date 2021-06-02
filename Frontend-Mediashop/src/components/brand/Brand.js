@@ -75,9 +75,9 @@ export default class Brand extends Component {
                 )}
                 <>
 
-                    <ul class="brands_list">
+                    <ul className="brands_list">
                         {this.state.brandList.map((brand) => (
-                            <li class="brand" key={brand.id}>
+                            <li className="brand" key={brand.id}>
                                 <a href="xx">{brand.name}</a>
                             </li>
 
