@@ -1,6 +1,8 @@
 from django.db import models
 from category.models import Category
 from brand.models import Brand
+from account.models import Account
+
 
 class Product(models.Model):
     id = models.AutoField(primary_key=True)
@@ -26,7 +28,16 @@ class Product(models.Model):
     old_price = models.FloatField()
     image = models.URLField()
     marketplaceId = models.CharField(max_length=255)
-    
 
     def __str__(self):
         return self.name
+
+
+class WishlistItem(models.Model):
+    id = models.AutoField(primary_key=True)
+    product = models.ForeignKey(
+        Product, null=True, on_delete=models.SET_NULL)
+    user = models.ForeignKey(
+        Account, on_delete=models.CASCADE, blank=True, null=True)
+    created_at = models.DateField(auto_now_add=True,blank=True, null=True)
+
