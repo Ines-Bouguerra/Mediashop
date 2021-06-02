@@ -1,10 +1,16 @@
+from django.http import Http404
+from rest_framework.views import APIView
+from products.serializers import WishlistSerializer
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from django.core.cache import cache
+from rest_framework.permissions import BasePermission
 from .search import lookup
 from django.shortcuts import get_object_or_404
 from django.http.response import JsonResponse
 from rest_framework.parsers import JSONParser
 from rest_framework import status
 from rest_framework.response import Response
-from products.models import Product
+from products.models import Product, WishlistItem
 from products.serializers import products_Serializer
 from rest_framework.decorators import api_view
 from products.pagination import ProductPageNumberPagination
@@ -13,6 +19,9 @@ from category.models import Category
 import speech_recognition as sr
 import webbrowser as web
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import viewsets
+from rest_framework.response import Response
+from rest_framework.pagination import PageNumberPagination
 
 
 @api_view(['GET', 'POST', 'DELETE'])
@@ -171,7 +180,7 @@ class productsListView(ListAPIView):
     model = Product
 
     def get_queryset(self):
-        order_by = self.request.GET.get("orderby","id")
+        order_by = self.request.GET.get("orderby", "id")
         prod = Product.objects.all().order_by(order_by)
 
     def get_context_data(self, **kwargs):
@@ -179,5 +188,63 @@ class productsListView(ListAPIView):
         context["orderby"] = self.request.GET.get("orderby", "id")
         context["all_table_fields"] = Product._meta.get_fields()
         return context
-    
+
     serializer_class = products_Serializer
+
+
+class WishlistListCreateAPIView(ListCreateAPIView):
+
+    serializer_class = WishlistSerializer
+    queryset = WishlistItem.objects.all()
+
+
+class WishlistDetailsAPIView(RetrieveUpdateDestroyAPIView):
+
+    serializer_class = WishlistSerializer
+    queryset = WishlistItem.objects.all()
+
+
+class WishlistItemViewset(APIView):
+
+    def post(self, request):
+        try:
+            serializer = WishlistSerializer(
+                data=request.data, context={"request": request})
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+            dict_response = {"error": False,
+                             "message": "Wishlist Data Save Successfully"}
+        except:
+            dict_response = {"error": True,
+                             "message": "Error During Saving Wishlist Data"}
+        return Response(dict_response)
+
+    def get(self, request):
+        wishlistitem = WishlistItem.objects.all()
+        serializer = WishlistSerializer(
+            wishlistitem, many=True, context={"request": request})
+        response_dict = {
+            "error": False, "message": "All WishList  Data", "data": serializer.data}
+        return Response(response_dict)
+
+
+class WishlistItemDetail(APIView):
+    """
+    Retrieve, update or delete a snippet instance.
+    """
+
+    def get_object(self, pk):
+        try:
+            return WishlistItem.objects.get(pk=pk)
+        except WishlistItem.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk):
+        wishlist = self.get_object(pk)
+        serializer = WishlistSerializer(wishlist, context={"request": request})
+        return Response({"error": False, "message": "Single Data Fetch", "data": serializer.data})
+
+    def delete(self, request, pk):
+        wishlist = self.get_object(pk)
+        wishlist.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
