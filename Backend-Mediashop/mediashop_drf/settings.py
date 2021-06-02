@@ -166,14 +166,14 @@ EMAIL_HOST_PASSWORD = 'jkpyhalfbdadkisf'
 EMAIL_USE_TLS = True
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION': [
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+    # 'DEFAULT_AUTHENTICATION': [
+    #     'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
 
-    ],
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.AllowAny',
-        'rest_framework.permissions.IsAuthenticatedOrReadOnly'
-    )
+    # ],
+    # 'DEFAULT_PERMISSION_CLASSES': (
+    #     'rest_framework.permissions.AllowAny',
+    #     'rest_framework.permissions.IsAuthenticatedOrReadOnly'
+    # )
 }
 
 AUTHENTICATION_BACKENDS = (

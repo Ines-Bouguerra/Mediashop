@@ -20,9 +20,9 @@ class ProductSerializer(serializers.ModelSerializer):
 
 class PostSerializer(serializers.ModelSerializer):
     product = ProductSerializer(required=False, read_only=True)
-    author = UserSerializer(required=False, read_only=True)
-    serializers.ImageField(use_url=True, required=False, allow_null=True)
+    user = UserSerializer(required=False, read_only=True)
+    # serializers.ImageField(use_url=True, required=False, allow_null=True)
 
     class Meta:
         model = Post
-        fields = ('pk', 'title', 'text', 'product', 'author', 'image',)
+        fields = ('id','subject','comment','rate','product','user')
