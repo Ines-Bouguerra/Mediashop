@@ -144,7 +144,7 @@ export default class Contact extends React.Component {
                         disabled={this.state.btnMessage === 0 ? false : true}
                       >
                         <i class="material-icons">drafts</i>
-                        <span>
+                        <span className="m-3">
                           {this.state.btnMessage === 0
                             ? "Send Message"
                             : "Sending Message Please Wait.."}
