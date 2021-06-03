@@ -11,6 +11,10 @@ urlpatterns = [
          name='token_obtain_pair'),
     path('api/refresh_token/', jwt_views.TokenRefreshView.as_view(),
          name='token_refresh'),
-#     path('api/addPost/<int:id>/', views.addPost,
-#          name='addpost'),
+    #     path('api/addPost/<int:id>/', views.addPost,
+    #          name='addpost'),
+    path('api/post/', views. PostViewset.as_view(), name='Post'),
+    path('api/post/<int:pk>/', views. PostDetail.as_view(), name='PostDetail'),
+
+
 ]

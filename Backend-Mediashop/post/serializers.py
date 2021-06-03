@@ -26,3 +26,4 @@ class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         fields = ('id','subject','comment','rate','product','user')
+        ordering = ('created_at')
