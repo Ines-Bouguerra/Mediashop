@@ -2,12 +2,9 @@ from django.http import Http404
 from rest_framework.views import APIView
 from products.serializers import WishlistSerializer
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
-from django.core.cache import cache
-from rest_framework.permissions import BasePermission
 from .search import lookup
 from django.shortcuts import get_object_or_404
 from django.http.response import JsonResponse
-from rest_framework.parsers import JSONParser
 from rest_framework import status
 from rest_framework.response import Response
 from products.models import Product, WishlistItem
@@ -19,12 +16,11 @@ from category.models import Category
 import speech_recognition as sr
 import webbrowser as web
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.filters import  OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
 
-@api_view(['GET', 'POST', 'DELETE'])
+@api_view(['GET'])
 def product_list(request):
     query_params = request.GET
     query = query_params.get('query')
@@ -45,16 +41,6 @@ def product_list(request):
 
         products__Serializer = products_Serializer(products, context={"request": request}, many=True)
         return paginator.get_paginated_response(products__Serializer.data)
-        
-        # 'safe=False' for objects serialization
-
-    if request.method == 'POST':
-        product_data = JSONParser().parse(request)
-        products__Serializer = products_Serializer(data=product_data)
-        if products__Serializer.is_valid():
-            products__Serializer.save()
-            return JsonResponse(products__Serializer.data, status=status.HTTP_201_CREATED)
-        return JsonResponse(products__Serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 """
@@ -165,9 +151,8 @@ def speech_to_text(request):
             print('Error :'+str(e))
 
     return JsonResponse({'data': data})
+
 # filter
-
-
 class filter_product_list(ListAPIView):
     queryset = Product.objects.all()
     filter_backends = (DjangoFilterBackend,)
@@ -240,4 +225,42 @@ class WishlistItemDetail(APIView):
     def delete(self, request, pk):
         wishlist = self.get_object(pk)
         wishlist.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class ProductAdminViewset(APIView):
+    
+    def post(self, request):
+        try:
+            serializer = products_Serializer(
+                data=request.data, context={"request": request})
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+            dict_response = {"error": False,
+                             "message": "Product Data Save Successfully"}
+        except:
+            dict_response = {"error": True,
+                             "message": "Error During Saving Product Data"}
+        return Response(dict_response)
+
+
+class ProductAdminDetail(APIView):
+    """
+    Retrieve, update or delete a snippet instance.
+    """
+
+    def get_object(self, pk):
+        try:
+            return Product.objects.get(pk=pk)
+        except Product.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk):
+        product = self.get_object(pk)
+        serializer = products_Serializer(product, context={"request": request})
+        return Response({"error": False, "message": "Single Data Fetch", "data": serializer.data})
+
+    def delete(self, request, pk):
+        product = self.get_object(pk)
+        product.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)

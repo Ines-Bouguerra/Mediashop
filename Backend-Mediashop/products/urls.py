@@ -27,6 +27,11 @@ urlpatterns = [
          views. WishlistItemViewset.as_view(), name='Wishlist'),
     path('api/wishlist1/<int:pk>',
          views. WishlistItemDetail.as_view(), name='WishlistDetail'),
+      path('api/admin/product/',
+         views. ProductAdminViewset.as_view(), name='product'),
+    path('api/admin/product/<int:pk>/',
+         views. ProductAdminDetail.as_view(), name='productDetail'),
+
 
 
 ]
