@@ -149,6 +149,12 @@ class APIHandler {
     var response = await Axios.get(Config.subCategoryApiURL);
     return response;
   }
+
+  async fetchAdminContact() {
+    var response = await Axios.get(Config.adminContactApiURL);
+    return response;
+  }
+
 }
 
 export default APIHandler;

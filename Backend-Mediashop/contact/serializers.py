@@ -9,6 +9,7 @@ class contact_Serializer(serializers.ModelSerializer):
             'name',
             'email',
             'phone_number',
-            'message'
+            'message',
+            'added_at'
         )
-        ordering = ('name', 'email')
+        ordering = ('added_at')

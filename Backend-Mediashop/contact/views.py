@@ -3,7 +3,7 @@ from django.http import HttpResponse
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
-
+from .models import Contact
 
 class CreateContact(APIView):
 
@@ -19,3 +19,11 @@ class CreateContact(APIView):
             dict_response = {"error": True,
                              "message": "Error During Saving Contact Data"}
         return Response(dict_response)
+
+    def get(self, request):
+        contact = Contact.objects.all().order_by('-added_at')
+        serializer = contact_Serializer(
+            contact, many=True, context={"request": request})
+        response_dict = {
+            "error": False, "message": "All Contact List Data", "data": serializer.data}
+        return Response(response_dict)
