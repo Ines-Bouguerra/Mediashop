@@ -13,6 +13,7 @@ class Config {
     static refreshApiUrl = "http://127.0.0.1:8080/api/resfresh_token/";
     static wishlistApiURL = "http://localhost:8080/api/wishlist1/";
     static wishlistDetailApiURL = "http://localhost:8080/api/wishlist1/<int:pk>";
+    static subCategoryApiURL = "http://127.0.0.1:8080/api/categories/subcategory-list";
 
     static homeUrl = "/admin/home";
     static logoutPageUrl = "/admin/logout";

@@ -8,9 +8,9 @@ import Filter from "../../components/products/Filter";
 import { getCategories, getSubCategories } from "../../actions/category";
 import Paginate from "../../components/products/Paginate";
 import ProductCarousel from "../../components/products/ProductCarousel";
-import Typography from "@material-ui/core/Typography";
-import Slider from "@material-ui/core/Slider";
+
 import Brand from "../../components/brand/Brand";
+import SubCategory from "../../components/category/SubCategory";
 const HomeScreen = ({ match }) => {
   const dispatch = useDispatch();
   const query = match.params.query;
@@ -36,14 +36,6 @@ const HomeScreen = ({ match }) => {
     );
   }, [dispatch, query, pageNumber, name, reference, priceString]);
 
-  // Our States
-  const [value, setValue] = React.useState([2, 100000000]);
-
-  // Changing State when volume increases/decreases
-  const rangeSelector = (event, newValue) => {
-    setValue(newValue);
-    console.log(newValue);
-  };
 
   return (
     <div class="super_container">
@@ -73,14 +65,7 @@ const HomeScreen = ({ match }) => {
                   <div className="sidebar_title font-underline col-teal font-italic">
                     Sub Categories
                   </div>
-                  <br />
-                  <ul className="sidebar_categories">
-                    {subcategories.map((subcategory) => (
-                      <li>
-                        <a href="#!">{subcategory.name}</a>
-                      </li>
-                    ))}
-                  </ul>
+                  <SubCategory />
                 </div>
                 <br></br>
                 <div className="sidebar_section filter_by_section">

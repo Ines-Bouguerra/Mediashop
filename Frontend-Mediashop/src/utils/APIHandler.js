@@ -144,6 +144,11 @@ class APIHandler {
 
     return response;
   }
+
+  async fetchSubCategory() {
+    var response = await Axios.get(Config.subCategoryApiURL);
+    return response;
+  }
 }
 
 export default APIHandler;
