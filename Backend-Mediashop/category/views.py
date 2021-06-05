@@ -10,15 +10,23 @@ from rest_framework.views import APIView
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.parsers import MultiPartParser, FormParser
 
+
 class category_list(ListAPIView):
     queryset = Category.objects.filter(parent__isnull=True)
-    filter_backends =(DjangoFilterBackend,)
-    filter_fields=('name','slug','created_at','updated_at')
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = ('name', 'slug', 'created_at', 'updated_at')
     serializer_class = category_Serializer
 
-class subcategory_list(ListAPIView):
-    queryset = Category.objects.filter(parent__isnull=False)
-    serializer_class = subcategory_Serializer
+
+class subcategory_list(APIView):
+
+    def get(self, request):
+        queryset = Category.objects.filter(parent__isnull=False)
+        serializer_class = subcategory_Serializer(
+            queryset, many=True, context={"request": request})
+        response_dict = {
+            "error": False, "message": "All Post List Data", "data": serializer_class.data}
+        return Response(response_dict)
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
@@ -40,7 +48,6 @@ class CreateCategory(APIView):
 
     parser_classes = [MultiPartParser, FormParser]
 
-    
     def post(self, request, format=None):
         print(request.data)
         serializer = category_Serializer(data=request.data)
