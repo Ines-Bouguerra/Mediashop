@@ -21,8 +21,8 @@ import webbrowser as web
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets
 from rest_framework.response import Response
-from rest_framework.pagination import PageNumberPagination
-
+from rest_framework.filters import  OrderingFilter
+from django_filters.rest_framework import DjangoFilterBackend
 
 @api_view(['GET', 'POST', 'DELETE'])
 def product_list(request):
@@ -43,8 +43,9 @@ def product_list(request):
         if name is not None:
             products = products.filter(title__icontains=name)
 
-        products__Serializer = products_Serializer(context, many=True)
+        products__Serializer = products_Serializer(products, context={"request": request}, many=True)
         return paginator.get_paginated_response(products__Serializer.data)
+        
         # 'safe=False' for objects serialization
 
     if request.method == 'POST':
@@ -177,19 +178,11 @@ class filter_product_list(ListAPIView):
 
 class productsListView(ListAPIView):
 
-    model = Product
-
-    def get_queryset(self):
-        order_by = self.request.GET.get("orderby", "id")
-        prod = Product.objects.all().order_by(order_by)
-
-    def get_context_data(self, **kwargs):
-        context = super(productsListView, self).get_context_data(**kwargs)
-        context["orderby"] = self.request.GET.get("orderby", "id")
-        context["all_table_fields"] = Product._meta.get_fields()
-        return context
-
     serializer_class = products_Serializer
+    queryset = Product.objects.all()
+    filter_backends = (DjangoFilterBackend, OrderingFilter)
+    filter_fields = ('name','priceString','retailer','category','brand')
+    ordering_fields = ('name', 'price')
 
 
 class WishlistListCreateAPIView(ListCreateAPIView):
