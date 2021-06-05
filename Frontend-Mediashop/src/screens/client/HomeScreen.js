@@ -24,8 +24,6 @@ const HomeScreen = ({ match }) => {
   const categoryList = useSelector((state) => state.categoryList);
   const { categories } = categoryList;
 
-  const subcategoryList = useSelector((state) => state.subcategoryList);
-  const { subcategories } = subcategoryList;
 
   useEffect(() => {
     dispatch(
@@ -38,7 +36,7 @@ const HomeScreen = ({ match }) => {
 
 
   return (
-    <div class="super_container">
+    <div className="super_container">
       {/* Home */}
       {!query ? <ProductCarousel /> : <></>}
       {/* Shop */}
@@ -89,7 +87,7 @@ const HomeScreen = ({ match }) => {
                 </div>
                 <br></br>
                 <div className="sidebar_section">
-                  <div class="sidebar_title font-underline col-teal font-italic">
+                  <div className="sidebar_title font-underline col-teal font-italic">
                     Brands
                   </div>
                   <br />
@@ -108,7 +106,7 @@ const HomeScreen = ({ match }) => {
                     <Loader />
                   ) : (
                     <>
-                      <div class="row">
+                      <div className="row">
                         {products.map((product) => (
                           <div
                             className="product_item is_new col-md-3 mt-3 product"
