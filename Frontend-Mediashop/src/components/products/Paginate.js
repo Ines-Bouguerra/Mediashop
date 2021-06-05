@@ -1,21 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Paginate = ({ pages, page, query = "" }) => {
+const Paginate = ({ pages, page, prev, next, query = "" }) => {
   return (
     pages > 1 && (
       <nav className="align-center">
         <ul className="pagination">
           <li>
-            <a
-              href=";"
-              className="waves-effect"
+            <Link
+                to={query ? `/search/${query}/page/${prev}` : `/page/${pages.prev}`}
+                className="waves-effect"
               style={{ height: 33, width: 50 }}
             >
               <i className="material-icons">chevron_left</i>
-            </a>
+            </Link>
           </li>
-
           {[...Array(pages).keys()].map((x) => (
             <li>
               <Link
@@ -28,15 +27,14 @@ const Paginate = ({ pages, page, query = "" }) => {
               </Link>
             </li>
           ))}
-
           <li>
-            <a
-              href=";"
+          <Link
+              to={query ? `/search/${query}/page/${next}` : `/page/${next}`}
               className="waves-effect"
               style={{ height: 33, width: 50 }}
             >
               <i className="material-icons">chevron_right</i>
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>

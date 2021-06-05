@@ -152,6 +152,12 @@ export default class Contact extends React.Component {
                       </button>
                     </div>
                     <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+
                     {this.state.errorRes === false &&
                     this.state.sendData === true ? (
                       <div className="alert alert-success">

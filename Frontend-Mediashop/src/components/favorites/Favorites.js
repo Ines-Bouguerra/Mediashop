@@ -77,11 +77,12 @@ export default class Favorites extends Component {
                 <div className="col-lg-10 offset-lg-1">
                   <div className="cart_container">
                     <div className="cart_title font-underline">
-                      Your Wishlist{" "}
+                      Your Wishlist
                     </div>
                     <div className="cart_items" style={{ width: 1000 }}>
                       <ul className="cart_list">
                         {this.state.wishList.map((wishlist) => (
+                          
                           <li
                             className="cart_item clearfix"
                             key={wishlist.id}
@@ -102,7 +103,7 @@ export default class Favorites extends Component {
                                   Name
                                 </div>
                                 <div className="cart_item_text">
-                                  {wishlist.product.name}
+                                  {wishlist.product.name} *** {wishlist.product.name.count} ***
                                 </div>
                               </div>
                               <div
