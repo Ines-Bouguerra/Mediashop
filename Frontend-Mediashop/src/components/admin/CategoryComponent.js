@@ -12,8 +12,6 @@ const CategoryComponent = () => {
     dispatch(getCategories());
   }, [dispatch]);
 
-  
-
   return (
     <section className="content">
       <div className="container-fluid">
@@ -22,11 +20,15 @@ const CategoryComponent = () => {
             <div className="title_cat_home font-underline font-bold col-pink align-center">
               Search by category
             </div>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
             <div className="row d-flex">
               {loading ? (
                 <Loader />
               ) : (
-                <div class="row">
+                <div className="row">
                   {categories.map((category) => (
                     <div
                       className="col-xs-12 col-sm-4 col-md-3 col-lg-2 cat_product_home"
@@ -36,11 +38,24 @@ const CategoryComponent = () => {
                         href="ordinateur-portable"
                         className="elem_product_home"
                       >
-                        <div className="img_cat">
-                          <img src={category.image} alt="" />
+                        <div className="product_border"></div>
+                        <div
+                          className="img_cat"
+                          style={{ width: 200, height: 100 }}
+                        >
+                          <img
+                            src={category.image}
+                            alt=""
+                            style={{ width: 150, height: 150 }}
+                          />
                         </div>
-                        <h3 className="title_cat">{category.name}</h3>
-                        <span className="articles_cat">? products </span>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <h3 className="title_cat font-underline align-center">
+                          {category.name}
+                        </h3>
+                        <span className="articles_cat align-center"> </span>
                       </a>
                     </div>
                   ))}

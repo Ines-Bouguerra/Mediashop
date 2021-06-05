@@ -20,25 +20,36 @@ const Product = ({ match }) => {
         </div>
 
         <div className="row clearfix">
-          <div className="col-md-3 mt-3">
+          <div className="row  mt-3">
             {loading ? (
               <Loader />
             ) : (
               <>
                 {products.map((product) => (
-                  <div key={product.id}>
-                    <div className="card">
-                      <div className="header bg-cyan">
-                        <h2>
+                  <div
+                    className="col-xs-12 col-sm-4 col-md-3 mt-3  "
+                    key={product.id}
+                  >
+                    <div className="card" style={{ height: 360 }}>
+                      <div className="header bg-cyan" style={{ height: 130 }}>
+                        <span>
                           {product.name} - {product.priceString} TND
-                          <small>{product.marketplace}</small>
-                        </h2>
+                          <br />
+                          <span className="col-pink">{product.retailer}</span>
+                        </span>
                       </div>
-                      <img alt="" variant="top" src={product.image} style={{width:250,height:250}}/>
+                      <img
+                        className="align-center"
+                        alt=""
+                        variant="top"
+                        src={product.image}
+                        style={{ width: 180, height: 180 }}
+                      />
 
-                      <div className="body align-center">
-                        {product.description}
-                        <p class="font-overline col-pink">Last updated : {product.timestamp}</p>
+                      <div className="body align-center" style={{ height: 50 }}>
+                        <p className="font-overline col-pink">
+                          Last updated : {product.timestamp}
+                        </p>
                       </div>
                     </div>
                   </div>
