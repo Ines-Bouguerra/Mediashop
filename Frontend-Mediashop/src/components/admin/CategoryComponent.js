@@ -34,9 +34,10 @@ const CategoryComponent = () => {
                       className="col-xs-12 col-sm-4 col-md-3 col-lg-2 cat_product_home"
                       key={category.id}
                     >
-                      <a
-                        href="ordinateur-portable"
+                      <Link
+                        to=""
                         className="elem_product_home"
+                        style={{ width: 200, height: 130 }}
                       >
                         <div className="product_border"></div>
                         <div
@@ -52,11 +53,13 @@ const CategoryComponent = () => {
                         <br></br>
                         <br></br>
                         <br></br>
+                        <br></br>
+                        <br></br>
                         <h3 className="title_cat font-underline align-center">
                           {category.name}
                         </h3>
                         <span className="articles_cat align-center"> </span>
-                      </a>
+                      </Link>
                     </div>
                   ))}
                 </div>
