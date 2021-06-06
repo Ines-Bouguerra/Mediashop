@@ -3,37 +3,37 @@
 import React, { Component } from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import BrandComponent from "./components/admin/BrandComponent";
+import CategoryComponent from "./components/admin/CategoryComponent";
+import ContactComponent from "./components/admin/ContactComponent";
+import HomeComponent from "./components/admin/HomeComponent";
+import AdminLogin from "./components/admin/Login";
+import LogoutComponent from "./components/admin/LogoutComponent";
+import Product from "./components/admin/Product";
+import UpdateProduct from "./components/admin/UpdateProduct";
 import Activate from "./components/authentication/Activate";
+import Google from "./components/authentication/Google";
 import Login from "./components/authentication/Login";
 import Register from "./components/authentication/Register";
 import ResetPassword from "./components/authentication/ResetPassword";
 import ResetPasswordConfirm from "./components/authentication/ResetPasswordConfirm";
-import CategoryScreen from "./screens/client/CategoryScreen";
+import Brand from "./components/brand/Brand";
+import Contact from "./components/contact/Contact";
 import Favorites from "./components/favorites/Favorites";
 import Home from "./components/home/Home";
+import Post from "./components/post/Post";
+import CompareList from "./components/products/CompareList";
+import UserRoute from "./components/routing/UserRoute";
 import Layout from "./hocs/Layout";
+import CategoryScreen from "./screens/client/CategoryScreen";
 import HomeScreen from "./screens/client/HomeScreen";
 import ProductScreen from "./screens/client/ProductScreen";
 import store from "./store";
-import Google from "./components/authentication/Google";
-import UserRoute from "./components/routing/UserRoute";
-import CompareList from "./components/products/CompareList";
-import Contact from "./components/contact/Contact";
-import Brand from "./components/brand/Brand";
-
-import Product from "./components/admin/Product";
-import AdminLogin from "./components/admin/Login";
-import HomeComponent from "./components/admin/HomeComponent";
-import ContactComponent from "./components/admin/ContactComponent";
-import CategoryComponent from "./components/admin/CategoryComponent";
-import BrandComponent from "./components/admin/BrandComponent";
-import PrivateRouteNew from "./utils/PrivateRouteNew";
 import Config from "./utils/Config";
-import LogoutComponent from "./components/admin/LogoutComponent";
-import Post from "./components/post/Post";
+import PrivateRouteNew from "./utils/PrivateRouteNew";
+import AddBrand from "./components/admin/AddBrand";
 
 class App extends Component {
-
   render() {
     return (
       <Provider store={store}>
@@ -53,35 +53,42 @@ class App extends Component {
                     path="/admin/home"
                     activepage="0"
                     page={HomeComponent}
-                    
                   />
                   <PrivateRouteNew
                     exact
                     path="/admin/category"
                     activepage="1"
                     page={CategoryComponent}
-                   
                   />
                   <PrivateRouteNew
                     exact
                     path="/admin/brand"
                     activepage="2"
                     page={BrandComponent}
-                    
                   />
                   <PrivateRouteNew
                     exact
                     path="/admin/product"
                     activepage="3"
                     page={Product}
-                    
                   />
                   <PrivateRouteNew
                     exact
                     path="/admin/contact"
                     activepage="4"
                     page={ContactComponent}
-                    
+                  />
+                  <PrivateRouteNew
+                    exact
+                    path="/admin/edit-product"
+                    activepage="3"
+                    page={UpdateProduct}
+                  />
+                   <PrivateRouteNew
+                    exact
+                    path="/admin/add-brand"
+                    activepage="2"
+                    page={AddBrand}
                   />
                 </Switch>
               </Route>
@@ -94,7 +101,7 @@ class App extends Component {
 
                     <Route exact path="/" component={Home} />
                     <UserRoute exact path="/wishlist" component={Favorites} />
-                    
+
                     <Route exact path="/register" component={Register} />
                     <Route exact path="/google" component={Google} />
                     <Route

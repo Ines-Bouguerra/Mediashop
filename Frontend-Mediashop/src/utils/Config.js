@@ -15,7 +15,8 @@ class Config {
     static wishlistDetailApiURL = "http://localhost:8080/api/wishlist1/<int:pk>";
     static subCategoryApiURL = "http://127.0.0.1:8080/api/categories/subcategory-list";
     static adminContactApiURL = "http://localhost:8080/api/contact";
-
+    static adminProductApiURL = "http://localhost:8080/api/admin/product/";
+    static adminProductDetailApiURL = "http://localhost:8080/api/admin/product/<int:pk>";
     static homeUrl = "/admin/home";
     static logoutPageUrl = "/admin/logout";
 
