@@ -93,7 +93,7 @@ const ProductScreen = ({ match }) => {
                   <div className="product_price m-4">
                     <button
                       type="submit"
-                      className="btn bg-pink btn-circle waves-effect waves-circle waves-float"
+                      className="btn bg-pink  waves-effect waves-circle waves-float"
                     >
                       <i class="material-icons ">favorite</i>
                     </button>
