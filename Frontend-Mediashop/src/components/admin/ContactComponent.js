@@ -62,7 +62,6 @@ export default class ContactComponent extends Component {
                           <th>Phone</th>
                           <th>Message</th>
                           <th>Added On</th>
-                          <th>Action</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -74,14 +73,6 @@ export default class ContactComponent extends Component {
                             <td>{contact.message}</td>
                             <td>
                               {new Date(contact.added_at).toLocaleString()}
-                            </td>
-                            <td>
-                              <button
-                                type="submit"
-                                className="  btn bg-cyan btn-circle waves-effect waves-circle waves-float"
-                              >
-                                <i className="material-icons">email</i>
-                              </button>
                             </td>
                           </tr>
                         ))}
