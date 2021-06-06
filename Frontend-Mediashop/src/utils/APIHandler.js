@@ -21,14 +21,14 @@ class APIHandler {
     return response;
   }
 
-  async saveBrandData(name, slug, created_at, updated_at, image) {
+  async saveBrandData(name, slug,  image) {
     var response = await Axios.post(
       Config.brandApiURL,
       {
         name: name,
         slug: slug,
-        created_at: created_at,
-        updated_at: updated_at,
+        // created_at: created_at,
+        // updated_at: updated_at,
         image: image,
       },
       {
@@ -154,7 +154,126 @@ class APIHandler {
     var response = await Axios.get(Config.adminContactApiURL);
     return response;
   }
+  async saveProductForAdminData(
+    category,
+    description,
+    domaine,
+    name,
+    reference,
+    discount,
+    url,
+    timestamp,
+    brand,
+    priceString,
+    retailer,
+    marketplace,
+    price,
+    currency,
+    sub_category,
+    country,
+    short_description,
+    old_price,
+    image,
+    marketplaceId
+  ) {
+    var response = await Axios.post(
+      Config.adminProductApiURL,
+      {
+        category: category,
+        description: description,
+        domaine: domaine,
+        name: name,
+        reference: reference,
+        discount: discount,
+        url: url,
+        timestamp: timestamp,
+        brand: brand,
+        priceString: priceString,
+        retailer: retailer,
+        marketplace: marketplace,
+        price: price,
+        currency: currency,
+        sub_category: sub_category,
+        country: country,
+        short_description: short_description,
+        old_price: old_price,
+        image: image,
+        marketplaceId: marketplaceId,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
+    return response;
+  }
+
+  async fetchProductForAdminById(id) {
+    var response = await Axios.get(Config.adminProductDetailApiURL + "" + id);
+
+    return response;
+  }
+
+  async editProductForAdminData(
+    category,
+    description,
+    domaine,
+    name,
+    reference,
+    discount,
+    url,
+    timestamp,
+    brand,
+    priceString,
+    retailer,
+    marketplace,
+    price,
+    currency,
+    sub_category,
+    country,
+    short_description,
+    old_price,
+    image,
+    marketplaceId,
+    id
+  ) {
+    var response = await Axios.put(
+      Config.adminProductDetailApiURL + "" + id + "/",
+      {
+        category: category,
+        description: description,
+        domaine: domaine,
+        name: name,
+        reference: reference,
+        discount: discount,
+        url: url,
+        timestamp: timestamp,
+        brand: brand,
+        priceString: priceString,
+        retailer: retailer,
+        marketplace: marketplace,
+        price: price,
+        currency: currency,
+        sub_category: sub_category,
+        country: country,
+        short_description: short_description,
+        old_price: old_price,
+        image: image,
+        marketplaceId: marketplaceId,
+      }
+    );
+
+    return response;
+  }
+  async deleteProductForAdmin(id) {
+    var response = await Axios.delete(
+      Config.adminProductDetailApiURL + "" + id
+    );
+
+    return response;
+  }
 }
 
 export default APIHandler;
