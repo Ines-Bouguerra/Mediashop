@@ -34,6 +34,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'admin_interface',
+    'colorfield',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -74,11 +76,11 @@ INSTALLED_APPS = [
     # django_phone_field
     'phone_field',
     # recaptcha
-    'rest_framework_recaptcha'
-
-
+    # 'rest_framework_recaptcha',
 
 ]
+
+X_FRAME_OPTIONS = 'SAMEORIGIN'  # only if django version >= 3.0
 
 MIDDLEWARE = [
     # social Middelware
@@ -254,6 +256,5 @@ CORS_ORIGIN_WHITELIST = [
 # RECAPTCHA_PRIVATE_KEY= "6LfaiwAbAAAAANb9jrZzQyT_RLt04vW4c4moN7qR"
 
 
-
-
-FRONTEND_ROOT = os.path.abspath(os.path.join(BASE_DIR, '..', 'Frontend-Mediashop', 'build'))
+FRONTEND_ROOT = os.path.abspath(os.path.join(
+    BASE_DIR, '..', 'Frontend-Mediashop', 'build'))
