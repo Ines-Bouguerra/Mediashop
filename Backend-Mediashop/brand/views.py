@@ -1,4 +1,5 @@
 
+from rest_framework.generics import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -16,6 +17,23 @@ class BrandViewset(APIView):
                 data=request.data, context={"request": request})
             serializer.is_valid(raise_exception=True)
             serializer.save()
+            # brand_id = serializer.data['id']
+            # # Access The Serializer Id Which JUSt SAVE in OUR DATABASE TABLE
+            # # print(brand_id)
+            # # Adding and Saving Id into Brand Details Table
+            # brand_details_list = []
+            # for brand_detail in request.data["brand_details"]:
+            #     print(brand_detail)
+            #     # Adding brand id which will work for brand details serializer
+            #     brand_detail["brand_id"] = brand_id
+            #     brand_details_list.append(brand_detail)
+            #     print(brand_detail)
+
+            # serializer2 = brand_Serializer(
+            #     data=brand_details_list, many=True, context={"request": request})
+            # serializer2.is_valid()
+            # serializer2.save()
+
             dict_response = {"error": False,
                              "message": "Brand Data Save Successfully"}
         except:
@@ -44,6 +62,7 @@ class BrandDetail(APIView):
             raise Http404
 
     def get(self, request, pk):
+        
         brand = self.get_object(pk)
         serializer = brand_Serializer(brand, context={"request": request})
         return Response({"error": False, "message": "Single Data Fetch", "data": serializer.data})
