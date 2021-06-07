@@ -3,6 +3,7 @@ import alert from './alert';
 import authReducer from './authReducer';
 import { categoryList, subcategoryList } from './category';
 import contact from './contact';
+import {deleteBrandReducer} from './brand'
 import {productByCategoryReducer, productDetailsReducer, productListReducer, productTopPromotionReducer } from './product';
 export default combineReducers({
   alert,
@@ -15,4 +16,5 @@ export default combineReducers({
   productTopPromotion: productTopPromotionReducer,
   productByCategory: productByCategoryReducer,
   contact:contact,
+  brandDelete:deleteBrandReducer,
 });
