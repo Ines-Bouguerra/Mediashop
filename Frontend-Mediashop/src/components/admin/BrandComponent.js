@@ -8,8 +8,15 @@ export default class BrandComponent extends Component {
     errorMessage: "",
     btnMessage: 0,
     sendData: false,
-    brandList: [],
+    brandList: [{
+      id:0,name: "",slug: "",image: "",
+    }],
     dataLoaded: false,
+    brandDetails:[
+     {
+       id:0,name: "",slug: "",image: "",
+     }
+    ]
   };
 
   componentDidMount() {
@@ -30,6 +37,12 @@ export default class BrandComponent extends Component {
     console.log(brand_id);
     console.log(this.props);
     // this.props.history.push("/branddetails/" + brand_id);
+  };
+
+  RemoveBrandDetails = () => {
+      this.state.brandList.pop();
+    
+    this.setState({});
   };
   render() {
     return (
@@ -125,7 +138,7 @@ export default class BrandComponent extends Component {
                                 type="submit"
                                 className=" m-3 btn bg-danger  waves-effect waves-circle waves-float"
                                 onClick={() =>
-                                  this.viewBrandDetails(brand.id)
+                                  this.deleteBrandDetails
                                 }
                               >
                                 <i className="material-icons">delete</i>

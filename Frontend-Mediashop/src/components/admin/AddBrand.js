@@ -24,7 +24,6 @@ export default class AddBrand extends Component {
     var response = await apiHandler.saveBrandData(
       event.target.name.value,
       event.target.slug.value,
-
       event.target.image.value
     );
     console.log(response);
@@ -32,7 +31,6 @@ export default class AddBrand extends Component {
     this.setState({ errorRes: response.data.error });
     this.setState({ errorMessage: response.data.message });
     this.setState({ sendData: true });
-    this.updateDataAgain();
   }
 
   ShowBrandDetails = (eid) => {
@@ -40,8 +38,6 @@ export default class AddBrand extends Component {
   };
 
   render() {
-    const { selectedFiles } = this.state;
-
     return (
       <section className="content">
         <div className="container-fluid">
@@ -93,29 +89,15 @@ export default class AddBrand extends Component {
                         <label htmlFor="email_address">Image</label>
                         <div className="form-group">
                           <div className="form-line">
-                            <div className="row">
-                            <div className="col-lg-3">
-                              <input
-                                type="file"
-                                id="image"
-                                name="image"
-                                className="form-control"
-                                placeholder="Enter Image"
-                                required
-                                data-error="Image is required."
-                                
-                              />
-                              </div>
-                              <div className="col-lg-2">
-                              <button
-                                className="btn btn-success"
-                                disabled={!selectedFiles}
-                                onClick={this.upload}
-                              >
-                                Upload
-                              </button>
-                              </div>
-                            </div>
+                            <input
+                              type="file"
+                              id="image"
+                              name="image"
+                              className="form-control"
+                              placeholder="Enter Image"
+                              required
+                              data-error="Image is required."
+                            />
                           </div>
                         </div>
                       </div>
