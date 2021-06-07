@@ -11,8 +11,26 @@ export default class UpdateProduct extends Component {
     errorMessage: "",
     btnMessage: 0,
     sendData: false,
-    productList: [],
-    dataLoaded: false,
+    category:"",
+    description:"",
+    domaine:"",
+    name:"",
+    reference:"",
+    discount:"",
+    url:"",
+    timestamp:"",
+    brand:"",
+    priceString:"",
+    retailer:"",
+    marketplace:"",
+    price:"",
+    currency:"",
+    sub_category:"",
+    country:"",
+    short_description:"",
+    old_price:"",
+    image:"",
+    marketplaceId:""
   };
 
   async formSubmit(event) {
@@ -48,7 +66,6 @@ export default class UpdateProduct extends Component {
     this.setState({ errorRes: response.data.error });
     this.setState({ errorMessage: response.data.message });
     this.setState({ sendData: true });
-    this.updateDataAgain();
   }
 
   //This Method Work When Our Page is Ready
@@ -57,14 +74,12 @@ export default class UpdateProduct extends Component {
   }
 
   async fetchProductDataById() {
-    this.updateDataAgain();
-  }
-
-  async updateDataAgain() {
+   
     var apihandler = new APIHandler();
     var productDataList = await apihandler.fetchProductForAdminById(
       this.props.match.params.id
     );
+    console.log(productDataList);
     this.setState({ category: productDataList.data.data.category });
     this.setState({ description: productDataList.data.data.description });
     this.setState({ domaine: productDataList.data.data.domaine });
