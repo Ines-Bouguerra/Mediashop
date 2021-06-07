@@ -21,7 +21,7 @@ class APIHandler {
     return response;
   }
 
-  async saveBrandData(name, slug,  image) {
+  async saveBrandData(name, slug, image) {
     var response = await Axios.post(
       Config.brandApiURL,
       {
@@ -52,14 +52,21 @@ class APIHandler {
     return response;
   }
 
-  async editBrandData(name, slug, created_at, updated_at, image, id) {
-    var response = await Axios.put(Config.brandDetailApiURL + "" + id + "/", {
-      name: name,
-      slug: slug,
-      created_at: created_at,
-      updated_at: updated_at,
-      image: image,
-    });
+  async editBrandData(name, slug, updated_at, image, id) {
+    var response = await Axios.put(
+      Config.brandDetailApiURL + "" + id + "/",
+      {
+        name: name,
+        slug: slug,
+        updated_at: updated_at,
+        image: image,
+      },
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
 
     return response;
   }
