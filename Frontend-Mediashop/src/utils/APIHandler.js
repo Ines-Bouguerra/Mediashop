@@ -33,8 +33,8 @@ class APIHandler {
       },
       {
         headers: {
-          "Content-Type": "application/json",
-        },
+          'Content-Type': 'multipart/form-data'
+        }
       }
     );
 
