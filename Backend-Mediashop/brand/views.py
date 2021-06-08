@@ -17,23 +17,6 @@ class BrandViewset(APIView):
                 data=request.data, context={"request": request})
             serializer.is_valid(raise_exception=True)
             serializer.save()
-            # brand_id = serializer.data['id']
-            # # Access The Serializer Id Which JUSt SAVE in OUR DATABASE TABLE
-            # # print(brand_id)
-            # # Adding and Saving Id into Brand Details Table
-            # brand_details_list = []
-            # for brand_detail in request.data["brand_details"]:
-            #     print(brand_detail)
-            #     # Adding brand id which will work for brand details serializer
-            #     brand_detail["brand_id"] = brand_id
-            #     brand_details_list.append(brand_detail)
-            #     print(brand_detail)
-
-            # serializer2 = brand_Serializer(
-            #     data=brand_details_list, many=True, context={"request": request})
-            # serializer2.is_valid()
-            # serializer2.save()
-
             dict_response = {"error": False,
                              "message": "Brand Data Save Successfully"}
         except:
@@ -65,7 +48,7 @@ class BrandDetail(APIView):
         
         brand = self.get_object(pk)
         serializer = brand_Serializer(brand, context={"request": request})
-        return Response({"error": False, "message": "Single Data Fetch", "data": serializer.data})
+        return Response(serializer.data)
 
     def put(self, request,  pk):
         brand = self.get_object(pk)
@@ -73,9 +56,11 @@ class BrandDetail(APIView):
             brand, data=request.data, context={"request": request})
         serializer.is_valid()
         serializer.save()
-        return Response({"error": False, "message": "Data Has Been Updated"})
+        response_dict = {
+            "error": False, "message": "Data Has Been Updated", "data": serializer.data}
+        return Response(response_dict)
 
     def delete(self, request, pk):
         brand = self.get_object(pk)
         brand.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response({"error": False, "message": "Data Has Been Deleted"})

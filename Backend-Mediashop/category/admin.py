@@ -5,8 +5,9 @@ from products.models import Product
 
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ['name', 'parent']
+    list_display = ['name', 'parent','created_at','updated_at']
     list_filter = ['name']
+    readonly_fields = ("created_at", "updated_at")
 
 
 class CategoryAdmin2(DraggableMPTTAdmin):

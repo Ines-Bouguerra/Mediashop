@@ -32,6 +32,8 @@ import store from "./store";
 import Config from "./utils/Config";
 import PrivateRouteNew from "./utils/PrivateRouteNew";
 import AddBrand from "./components/admin/AddBrand";
+import EditBrand from "./components/admin/EditBrand";
+import BrandDetails from "./components/admin/BrandDetails";
 
 class App extends Component {
   render() {
@@ -79,16 +81,24 @@ class App extends Component {
                     page={ContactComponent}
                   />
                   <PrivateRouteNew
-                    exact
                     path="/admin/edit-product"
                     activepage="3"
                     page={UpdateProduct}
                   />
                    <PrivateRouteNew
-                    exact
                     path="/admin/add-brand"
                     activepage="2"
                     page={AddBrand}
+                  />
+                  <PrivateRouteNew
+                    path="/admin/brand/:id/edit"
+                    activepage="2"
+                    page={EditBrand}
+                  />
+                  <PrivateRouteNew
+                    path="/admin/brand/:id"
+                    activepage="2"
+                    page={BrandDetails}
                   />
                 </Switch>
               </Route>
