@@ -27,7 +27,7 @@ const CategoryComponent = () => {
                       type="text"
                       id="Keyword"
                       name="Keyword"
-                      className="form-control"
+                      className="form-control font-bold col-pink "
                       placeholder="Search for Catecory ..."
                       required
                       data-error="Keyword is required."
@@ -35,8 +35,8 @@ const CategoryComponent = () => {
                     />
                   </div>
                 </div>
-              </div>
-              <div className="col-lg-3 "></div>
+              </div><i class="material-icons">search</i>
+              
             </div>
             <br></br>
             <br></br>
