@@ -3,9 +3,12 @@
 import React, { Component } from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import AddBrand from "./components/admin/AddBrand";
 import BrandComponent from "./components/admin/BrandComponent";
+import BrandDetails from "./components/admin/BrandDetails";
 import CategoryComponent from "./components/admin/CategoryComponent";
 import ContactComponent from "./components/admin/ContactComponent";
+import EditBrand from "./components/admin/EditBrand";
 import HomeComponent from "./components/admin/HomeComponent";
 import AdminLogin from "./components/admin/Login";
 import LogoutComponent from "./components/admin/LogoutComponent";
@@ -31,9 +34,6 @@ import ProductScreen from "./screens/client/ProductScreen";
 import store from "./store";
 import Config from "./utils/Config";
 import PrivateRouteNew from "./utils/PrivateRouteNew";
-import AddBrand from "./components/admin/AddBrand";
-import EditBrand from "./components/admin/EditBrand";
-import BrandDetails from "./components/admin/BrandDetails";
 
 class App extends Component {
   render() {
@@ -62,6 +62,7 @@ class App extends Component {
                     activepage="1"
                     page={CategoryComponent}
                   />
+
                   <PrivateRouteNew
                     exact
                     path="/admin/brand"
@@ -85,7 +86,7 @@ class App extends Component {
                     activepage="3"
                     page={UpdateProduct}
                   />
-                   <PrivateRouteNew
+                  <PrivateRouteNew
                     path="/admin/add-brand"
                     activepage="2"
                     page={AddBrand}
