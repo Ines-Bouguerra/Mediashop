@@ -11,7 +11,7 @@ export default function EditBrand(props) {
     let result = await fetch(
       "http://localhost:8080/api/brand/" + props.match.params.id
     );
-    result = await result.json;
+    result = await result;
     setDate(result);
     setName(data.name);
     setSlug(data.slug);
