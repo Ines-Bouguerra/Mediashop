@@ -1,42 +1,27 @@
-import React from "react";
-import APIHandler from "../../utils/APIHandler";
+import React,{useState} from "react";
 import { Link } from "react-router-dom";
 
-export default class AddBrand  extends React.Component {
- 
-  constructor(props) {
-    super(props);
-    this.formSubmit = this.formSubmit.bind(this);
-  }
-  state = {
-    errorRes: false,
-    errorMessage: "",
-    btnMessage: 0,
-    sendData: false,
-    contactDataList: [],
-    dataLoaded: false,
-  };
+export default function AddBrand() {
 
-  async formSubmit(event) {
-    event.preventDefault();
-    this.setState({ btnMessage: 1 });
 
-    var apiHandler = new APIHandler();
-    var response = await apiHandler.saveBrandData(
-      event.target.name.value,
-      event.target.slug.value,
-      event.target.image.files[0],
+  const [name, setName] = useState("")
+  const [slug, setSlug] = useState("")
+  const [image, setImage] = useState("")
 
-    );
-    console.log(response);
-    this.setState({ btnMessage: 0 });
-    this.setState({ errorRes: response.data.error });
-    this.setState({ errorMessage: response.data.message });
-    this.setState({ sendData: true });
-  }
-
-  render() {
-
+async function addBrand(){
+  console.warn(name,slug,image)
+  const formData = new FormData()
+  formData.append('name',name)
+  formData.append('slug',slug)
+  formData.append('image',image)
+  let result = await fetch("http://localhost:8080/api/brand",
+  {
+    method: 'POST',
+    body: formData,
+    // headers: {'Content-Type': 'multipart/form-data'}
+  })
+  alert("Brand added successfully")
+}
   return (
     <section className="content">
       <div className="container-fluid">
@@ -47,7 +32,7 @@ export default class AddBrand  extends React.Component {
                 <h2>Add New Brand</h2>
               </div>
               <div className="body">
-                <form onSubmit={this.formSubmit}>
+                <>
                   <div className="row">
                     <div className="col-lg-6">
                       <label htmlFor="email_address">Name</label>
@@ -61,6 +46,7 @@ export default class AddBrand  extends React.Component {
                             placeholder="Enter Name"
                             required
                             data-error="Name is required."
+                            onChange={(e) =>setName(e.target.value)}
                           />
                         </div>
                       </div>
@@ -77,6 +63,7 @@ export default class AddBrand  extends React.Component {
                             placeholder="Enter Slug"
                             required
                             data-error="Slug is required."
+                            onChange={(e) =>setSlug(e.target.value)}
                           />
                         </div>
                       </div>
@@ -96,6 +83,7 @@ export default class AddBrand  extends React.Component {
                             placeholder="Enter Image"
                             required
                             data-error="Image is required."
+                            onChange={(e) =>setImage(e.target.files[0])}
                           />
                         </div>
                       </div>
@@ -119,41 +107,15 @@ export default class AddBrand  extends React.Component {
                       <button
                         type="submit"
                         className="btn bg-pink btn-block waves-effect"
-                        disabled={this.state.btnMessage === 0 ? false : true}
+                        onClick={addBrand}
+                        // disabled={this.state.btnMessage === 0 ? false : true}
                       >
                         <i className="material-icons font-bold ">add</i>
-                        <span className="m-3">
-                          {this.state.btnMessage === 0
-                            ? "Add New Brand"
-                            : "Addong New Brand Please Wait.."}
-                        </span>
+                        <span className="m-3">Add New Brand</span>
                       </button>
                     </div>
                   </div>
-                  <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-
-                    {this.state.errorRes === false &&
-                    this.state.sendData === true ? (
-                      <div className="alert alert-success">
-                        <strong>Success!</strong> {this.state.errorMessage}.
-                      </div>
-                    ) : (
-                      ""
-                    )}
-                    {this.state.errorRes === true &&
-                    this.state.sendData === true ? (
-                      <div className="alert alert-danger">
-                        <strong>Failed!</strong>
-                        {this.state.errorMessage}.
-                      </div>
-                    ) : (
-                      ""
-                    )}
-                </form>
+                </>
               </div>
             </div>
           </div>
@@ -161,5 +123,4 @@ export default class AddBrand  extends React.Component {
       </div>
     </section>
   );
-}
 }
