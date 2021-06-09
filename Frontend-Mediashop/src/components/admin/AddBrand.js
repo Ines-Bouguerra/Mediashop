@@ -1,27 +1,24 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function AddBrand() {
+  const [name, setName] = useState("");
+  const [slug, setSlug] = useState("");
+  const [image, setImage] = useState("");
 
-
-  const [name, setName] = useState("")
-  const [slug, setSlug] = useState("")
-  const [image, setImage] = useState("")
-
-async function addBrand(){
-  console.warn(name,slug,image)
-  const formData = new FormData()
-  formData.append('name',name)
-  formData.append('slug',slug)
-  formData.append('image',image)
-  let result = await fetch("http://localhost:8080/api/brand",
-  {
-    method: 'POST',
-    body: formData,
-    // headers: {'Content-Type': 'multipart/form-data'}
-  })
-  alert("Brand added successfully")
-}
+  async function addBrand() {
+    console.warn(name, slug, image);
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("slug", slug);
+    formData.append("image", image);
+    let result = await fetch("http://localhost:8080/api/brand", {
+      method: "POST",
+      body: formData,
+      // headers: {'Content-Type': 'multipart/form-data'}
+    });
+    alert("Brand added successfully");
+  }
   return (
     <section className="content">
       <div className="container-fluid">
@@ -46,7 +43,7 @@ async function addBrand(){
                             placeholder="Enter Name"
                             required
                             data-error="Name is required."
-                            onChange={(e) =>setName(e.target.value)}
+                            onChange={(e) => setName(e.target.value)}
                           />
                         </div>
                       </div>
@@ -63,7 +60,7 @@ async function addBrand(){
                             placeholder="Enter Slug"
                             required
                             data-error="Slug is required."
-                            onChange={(e) =>setSlug(e.target.value)}
+                            onChange={(e) => setSlug(e.target.value)}
                           />
                         </div>
                       </div>
@@ -83,7 +80,7 @@ async function addBrand(){
                             placeholder="Enter Image"
                             required
                             data-error="Image is required."
-                            onChange={(e) =>setImage(e.target.files[0])}
+                            onChange={(e) => setImage(e.target.files[0])}
                           />
                         </div>
                       </div>
