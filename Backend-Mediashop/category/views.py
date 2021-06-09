@@ -1,3 +1,4 @@
+from django.http import Http404
 from django.shortcuts import render
 from rest_framework.generics import ListAPIView
 from .models import Category
@@ -56,3 +57,37 @@ class CreateCategory(APIView):
             return Response(serializer.data, status=status.HTTP_200_OK)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class CategoryDetail(APIView):
+    """
+    Retrieve, update or delete a snippet instance.
+    """
+
+    def get_object(self, pk):
+        try:
+            return Category.objects.get(pk=pk)
+        except Category.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk):
+
+        category = self.get_object(pk)
+        serializer = category_Serializer(
+            category, context={"request": request})
+        return Response(serializer.data)
+
+    def put(self, request,  pk):
+        category = self.get_object(pk)
+        serializer = category_Serializer(
+            category, data=request.data, context={"request": request})
+        serializer.is_valid()
+        serializer.save()
+        response_dict = {
+            "error": False, "message": "Data Has Been Updated", "data": serializer.data}
+        return Response(response_dict)
+
+    def delete(self, request, pk):
+        category = self.get_object(pk)
+        category.delete()
+        return Response({"error": False, "message": "Data Has Been Deleted"})
