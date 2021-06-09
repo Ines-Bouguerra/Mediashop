@@ -91,7 +91,7 @@ class App extends Component {
                     page={AddBrand}
                   />
                   <PrivateRouteNew
-                    path="/admin/brand/:id/edit"
+                    path="/admin/edit-brand/:id"
                     activepage="2"
                     page={EditBrand}
                   />

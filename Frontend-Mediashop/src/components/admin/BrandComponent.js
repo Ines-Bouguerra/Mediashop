@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { listBrands, deleteBrand, createBrand } from "../../actions/brand";
+import { listBrands, deleteBrand } from "../../actions/brand";
 import Message from "../Message";
 import Loader from "../Loader";
-import { BRAND_CREATE_RESET } from "../../actions/types";
 const BrandComponent = ({ history }) => {
   const dispatch = useDispatch();
 
@@ -101,14 +100,15 @@ const BrandComponent = ({ history }) => {
                             </td>
                             <td>
                               <Link
-                                to={`/admin/brand/${brand.id}`}
+                               to={`/admin/brand/${brand.id}`}
                                 className=" m-3 btn bg-light-blue  waves-effect waves-circle waves-float"
                               >
                                 <i className="material-icons">info</i>
                               </Link>
                               <Link
+                             to={`/admin/edit-brand/${brand.id}`}
                                 className=" m-3 btn bg-cyan waves-effect waves-circle waves-float"
-                                to={`/admin/brand/${brand.id}/edit`}
+                                
                               >
                                 <i className="material-icons">edit</i>
                               </Link>
