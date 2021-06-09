@@ -35,8 +35,8 @@ const CategoryComponent = () => {
                     />
                   </div>
                 </div>
-              </div><i class="material-icons">search</i>
-              
+              </div>
+              <i class="material-icons">search</i>
             </div>
             <br></br>
             <br></br>
@@ -62,6 +62,7 @@ const CategoryComponent = () => {
                         className="col-xs-12 col-sm-4 col-md-3 col-lg-2 cat_product_home"
                         key={category.id}
                       >
+                        <div className="product_border " />
                         <Link
                           to=""
                           className="elem_product_home"
@@ -76,6 +77,7 @@ const CategoryComponent = () => {
                               src={category.image}
                               alt=""
                               style={{ width: 150, height: 150 }}
+                              className="m-3"
                             />
                           </div>
                           <br></br>
@@ -86,8 +88,27 @@ const CategoryComponent = () => {
                           <h3 className="title_cat font-underline align-center">
                             {category.name}
                           </h3>
-                          <span className="articles_cat align-center"> </span>
                         </Link>
+                        <div className="align-center">
+                          <Link
+                            to=""
+                            className=" m-3  btn-circle  bg-pink waves-effect waves-circle waves-float"
+                          >
+                            <i className="material-icons">info</i>
+                          </Link>
+                          <Link
+                            to=""
+                            className=" m-3 btn-circle  bg-pink waves-effect waves-circle waves-float"
+                          >
+                            <i className="material-icons">edit</i>
+                          </Link>
+                          <Link
+                            to=""
+                            className=" m-3  btn-circle bg-pink waves-effect waves-circle waves-float"
+                          >
+                            <i className="material-icons ">delete</i>
+                          </Link>
+                        </div>
                       </div>
                     ))}
                 </div>
