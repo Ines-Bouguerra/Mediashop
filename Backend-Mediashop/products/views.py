@@ -1,3 +1,10 @@
+from post.serializers import PostSerializer
+from post.models import Post
+from contact.serializers import contact_Serializer
+from contact.models import Contact
+from datetime import datetime, timedelta
+from account.models import Account
+from brand.models import Brand
 from django.http import Http404
 from rest_framework.views import APIView
 from products.serializers import WishlistSerializer
@@ -9,6 +16,9 @@ from rest_framework import status
 from rest_framework.response import Response
 from products.models import Product, WishlistItem
 from products.serializers import products_Serializer
+from category.serializers import category_Serializer
+from brand.serializers import brand_Serializer
+from post.serializers import UserSerializer
 from rest_framework.decorators import api_view
 from products.pagination import ProductPageNumberPagination
 from rest_framework.generics import ListAPIView
@@ -16,7 +26,8 @@ from category.models import Category
 import webbrowser as web
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.response import Response
-from rest_framework.filters import  OrderingFilter
+from rest_framework.filters import OrderingFilter
+
 
 @api_view(['GET'])
 def product_list(request):
@@ -37,7 +48,8 @@ def product_list(request):
         if name is not None:
             products = products.filter(title__icontains=name)
 
-        products__Serializer = products_Serializer(products, context={"request": request}, many=True)
+        products__Serializer = products_Serializer(
+            products, context={"request": request}, many=True)
         return paginator.get_paginated_response(products__Serializer.data)
 
 
@@ -151,6 +163,8 @@ def speech_to_text(request):
     return JsonResponse({'data': data})
 
 # filter
+
+
 class filter_product_list(ListAPIView):
     queryset = Product.objects.all()
     filter_backends = (DjangoFilterBackend,)
@@ -164,7 +178,7 @@ class productsListView(ListAPIView):
     serializer_class = products_Serializer
     queryset = Product.objects.all()
     filter_backends = (DjangoFilterBackend, OrderingFilter)
-    filter_fields = ('name','priceString','retailer','category','brand')
+    filter_fields = ('name', 'priceString', 'retailer', 'category', 'brand')
     ordering_fields = ('name', 'price')
 
 
@@ -227,7 +241,7 @@ class WishlistItemDetail(APIView):
 
 
 class ProductAdminViewset(APIView):
-    
+
     def post(self, request):
         try:
             serializer = products_Serializer(
@@ -262,3 +276,56 @@ class ProductAdminDetail(APIView):
         product = self.get_object(pk)
         product.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+# from rest_framework.permissions import IsAuthenticated
+# from rest_framework_simplejwt.authentication import JWTAuthentication
+
+
+class HomeApiViewset(APIView):
+
+    def get(self, request):
+        product_count = Product.objects.all()
+        product_count_serializer = products_Serializer(
+            product_count, many=True, context={"request": request})
+
+        category_count = Category.objects.all()
+        category_count_serializer = category_Serializer(
+            category_count, many=True, context={"request": request})
+
+        brand_count = Brand.objects.all()
+        brand_count_serializer = brand_Serializer(
+            brand_count, many=True, context={"request": request})
+
+        user_count = Account.objects.all()
+        user_count_serializer = UserSerializer(
+            user_count, many=True, context={"request": request})
+
+        post_count = Post.objects.all()
+        post_count_serializer = PostSerializer(
+            post_count, many=True, context={"request": request})
+
+        current_date = datetime.today().strftime("%Y-%m-%d")
+
+        new_contact = Contact.objects.filter(added_at__date=current_date)
+        new_contact_serializer = contact_Serializer(
+            new_contact, many=True, context={"request": request})
+
+        new_comment = Post.objects.filter(status="New")
+        new_comment_serializer = PostSerializer(
+            new_comment, many=True, context={"request": request})
+
+        new_customer = Account.objects.filter(date_joined__date=current_date)
+        new_customer_serializer = UserSerializer(
+            new_customer, many=True, context={"request": request})
+
+        dict_respone = {"error": False, "message": "Home Page Data",
+                        "product_count": len(product_count_serializer.data),
+                        "category_count": len(category_count_serializer.data),
+                        "brand_count": len(brand_count_serializer.data),
+                        "user_count": len(user_count_serializer.data)-1,
+                        "new_contact": len(new_contact_serializer.data),
+                        "post_count": len(post_count_serializer.data),
+                        "new_comment": len(new_comment_serializer.data),
+                        "new_customer": len(new_customer_serializer.data), }
+        return Response(dict_respone)
