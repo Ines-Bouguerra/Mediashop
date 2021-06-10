@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 import alert from "./alert";
 import authReducer from "./authReducer";
-import { categoryList, subcategoryList } from "./category";
+import { categoryList, deleteCategoryReducer, subcategoryList } from "./category";
 import contact from "./contact";
 import {
   brandListReducer,
@@ -21,6 +21,7 @@ export default combineReducers({
   user: authReducer,
   authReducer,
   categoryList: categoryList,
+  categoryDelete:deleteCategoryReducer,
   subcategoryList: subcategoryList,
   productList: productListReducer,
   productDetails: productDetailsReducer,

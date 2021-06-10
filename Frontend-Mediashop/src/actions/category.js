@@ -1,6 +1,6 @@
 import axios from "axios"
 
-import { GET_CATEGORY, CATEGORY_ERROR, GET_SUB_CATEGORY, SUB_CATEGORY_ERROR } from "./types"
+import { GET_CATEGORY, CATEGORY_ERROR, GET_SUB_CATEGORY, SUB_CATEGORY_ERROR, CATEGORY_DELETE_REQUEST, CATEGORY_DELETE_SUCCESS, CATEGORY_DELETE_FAIL } from "./types"
 
 //Get Category
 
@@ -51,3 +51,25 @@ export const getSubCategories = () => async (dispatch) => {
         })
     }
 }
+export const deleteCategory = (id) => async (dispatch) => {
+    try {
+      dispatch({
+        type: CATEGORY_DELETE_REQUEST,
+      });
+  
+      await axios.delete(`http://127.0.0.1:8080/api/category/${id}`);
+      dispatch({
+        type: CATEGORY_DELETE_SUCCESS,
+      });
+    } catch (error) {
+      const message =
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message;
+  
+      dispatch({
+        type: CATEGORY_DELETE_FAIL,
+        payload: message,
+      });
+    }
+  };

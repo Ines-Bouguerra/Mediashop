@@ -4,6 +4,7 @@ import React, { Component } from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import AddBrand from "./components/admin/AddBrand";
+import AddCategory from "./components/admin/AddCategory";
 import BrandComponent from "./components/admin/BrandComponent";
 import BrandDetails from "./components/admin/BrandDetails";
 import CategoryComponent from "./components/admin/CategoryComponent";
@@ -62,7 +63,12 @@ class App extends Component {
                     activepage="1"
                     page={CategoryComponent}
                   />
-
+                  <PrivateRouteNew
+                    exact
+                    path="/admin/add-category"
+                    activepage="1"
+                    page={AddCategory}
+                  />
                   <PrivateRouteNew
                     exact
                     path="/admin/brand"

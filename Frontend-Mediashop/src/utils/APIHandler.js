@@ -33,8 +33,8 @@ class APIHandler {
       },
       {
         headers: {
-          'Content-Type': 'multipart/form-data'
-        }
+          "Content-Type": "multipart/form-data",
+        },
       }
     );
 
@@ -278,6 +278,12 @@ class APIHandler {
     var response = await Axios.delete(
       Config.adminProductDetailApiURL + "" + id
     );
+
+    return response;
+  }
+
+  async fetchHomePage() {
+    var response = await Axios.get(Config.homeApiUrl);
 
     return response;
   }
