@@ -21,6 +21,25 @@ class APIHandler {
     return response;
   }
 
+  async sendEmailData(name, email, phone_number, message) {
+    var response = await Axios.post(
+      Config.replayApiUrl,
+      {
+        name: name,
+        email: email,
+        phone_number: phone_number,
+        message: message,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    return response;
+  }
+
   async saveBrandData(name, slug, image) {
     var response = await Axios.post(
       Config.brandApiURL,

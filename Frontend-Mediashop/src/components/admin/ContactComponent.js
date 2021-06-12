@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import APIHandler from "../../utils/APIHandler";
+import { Link } from "react-router-dom";
 
 export default class ContactComponent extends Component {
   state = {
@@ -62,6 +63,7 @@ export default class ContactComponent extends Component {
                           <th>Phone</th>
                           <th>Message</th>
                           <th>Added On</th>
+                          <th>Replay</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -73,6 +75,16 @@ export default class ContactComponent extends Component {
                             <td>{contact.message}</td>
                             <td>
                               {new Date(contact.added_at).toLocaleString()}
+                            </td>
+                            <td>
+                              <Link
+                                to="/admin/replay"
+                                type="submit"
+                                className="btn bg-pink btn-block waves-effect"
+                              >
+                                <i className="material-icons font-bold">replay</i>
+                                
+                              </Link>
                             </td>
                           </tr>
                         ))}

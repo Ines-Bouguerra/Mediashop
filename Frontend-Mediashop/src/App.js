@@ -14,6 +14,7 @@ import HomeComponent from "./components/admin/HomeComponent";
 import AdminLogin from "./components/admin/Login";
 import LogoutComponent from "./components/admin/LogoutComponent";
 import Product from "./components/admin/Product";
+import ReplayEmail from "./components/admin/ReplayEmail";
 import UpdateProduct from "./components/admin/UpdateProduct";
 import Activate from "./components/authentication/Activate";
 import Google from "./components/authentication/Google";
@@ -86,6 +87,11 @@ class App extends Component {
                     path="/admin/contact"
                     activepage="4"
                     page={ContactComponent}
+                  />
+                  <PrivateRouteNew
+                    path="/admin/replay"
+                    activepage="5"
+                    page={ReplayEmail}
                   />
                   <PrivateRouteNew
                     path="/admin/edit-product"

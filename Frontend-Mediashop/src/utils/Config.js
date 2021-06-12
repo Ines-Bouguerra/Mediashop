@@ -18,6 +18,7 @@ class Config {
   static homeUrl = "/admin/home";
   static logoutPageUrl = "/admin/logout";
   static homeApiUrl = "http://localhost:8080/api/admin/home";
+  static replayApiUrl = "http://localhost:8080/api/admin/replay";
 
   static sidebarItem = [
     { index: "0", title: "Home", url: "/admin/home", icons: "home" },
@@ -44,6 +45,12 @@ class Config {
       title: "Show Contacts",
       url: "/admin/contact",
       icons: "people",
+    },
+    {
+      index: "5",
+      title: "Send Email",
+      url: "/admin/replay",
+      icons: "email",
     },
   ];
 }
