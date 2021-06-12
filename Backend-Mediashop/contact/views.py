@@ -1,3 +1,4 @@
+from django.core.mail import EmailMultiAlternatives
 from rest_framework import status
 from rest_framework.decorators import api_view
 from django.http import HttpResponse, HttpResponseRedirect
@@ -42,13 +43,20 @@ class ContactView(APIView):
             data = serializer.validated_data
             email = data.get('email')
             name = data.get('name')
-            send_mail(
-                'Sent email from {}'.format(name),
-                'Here is the message. {}'.format(data.get('message')),
-                ['ines.bouguerra2207@gmail.com'],
-                email,
-                fail_silently=False,
-            )
+            html_content1 = '<strong>Cordialement.</strong>'
+            html_content2 = '<p>Thanks for joining us . </br><strong>Mediashop</strong></p>'
+            message = EmailMultiAlternatives('Mediashop : {}'.format(name),
+                                             ' {}'.format(
+                                                 data.get('message')),
+                                             'ines.bouguerra2207@gmail.com',
+                                             (email,),)
+            message.send()
+            # send_mail(
+            #     'Mediashop : {}'.format(name),
+            #     'Here is the message. {}'.format(data.get('message')),
+            #     'ines.bouguerra2207@gmail.com',
+            #     (email,),
+            #     fail_silently=False,
+            # )
             return Response({"success": "Sent"})
         return Response({'success': "Failed"}, status=status.HTTP_400_BAD_REQUEST)
-

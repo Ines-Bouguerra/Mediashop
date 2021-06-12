@@ -5,6 +5,6 @@ urlpatterns = [
 
     path('api/contact',
          CreateContact.as_view(), name='Contact'),
-    path('api/replay',
+    path('api/admin/replay',
          ContactView.as_view(), name='sendEmail'),
 ]
