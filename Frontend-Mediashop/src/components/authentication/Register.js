@@ -30,9 +30,9 @@ function Register({ setAlert, register, isAuthenticated }) {
     email: "",
     password: "",
     re_password: "",
-    checkbox: "",
+    
   });
-  const { first_name, last_name, email, password, re_password, checkbox } = formData;
+  const { first_name, last_name, email, password, re_password} = formData;
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
   const onSubmit = async (e) => {
@@ -40,7 +40,7 @@ function Register({ setAlert, register, isAuthenticated }) {
     if (password !== re_password) {
       setAlert("Password do not match", "danger");
     } else {
-      register({ first_name, last_name, email, password, re_password, checkbox })
+      register({ first_name, last_name, email, password, re_password})
       setAccountCreated(true)
     }
   }
@@ -59,7 +59,8 @@ function Register({ setAlert, register, isAuthenticated }) {
               <CardHeader>
                 <Card.Img height="100" alt="..." src="images/mediashop.png" />
                 <Card.ImgOverlay>
-                  <CardTitle tag="h6" className="py-5 my-2">
+                  <br></br><br></br>
+                  <CardTitle tag="h3" className="py-5 my-2">
                     Register
                   </CardTitle>
                 </Card.ImgOverlay>
@@ -73,7 +74,7 @@ function Register({ setAlert, register, isAuthenticated }) {
                       </InputGroupText>
                     </InputGroupAddon>
                     <Input
-                      placeholder="First Name"
+                      placeholder="   First Name"
                       type="text"
                       id="firstNameField"
                       name="first_name"
@@ -89,7 +90,7 @@ function Register({ setAlert, register, isAuthenticated }) {
                       </InputGroupText>
                     </InputGroupAddon>
                     <Input
-                      placeholder="Last Name"
+                      placeholder="   Last Name"
                       type="text"
                       id="lastNameField"
                       name="last_name"
@@ -105,7 +106,7 @@ function Register({ setAlert, register, isAuthenticated }) {
                       </InputGroupText>
                     </InputGroupAddon>
                     <Input
-                      placeholder="Email"
+                      placeholder="   Email"
                       type="email"
                       name="email"
                       value={email}
@@ -120,7 +121,7 @@ function Register({ setAlert, register, isAuthenticated }) {
                       </InputGroupText>
                     </InputGroupAddon>
                     <Input
-                      placeholder="Password"
+                      placeholder="   Password"
                       type="password"
                       name="password"
                       value={password}
@@ -138,7 +139,7 @@ function Register({ setAlert, register, isAuthenticated }) {
                       </InputGroupText>
                     </InputGroupAddon>
                     <Input
-                      placeholder="Confirm Password"
+                      placeholder="   Confirm Password"
                       type="password"
                       name="re_password"
                       value={re_password}
@@ -147,7 +148,7 @@ function Register({ setAlert, register, isAuthenticated }) {
                     />
                   </InputGroup>
                   {/* <small className="float-right">SHOW</small> */}
-                  <FormGroup check className="text-leftp-3," color="info">
+                  {/* <FormGroup check className="text-leftp-3," color="info" >
                     <Label check>
                       <Input
                         type="checkbox"
@@ -155,11 +156,12 @@ function Register({ setAlert, register, isAuthenticated }) {
                         value={checkbox}
                         onChange={(e) => onChange(e)}
                         required
+                        
                       />
                       <span className="form-check-sign " />I agree to the{" "}
                       <Link to="/">terms and conditions</Link>.
                     </Label>
-                  </FormGroup>
+                  </FormGroup> */}
                 </CardBody>
                 <CardFooter>
                   <Button color="info" size="md" type='submit'>

@@ -54,7 +54,8 @@ const Login = ({ signIn, isAuthenticated }) => {
               <CardHeader>
                 <Card.Img height="100" alt="..." src="images/mediashop.png" />
                 <Card.ImgOverlay>
-                  <CardTitle tag="h6" className="py-5 my-2">
+                  <br></br><br></br>
+                  <CardTitle tag="h3" className="py-5 my-2">
                     Login
                   </CardTitle>
                 </Card.ImgOverlay>
@@ -63,27 +64,28 @@ const Login = ({ signIn, isAuthenticated }) => {
                 <CardBody>
                   <InputGroup className="p-3">
                     <InputGroupAddon addonType="prepend">
-                      <InputGroupText>
+                      <InputGroupText style={{width:30}}>
                         <i className="tim-icons icon-email-85" />
                       </InputGroupText>
                     </InputGroupAddon>
                     <Input
-                      placeholder="Email"
+                      placeholder="   Email"
                       type="email"
                       name="email"
                       value={email}
                       onChange={(e) => onChange(e)}
                       required
+                      
                     />
                   </InputGroup>
                   <InputGroup className="p-3">
                     <InputGroupAddon addonType="prepend">
-                      <InputGroupText>
+                      <InputGroupText style={{width:30}}>
                         <i className="tim-icons icon-lock-circle" />
                       </InputGroupText>
                     </InputGroupAddon>
                     <Input
-                      placeholder="Password"
+                      placeholder="   Password"
                       type="password"
                       name="password"
                       value={password}

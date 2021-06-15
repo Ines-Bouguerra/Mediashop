@@ -91,7 +91,7 @@ export default class Favorites extends Component {
                             <div className="cart_item_image">
                               <img
                                 src={wishlist.product.image}
-                                alt={wishlist.product.name}
+                                alt=""
                               />
                             </div>
                             <div className="cart_item_info d-flex flex-md-row flex-column justify-content-between">
@@ -103,7 +103,7 @@ export default class Favorites extends Component {
                                   Name
                                 </div>
                                 <div className="cart_item_text">
-                                  {wishlist.product.name} *** {wishlist.product.name.count} ***
+                                  {wishlist.product.name}
                                 </div>
                               </div>
                               <div
@@ -139,7 +139,7 @@ export default class Favorites extends Component {
 
                               <div
                                 className="cart_item_total cart_info_col m-1"
-                                style={{ width: 110 }}
+                                style={{ width: 115}}
                               >
                                 <div className="cart_item_title"></div>
                                 <div className="cart_item_text">
