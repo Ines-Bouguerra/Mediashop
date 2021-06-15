@@ -151,7 +151,7 @@ class App extends Component {
                       component={HomeScreen}
                     />
                     <Route path="/product/:id" component={ProductScreen} />
-                    <Route path="/compare" component={CompareList} />
+                    <Route path="/compare/:name/:reference/:priceString" component={CompareList} />
                     <Route path="/contact" component={Contact} />
                     <Route path="/brand" component={Brand} />
                     <Route path="/post" component={Post} />

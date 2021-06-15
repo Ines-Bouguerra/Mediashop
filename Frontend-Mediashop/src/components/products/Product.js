@@ -16,13 +16,15 @@ const Product = ({ product, category, loading }) => {
         <div className="product_price">
           {product.priceString} {product.currency}
         </div>
+       <div><small> {product.reference}</small></div> 
+
         <div className="product_name">
           <div>
             <Link to={`/product/${product.id}`}>{product.name}</Link>
           </div>
         </div>
         {/* <Link to={`/compare/${product.name}/${product.reference}/${product.priceString}`} > */}
-        <Link to={`/compare`}>
+        <Link to={`/compare/${product.name}/${product.reference}/${product.priceString}`}>
           <button
             type="button"
             rounded

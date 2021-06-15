@@ -1,4 +1,6 @@
 import {
+  COMPARE_PRODUCT,
+  COMPARE_PRODUCT_ERROR,
   GET_PRODUCT,
   GET_PRODUCT_BY_CATEGORY_ERROR,
   GET_PRODUCT_DETAILS,
@@ -73,6 +75,28 @@ export const productByCategoryReducer = (state = { products: [] }, action) => {
       return { ...state, loading: false, products: action.payload };
     case GET_PRODUCT_BY_CATEGORY_ERROR:
       return { ...state, loading: false, error: action.payload };
+    default:
+      return state;
+  }
+
+  
+};
+export const productCompareReducer = (state = { product: {} }, action) => {
+  const { type, payload } = action;
+
+  switch (type) {
+    case COMPARE_PRODUCT:
+      return {
+        ...state,
+        product: payload.results,
+        loading: false,
+      };
+    case COMPARE_PRODUCT_ERROR:
+      return {
+        ...state,
+        error: payload,
+        loading: false,
+      };
     default:
       return state;
   }
