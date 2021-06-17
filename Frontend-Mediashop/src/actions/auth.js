@@ -11,7 +11,11 @@ import {
   AUTHENTICATED_FAIL,
   GOOGLE_AUTH_SUCCESS,
   GOOGLE_AUTH_FAIL,
-  LOGOUT,WISHLIST_ADDED,WISHLIST_ADDED_ERROR,
+  LOGOUT,
+  PASSWORD_RESET_CONFIRM_FAIL,
+  PASSWORD_RESET_CONFIRM_SUCCESS,
+  PASSWORD_RESET_FAIL,
+  PASSWORD_RESET_SUCCESS,
 } from "./types";
 import axios from "axios";
 import { setAlert } from "./alerts";
@@ -22,9 +26,9 @@ export const load_user = () => async (dispatch) => {
   if (localStorage.getItem("access")) {
     const config = {
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `JWT ${localStorage.getItem('access')}`,
-        'Accept': 'application/json'
+        "Content-Type": "application/json",
+        Authorization: `JWT ${localStorage.getItem("access")}`,
+        Accept: "application/json",
       },
     };
 
@@ -134,68 +138,67 @@ export const googleAuthenticate = (state, code) => async (dispatch) => {
 };
 
 // Register User
-export const register = ({
-  first_name,
-  last_name,
-  email,
-  password,
-  re_password,
-  checkbox,
-}) => async (dispatch) => {
-  const config = {
-    headers: {
-      "content-type": "application/json",
-    },
+export const register =
+  ({ first_name, last_name, email, password, re_password, checkbox }) =>
+  async (dispatch) => {
+    const config = {
+      headers: {
+        "content-type": "application/json",
+      },
+    };
+    const body = JSON.stringify({
+      first_name,
+      last_name,
+      email,
+      password,
+      re_password,
+      checkbox,
+    });
+    try {
+      const res = await axios.post(
+        `${process.env.REACT_APP_API_URL}/auth/users/`,
+        body,
+        config
+      );
+      dispatch({
+        type: REGISTER_SUCCESS,
+        payload: res.data,
+      });
+    } catch (err) {
+      const errors = err.response.data.errors;
+      if (errors) {
+        errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
+      }
+      dispatch({
+        type: REGISTER_FAIL,
+      });
+    }
   };
-  const body = JSON.stringify({
-    first_name,
-    last_name,
-    email,
-    password,
-    re_password,
-    checkbox,
-  });
-  try {
-    const res = await axios.post(
-      `${process.env.REACT_APP_API_URL}/auth/users/`,
-      body,
-      config
-    );
-    dispatch({
-      type: REGISTER_SUCCESS,
-      payload: res.data,
-    });
-  } catch (err) {
-    const errors = err.response.data.errors;
-    if (errors) {
-      errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
-    }
-    dispatch({
-      type: REGISTER_FAIL,
-    });
-  }
-};
-//verify 
+//verify
 
-export const verify = (uid, token) => async dispatch => {
+export const verify = (uid, token) => async (dispatch) => {
   const config = {
     headers: {
-      'Content-Type': 'application/json'
-    }
+      "Content-Type": "application/json",
+    },
   };
 
   const body = JSON.stringify({ uid, token });
 
   try {
-    await axios.post(`${process.env.REACT_APP_API_URL}/auth/users/activation/`, body, config);
+    await axios.post(
+      `${process.env.REACT_APP_API_URL}/auth/users/activation/`,
+      body,
+      config
+    );
 
     dispatch({
       type: ACTIVATION_SUCCESS,
     });
   } catch (err) {
     dispatch({
-      type: ACTIVATION_FAIL
-    })
+      type: ACTIVATION_FAIL,
+    });
   }
 };
 
@@ -264,3 +267,47 @@ export const addToWishlist = async (productId, authtoken) =>
       },
     }
   );
+
+  export const reset_password = (email) => async dispatch => {
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+
+    const body = JSON.stringify({ email });
+
+    try {
+        await axios.post(`${process.env.REACT_APP_API_URL}/auth/users/reset_password/`, body, config);
+
+        dispatch({
+            type: PASSWORD_RESET_SUCCESS
+        });
+    } catch (err) {
+        dispatch({
+            type: PASSWORD_RESET_FAIL
+        });
+    }
+};
+
+export const reset_password_confirm = (uid, token, new_password, re_new_password) => async dispatch => {
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+
+    const body = JSON.stringify({ uid, token, new_password, re_new_password });
+
+    try {
+        await axios.post(`${process.env.REACT_APP_API_URL}/auth/users/reset_password_confirm/`, body, config);
+
+        dispatch({
+            type: PASSWORD_RESET_CONFIRM_SUCCESS
+        });
+    } catch (err) {
+        dispatch({
+            type: PASSWORD_RESET_CONFIRM_FAIL
+        });
+    }
+};
