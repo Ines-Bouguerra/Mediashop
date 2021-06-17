@@ -2,6 +2,7 @@ import {
   COMPARE_PRODUCT,
   COMPARE_PRODUCT_ERROR,
   GET_PRODUCT,
+  GET_PRODUCT_BY_CATEGORY,
   GET_PRODUCT_BY_CATEGORY_ERROR,
   GET_PRODUCT_DETAILS,
   PRODUCT_DETAILS_ERROR,
@@ -71,7 +72,7 @@ export const productTopPromotionReducer = (
 
 export const productByCategoryReducer = (state = { products: [] }, action) => {
   switch (action.type) {
-    case GET_PRODUCT_DETAILS:
+    case GET_PRODUCT_BY_CATEGORY:
       return { ...state, loading: false, products: action.payload };
     case GET_PRODUCT_BY_CATEGORY_ERROR:
       return { ...state, loading: false, error: action.payload };

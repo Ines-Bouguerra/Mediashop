@@ -128,10 +128,10 @@ export const getProductByCategory = (slug='') => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: GET_PRODUCT_BY_CATEGORY_ERROR,
-      payload: {
-        msg: error.response.statusText,
-        status: error.response.status,
-      },
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
     })
   }
 }
