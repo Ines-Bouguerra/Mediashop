@@ -56,8 +56,6 @@ INSTALLED_APPS = [
     'category.apps.CategoryConfig',
     # post application
     'post.apps.PostConfig',
-    # rating application
-    'rating.apps.RatingConfig',
     # contact application
     'contact.apps.ContactConfig',
     # brand application
@@ -103,7 +101,7 @@ ROOT_URLCONF = 'mediashop_drf.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'build')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -191,7 +189,9 @@ SIMPLE_JWT = {
         'rest_framework_simplejwt.tokens.AccessToken',
     )
 }
-
+PROTOCOL=('http')
+DOMAIN = ('localhost:3000') 
+SITE_NAME = ('Mediashop')
 DJOSER = {
     'LOGIN_FIELD': 'email',
     'USER_CREATE_PASSWORD_RETYPE': True,

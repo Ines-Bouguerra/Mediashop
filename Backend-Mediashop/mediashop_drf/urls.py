@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.conf.urls import url, include
 from django.urls import path, include, re_path
-# from django.views.generic import TemplateView
+from django.views.generic import TemplateView
 from django.conf import settings
 from django.conf.urls.static import static, serve
 # from rest_framework_simplejwt import views as jwt_views
@@ -28,7 +28,6 @@ urlpatterns = [
     url(r'^', include('account.urls')),
     url(r'^', include('category.urls')),
     url(r'^', include('post.urls')),
-    url(r'^', include('rating.urls')),
     url(r'^', include('contact.urls')),
     url(r'^', include('brand.urls')),
     path('admin/', admin.site.urls),
@@ -42,9 +41,12 @@ urlpatterns = [
     path('auth/', include('djoser.social.urls')),
     re_path(r'^(?P<path>.*)$', serve, { 'document_root': settings.FRONTEND_ROOT }),
 
-]
-# urlpatterns += [re_path(r'^.*',
-#                         TemplateView.as_view(template_name='index.html'))]
+]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+urlpatterns += [re_path(r'^.*',
+                        TemplateView.as_view(template_name='index.html'))]
+
+
 
 admin.site.index_title = "Mediashop"
 admin.site.site_header = "Mediashop Price Comparison Admin"
