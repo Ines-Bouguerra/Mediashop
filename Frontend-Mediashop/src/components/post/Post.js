@@ -1,27 +1,25 @@
 import React, { useState } from "react";
 import { FaStar } from "react-icons/fa";
 
-const colors = {
-  orange: "#FFBA5A",
-  grey: "#a9a9a9",
-};
+const Post = () => {
+  const [subject, setSubject] = useState("");
+  const [comment, setComment] = useState("");
+  const [rate, setrate] = useState(null);
+  const [hover, setHover] = useState(null);
 
-export default function Post() {
-  const [currentValue, setCurrentValue] = useState(0);
-  const [hoverValue, setHoverValue] = useState(undefined);
-  const stars = Array(5).fill(0);
+  async function addComment() {
+    console.warn(subject, comment, rate);
+    const formData = new FormData();
+    formData.append("subject", subject);
+    formData.append("comment", comment);
+    formData.append("rate", rate);
+    let result = await fetch("http://localhost:8080/api/post/", {
+      method: "POST",
+      body: formData,
+    });
+    alert("Your review has ben sent. Thank you for your interest.");
+  }
 
-  const handleClick = (value) => {
-    setCurrentValue(value);
-  };
-
-  const handleMouseOver = (newHoverValue) => {
-    setHoverValue(newHoverValue);
-  };
-
-  const handleMouseLeave = () => {
-    setHoverValue(undefined);
-  };
   return (
     <div className="">
       <div className="reviews">
@@ -67,6 +65,7 @@ export default function Post() {
                         name="subject"
                         required
                         data-error="Subject is required."
+                        onChange={(e) => setSubject(e.target.value)}
                       />
                     </div>
                     <div className="contact_form_text">
@@ -80,33 +79,40 @@ export default function Post() {
                         required
                         data-error="Please type what you want..."
                         defaultValue=""
+                        onChange={(e) => setComment(e.target.value)}
                       />
                     </div>
                     <br></br>
                     <div className="contact_form_text py-1">
                       <span className="m-3 py-3 font-bold col-teal">
-                        Your rating :
+                        Your rate :
                       </span>
                       <div>
                         <br></br>
-                        {stars.map((_, index) => {
+
+                        {[...Array(5)].map((star, i) => {
+                          const rateValue = i + 1;
                           return (
-                            <FaStar
-                              key={index}
-                              size={24}
-                              onClick={() => handleClick(index + 1)}
-                              onMouseOver={() => handleMouseOver(index + 1)}
-                              onMouseLeave={handleMouseLeave}
-                              color={
-                                (hoverValue || currentValue) > index
-                                  ? colors.orange
-                                  : colors.grey
-                              }
-                              style={{
-                                marginRight: 10,
-                                cursor: "pointer",
-                              }}
-                            />
+                            <label>
+                              <input
+                                type="radio"
+                                name="rate"
+                                value={rateValue}
+                                onClick={() => setrate(rateValue)}
+                              />
+
+                              <FaStar
+                                className="star"
+                                onMouseEnter={() => setHover(rateValue)}
+                                onMouseLeave={() => setHover(null)}
+                                color={
+                                  rateValue <= (hover || rate)
+                                    ? "#ffc107"
+                                    : "#e4e5e9"
+                                }
+                                size={20}
+                              />
+                            </label>
                           );
                         })}
                       </div>
@@ -119,6 +125,7 @@ export default function Post() {
                         type="submit"
                         rounded
                         className="btn bg-teal btn-block btn-lg waves-effect col-xs-6 col-sm-3 col-md-2 col-lg-3"
+                        onClick={addComment}
                       >
                         <i class="material-icons">forum</i>
                         <span className="m-3">Send Your Review</span>
@@ -138,21 +145,7 @@ export default function Post() {
           </div>
         </div>
       </div>
-      {/* <>
-        <ul className="">
-          {this.state.postList.map((post) => (
-            <li className="" key={post.id}>
-              <a href="xx">{post.create_at}</a>
-              <br></br>
-              <a href="xx">{post.subject}</a>
-              <br></br>
-              <a href="xx">{post.comment}</a>
-              <br></br>
-              <a href="xx">{post.rate}</a>
-            </li>
-          ))}
-        </ul>
-      </> */}
     </div>
   );
-}
+};
+export default Post;
