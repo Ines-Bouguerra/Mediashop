@@ -24,7 +24,7 @@ def lookup(query, index=INDEXES, fields=fields):
             'sub_category': result.sub_category,
             'name': result.name,
             'price': result.priceString,
-            'brand': result.brand,
+            # 'brand': result.brand,
             'short_description': result.short_description,
             'description': result.description,
             'image': result.image,
