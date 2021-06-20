@@ -1,23 +1,22 @@
-// Header.js
-import React, { Fragment, useEffect, useState, } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { Link, Route } from "react-router-dom";
 import { logout } from "../../actions/auth";
-import { getCategories } from '../../actions/category';
+import { getCategories } from "../../actions/category";
 import SearchBox from "../products/SearchBox";
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from "react-redux";
 const Header = ({ logout, isAuthenticated }) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [redirect, setRedirect] = useState(false);
   const logout_user = () => {
     logout();
     setRedirect(true);
   };
-  const categoryList = useSelector((state) => state.categoryList)
-  const { categories } = categoryList
+  const categoryList = useSelector((state) => state.categoryList);
+  const { categories } = categoryList;
   useEffect(() => {
-    dispatch(getCategories())
-  }, [dispatch])
+    dispatch(getCategories());
+  }, [dispatch]);
 
   const guestLinks = () => (
     <Fragment>
@@ -54,9 +53,7 @@ const Header = ({ logout, isAuthenticated }) => {
 
   return (
     <Fragment>
-      {/* Header */}
       <header className="header">
-        {/* Top Bar */}
         <div className="top_bar">
           <div className="container">
             <div className="row">
@@ -64,7 +61,7 @@ const Header = ({ logout, isAuthenticated }) => {
                 <div className="top_bar_contact_item">
                   <div className="top_bar_icon">
                     <img src="images/phone.png" alt="" />
-                  </div>{" "}
+                  </div>
                   71 827 484
                 </div>
                 <div className="top_bar_contact_item">
@@ -80,11 +77,10 @@ const Header = ({ logout, isAuthenticated }) => {
             </div>
           </div>
         </div>
-        {/* Header Main */}
+
         <div className="header_main">
           <div className="container">
             <div className="row">
-              {/* Logo */}
               <div className="col-lg-2 col-sm-3 col-3 order-1">
                 <div className="logo_container">
                   <div className="logo">
@@ -92,50 +88,51 @@ const Header = ({ logout, isAuthenticated }) => {
                   </div>
                 </div>
               </div>
-              {/* Search */}
-              <Route render={({ history }) => <SearchBox history={history} />} />
-              {/* Wishlist */}
+              <Route
+                render={({ history }) => <SearchBox history={history} />}
+              />
               <div className="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
                 <div className="wishlist_cart d-flex flex-row align-items-center justify-content-end">
-                  <div className="wishlist d-flex flex-row align-items-center justify-content-end">
-                    <div className="wishlist_icon">
-                      <img src="images/heart.png" alt="" />
-                    </div>
-                    <div className="wishlist_content">
-                      <div className="wishlist_text">
-                        <Link to="/wishlist">Wishlist</Link>
+                  {isAuthenticated && (
+                    <div className="wishlist d-flex flex-row align-items-center justify-content-end">
+                      <div className="wishlist_icon">
+                        <img src="images/heart.png" alt="" />
                       </div>
-                      <div className="wishlist_count">115</div>
+                      <div className="wishlist_content">
+                        <div className="wishlist_text">
+                          <Link to="/wishlist">Wishlist</Link>
+                        </div>
+                        <div className="wishlist_count">115</div>
+                      </div>
                     </div>
-                  </div>
-                  {/* Notification */}
-                  <div className="">
-                    <div className="notif_container d-flex flex-row align-items-center justify-content-end">
-                      <div className="notif_icon">
-                        <img src="images/notif.png" height="35" alt="" />
-                        <div className="cart_count">
-                          <span>10</span>
+                  )}
+                  {isAuthenticated && (
+                    <div className="">
+                      <div className="notif_container d-flex flex-row align-items-center justify-content-end">
+                        <div className="notif_icon">
+                          <img src="images/notif.png" height="35" alt="" />
+                          <div className="cart_count">
+                            <span>10</span>
+                          </div>
+                        </div>
+                        <div className="cart_content">
+                          <div className="cart_text">
+                            <Link to="/notification">Notification</Link>
+                          </div>
                         </div>
                       </div>
-                      <div className="cart_content">
-                        <div className="cart_text">
-                          <Link to="/notification">Notification</Link>
-                        </div>
-                      </div>
                     </div>
-                  </div>
+                  )}
                 </div>
               </div>
             </div>
           </div>
         </div>
-        {/* Main Navigation */}
         <nav className="main_nav">
           <div className="container">
             <div className="row">
               <div className="col">
                 <div className="main_nav_content d-flex flex-row">
-                  {/* Categories Menu */}
                   <div className="cat_menu_container">
                     <div className="cat_menu_title d-flex flex-row align-items-center justify-content-start">
                       <div className="cat_burger">
@@ -147,19 +144,15 @@ const Header = ({ logout, isAuthenticated }) => {
                     </div>
                     <ul className="cat_menu">
                       {categories.map((category) => (
-
                         <li>
                           <Link to="/">
                             {category.name}
                             <i className="fas fa-chevron-right ml-auto" />
                           </Link>
                         </li>
-
-
                       ))}
                     </ul>
                   </div>
-                  {/* Main Nav Menu */}
                   <div className="main_nav_menu ml-auto">
                     <ul className="standard_dropdown main_nav_dropdown">
                       <li>
@@ -215,7 +208,6 @@ const Header = ({ logout, isAuthenticated }) => {
                       </li>
                     </ul>
                   </div>
-                  {/* Menu Trigger */}
                   <div className="menu_trigger_container ml-auto">
                     <div className="menu_trigger d-flex flex-row align-items-center justify-content-end">
                       <div className="menu_burger">
@@ -240,7 +232,6 @@ const Header = ({ logout, isAuthenticated }) => {
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.authReducer.isAuthenticated,
-
 });
 
 export default connect(mapStateToProps, { logout })(Header);
