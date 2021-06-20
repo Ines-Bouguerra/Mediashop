@@ -22,7 +22,6 @@ const initialState = {
   access: localStorage.getItem("access"),
   refresh: localStorage.getItem("refresh"),
   isAuthenticated: null,
-  isAdmin: null,
   loading: true,
 };
 

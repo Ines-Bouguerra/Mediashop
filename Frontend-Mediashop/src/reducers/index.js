@@ -22,8 +22,8 @@ import {
   productCompareReducer,
 } from "./product";
 export default combineReducers({
-  alert,
-  user: authReducer,
+  // alert,
+  // user: authReducer,
   authReducer,
   categoryList: categoryList,
   categoryDelete: deleteCategoryReducer,
