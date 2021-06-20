@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.http import Http404
 from rest_framework import status
 from rest_framework.views import APIView
@@ -38,6 +39,8 @@ class PostViewset(APIView):
             serializer.save()
             dict_response = {"error": False,
                              "message": "Post Data Save Successfully"}
+            messages.success(
+                request, "Your review has ben sent. Thank you for your interest.")
         except:
             dict_response = {"error": True,
                              "message": "Error During Saving Post Data"}

@@ -27,4 +27,4 @@ class Post(models.Model):
     update_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.subject
+        return '%s - %s' % (self.product.name,self.subject)
