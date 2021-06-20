@@ -62,8 +62,10 @@ def product_list(request):
             paginator.paginate_queryset(products, request),
             context={"request": request}, many=True)
         return JsonResponse({
-
-            'results': products__Serializer.data})
+            'context': context,
+            'results': products__Serializer.data,
+        }
+        )
 
 
 """

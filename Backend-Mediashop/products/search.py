@@ -7,7 +7,7 @@ ELASTIC_HOST = 'http://localhost:9200/'
 client = elasticsearch.Elasticsearch(hosts=[ELASTIC_HOST])
 INDEXES = ['mediashop_products']
 fields = ['name', 'reference', 'short_description',
-          'description',  'sub_category', 'brand', 'priceString','image','discount']
+          'description',  'sub_category', 'priceString','image','discount']
 
 
 def lookup(query, index=INDEXES, fields=fields):
