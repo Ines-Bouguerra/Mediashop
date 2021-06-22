@@ -21,7 +21,7 @@ const SearchBox = ({ history }) => {
         if (query.trim()) {
             history.push(`/search/${query}`)
         } else {
-            history.push('/')
+            history.push('/product-list')
         }
     }
 

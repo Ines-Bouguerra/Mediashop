@@ -17,6 +17,8 @@ import {
   BRAND_DETAILS_FAIL,
 } from "./types";
 
+
+
 export const listBrands = () => async (dispatch, getState) => {
   try {
     dispatch({

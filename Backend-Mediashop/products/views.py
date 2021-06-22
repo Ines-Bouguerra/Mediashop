@@ -30,7 +30,46 @@ from rest_framework.filters import OrderingFilter
 from django.core.paginator import Paginator
 
 
-@api_view(['GET'])
+# @api_view(['GET'])
+# def product_list(request):
+#     query_params = request.GET
+#     query = query_params.get('query')
+#     category_slug = query_params.get('category_slug')
+#     brand_slug = query_params.get('brand_slug')
+#     price = query_params.get('price')
+#     paginator = ProductPageNumberPagination()
+#     products = Product.objects.all()
+#     context = {}
+#     if query is not None:
+
+#         results = lookup(query)
+#         context['results'] = results
+#         context['query'] = query
+#         print(results)
+
+#         if category_slug:
+#             category = get_object_or_404(Category, slug=category_slug)
+#             products = products.filter(category=category)
+
+#         if brand_slug:
+#             brand = get_object_or_404(Brand, slug=brand_slug)
+#             products = products.filter(brand=brand)
+
+#         if price:
+#             products = products.filter(price=price)
+
+
+#         products__Serializer = products_Serializer(
+#             paginator.paginate_queryset(products, request),
+#             context={"request": request}, many=True)
+#         return JsonResponse({
+#             'context': context,
+#             'results': products__Serializer.data,
+#         }
+#         )
+
+
+@api_view(['GET', 'POST', 'DELETE'])
 def product_list(request):
     query_params = request.GET
     query = query_params.get('query')
@@ -40,32 +79,31 @@ def product_list(request):
     paginator = ProductPageNumberPagination()
     products = Product.objects.all()
     context = {}
-    if query is not None:
-
+    if query != '':
         results = lookup(query)
-        context['results'] = results
-        context['query'] = query
-        print(results)
+        context['results'] = paginator.paginate_queryset(results, request)
+        context['query'] = JsonResponse(query, safe=False)
+        return paginator.get_paginated_response(results)
+        
+    if category_slug:
+        category = get_object_or_404(Category, slug=category_slug)
+        products = products.filter(category=category)
 
-        if category_slug:
-            category = get_object_or_404(Category, slug=category_slug)
-            products = products.filter(category=category)
+    if brand_slug:
+        brand = get_object_or_404(Brand, slug=brand_slug)
+        products = products.filter(brand=brand)
 
-        if brand_slug:
-            brand = get_object_or_404(Brand, slug=brand_slug)
-            products = products.filter(brand=brand)
+    if price:
+        products = products.filter(price=price)
+    else:
 
-        if price:
-            products = products.filter(price=price)
+        context = paginator.paginate_queryset(products, request)
+        name = request.GET.get('name', None)
+        if name is not None:
+            products = products.filter(title__icontains=name)
 
-        products__Serializer = products_Serializer(
-            paginator.paginate_queryset(products, request),
-            context={"request": request}, many=True)
-        return JsonResponse({
-            'context': context,
-            'results': products__Serializer.data,
-        }
-        )
+        products__Serializer = products_Serializer(context, many=True)
+        return paginator.get_paginated_response(products__Serializer.data)
 
 
 """

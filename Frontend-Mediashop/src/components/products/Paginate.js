@@ -1,15 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Paginate = ({ pages, page, prev, next, query = "" }) => {
+const Paginate = ({ pages, page, limits, query = "" }) => {
   return (
     pages > 1 && (
       <nav className="align-center">
         <ul className="pagination">
           <li>
             <Link
-                to={query ? `/search/${query}/page/${prev}` : `/page/${pages.prev}`}
-                className="waves-effect"
+              to={`/page/1/limits/20`}
+              className="waves-effect"
               style={{ height: 33, width: 50 }}
             >
               <i className="material-icons">chevron_left</i>
@@ -21,15 +21,19 @@ const Paginate = ({ pages, page, prev, next, query = "" }) => {
                 className="waves-effect align-center"
                 style={{ height: 33, width: 50 }}
                 key={x + 1}
-                to={query ? `/search/${query}/page/${x + 1}` : `/page/${x + 1}`}
+                to={
+                  query
+                    ? `/search/${query}/page/${x + 1}`
+                    : `/page/${x + 1}/limits/${limits}`
+                }
               >
                 <span active={x + 1 === page}>{x + 1}</span>
               </Link>
             </li>
           ))}
           <li>
-          <Link
-              to={query ? `/search/${query}/page/${next}` : `/page/${next}`}
+            <Link
+              to={`/page/20/limits/20`}
               className="waves-effect"
               style={{ height: 33, width: 50 }}
             >

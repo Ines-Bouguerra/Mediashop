@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Product from "../../components/products/Product";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -8,43 +8,61 @@ import Filter from "../../components/products/Filter";
 import { getCategories, getSubCategories } from "../../actions/category";
 import Paginate from "../../components/products/Paginate";
 import ProductCarousel from "../../components/products/ProductCarousel";
-
 import Brand from "../../components/brand/Brand";
 import SubCategory from "../../components/category/SubCategory";
+import { listBrands } from "../../actions/brand";
 const HomeScreen = ({ match }) => {
   const dispatch = useDispatch();
   const query = match.params.query;
-  const pageNumber = match.params.pageNumber || 1;
+  const page = match.params.page || 1;
+  const limits = match.params.limits || 20;
   const name = match.params.name;
   const reference = match.params.reference;
   const priceString = match.params.priceString;
+  const [category_slug, setcategory_slug] = useState("");
+  const [brand_slug, setbrand_slug] = useState("");
+
   const productList = useSelector((state) => state.productList);
-  const { loading, products, page, pages } = productList;
+  const { loading, products, pages } = productList;
 
   const categoryList = useSelector((state) => state.categoryList);
   const { categories } = categoryList;
 
+  const brandList = useSelector((state) => state.brandList);
+  const { brands } = brandList;
+  console.log(
+    "TCL ~ file: HomeScreen.js ~ line 33 ~ HomeScreen ~ brands",
+    brands
+  );
 
   useEffect(() => {
     dispatch(
-      getProduct(query, pageNumber),
+      getProduct(query, page, limits, category_slug, brand_slug),
       getCategories(),
+      listBrands(),
       getSubCategories(),
       compareProduct(name, reference, priceString)
     );
-  }, [dispatch, query, pageNumber, name, reference, priceString]);
-
+  }, [
+    dispatch,
+    query,
+    page,
+    category_slug,
+    brand_slug,
+    limits,
+    name,
+    reference,
+    priceString,
+  ]);
 
   return (
     <div className="super_container">
-      {/* Home */}
       {!query ? <ProductCarousel /> : <></>}
-      {/* Shop */}
+
       <div className="shop">
         <div className="container">
           <div className="row">
             <div className="col-lg-3">
-              {/* Shop Sidebar */}
               <div className="shop_sidebar">
                 <div className="sidebar_section">
                   <div className="sidebar_title font-underline col-teal font-italic">
@@ -52,8 +70,12 @@ const HomeScreen = ({ match }) => {
                   </div>
                   <ul className="sidebar_categories">
                     {categories.map((category) => (
-                      <li>
-                        <a href="#!">{category.name}</a>
+                      <li
+                        style={{ cursor: "pointer", liststyleType: "none" }}
+                        key={category}
+                        onClick={() => setcategory_slug(category.slug)}
+                      >
+                        {category.name}
                       </li>
                     ))}
                   </ul>
@@ -91,17 +113,26 @@ const HomeScreen = ({ match }) => {
                     Brands
                   </div>
                   <br />
-                  <Brand />
+                  <ul className="brands_list">
+                    {brands.map((brand) => (
+                      <li
+                        className="brand"
+                        style={{ cursor: "pointer", liststyleType: "none" }}
+                        key={brand}
+                        onClick={() => setbrand_slug(brand.slug)}
+                      >
+                        {brand.name}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             </div>
             <div className="col-lg-9">
-              {/* Product Content */}
               <div className="shop_content">
                 <Filter />
                 <div className="product_grid ">
                   <div className="product_grid_border" />
-                  {/* Product Item */}
                   {loading ? (
                     <Loader />
                   ) : (
@@ -116,7 +147,6 @@ const HomeScreen = ({ match }) => {
                           </div>
                         ))}
                       </div>
-                      {/* Product Page Navigation */}
                       <br></br>
                       <br></br>
                       <br></br>
@@ -124,6 +154,7 @@ const HomeScreen = ({ match }) => {
                       <Paginate
                         pages={pages}
                         page={page}
+                        limits={limits}
                         query={query ? query : ""}
                       />
                     </>

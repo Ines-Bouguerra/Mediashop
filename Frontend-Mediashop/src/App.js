@@ -30,7 +30,6 @@ import Post from "./components/post/Post";
 import CompareList from "./components/products/CompareList";
 import UserRoute from "./components/routing/UserRoute";
 import Layout from "./hocs/Layout";
-import CategoryScreen from "./screens/client/CategoryScreen";
 import HomeScreen from "./screens/client/HomeScreen";
 import ProductScreen from "./screens/client/ProductScreen";
 import store from "./store";
@@ -118,13 +117,9 @@ class App extends Component {
               <Route path="" exact>
                 <Layout>
                   <Switch>
-                    <Route exact path="/login">
-                      <Login />
-                    </Route>
-
+                    <Route exact path="/login" component={Login} />
                     <Route exact path="/" component={Home} />
                     <UserRoute exact path="/wishlist" component={Favorites} />
-
                     <Route exact path="/register" component={Register} />
                     <Route exact path="/google" component={Google} />
                     <Route
@@ -132,26 +127,32 @@ class App extends Component {
                       path="/reset-password"
                       component={ResetPassword}
                     />
+
                     <Route
                       path="/password/reset/confirm/:uid/:token"
                       component={ResetPasswordConfirm}
                     />
                     <Route path="/activate/:uid/:token" component={Activate} />
-                    <Route path="/category/:slug" component={CategoryScreen} />
+                    {/* <Route path="/category/:slug" component={CategoryScreen} /> */}
                     <Route exact path="/product-list" component={HomeScreen} />
-                    <Route exact path="/search/:query" component={HomeScreen} />
+                   <Route exact path="/product-list/category/:category_slug" component={HomeScreen} /> 
+                    <Route exact path="/product-list/search/:query" component={HomeScreen} />
                     <Route
                       exact
-                      path="/page/:pageNumber"
+                      path="/product-list/page/:page/limits/:limits"
                       component={HomeScreen}
                     />
+
                     <Route
-                      exact
-                      path="/search/:query/page/:pageNumber"
+                      path="/product-list/search/:query/page/:page"
                       component={HomeScreen}
+                      exact
                     />
                     <Route path="/product/:id" component={ProductScreen} />
-                    <Route path="/compare/:name/:reference/:priceString" component={CompareList} />
+                    <Route
+                      path="/compare/:name/:reference/:priceString"
+                      component={CompareList}
+                    />
                     <Route path="/contact" component={Contact} />
                     <Route path="/brand" component={Brand} />
                     <Route path="/post" component={Post} />

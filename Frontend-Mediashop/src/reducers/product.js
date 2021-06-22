@@ -19,9 +19,9 @@ export const productListReducer = (state = { products: [] }, action) => {
       return {
         ...state,
         products: payload.results,
-        // pages: payload.count-4,
-        // prev: payload.previous,
-        // next: payload.next,
+        pages: payload.count-4,
+        prev: payload.previous,
+        next: payload.next,
         loading: false,
       };
     case PRODUCT_ERROR:

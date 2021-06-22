@@ -9,6 +9,10 @@ const BrandComponent = ({ history }) => {
 
   const brandList = useSelector((state) => state.brandList);
   const { loading, error, brands } = brandList;
+  console.log(
+    "TCL ~ file: BrandComponent.js ~ line 12 ~ BrandComponent ~ brands",
+    brands
+  );
   const brandDelete = useSelector((state) => state.brandDelete);
   const {
     loading: loadingDelete,
@@ -16,19 +20,9 @@ const BrandComponent = ({ history }) => {
     success: successDelete,
   } = brandDelete;
 
-  
   useEffect(() => {
-   
-   
-      dispatch(listBrands());
-    
-  }, [
-    dispatch,
-    history,
-    loadingDelete,
-    errorDelete,
-    successDelete,
-  ]);
+    dispatch(listBrands());
+  }, [dispatch, history, loadingDelete, errorDelete, successDelete]);
   const deleteHandler = (id) => {
     if (window.confirm("Are you sure! You want to delete ?")) {
       dispatch(deleteBrand(id));
@@ -48,7 +42,8 @@ const BrandComponent = ({ history }) => {
                       <h2>All Brand</h2>
                     </div>
                     <div className="col-lg-2">
-                      <Link to='/admin/add-brand'
+                      <Link
+                        to="/admin/add-brand"
                         type="submit"
                         className="btn bg-pink btn-block waves-effect"
                       >
@@ -63,7 +58,7 @@ const BrandComponent = ({ history }) => {
                   {errorDelete && (
                     <Message variant="danger">{errorDelete}</Message>
                   )}
-                 
+
                   {loading ? (
                     <Loader />
                   ) : error ? (
@@ -100,15 +95,14 @@ const BrandComponent = ({ history }) => {
                             </td>
                             <td>
                               <Link
-                               to={`/admin/brand/${brand.id}`}
+                                to={`/admin/brand/${brand.id}`}
                                 className=" m-3 btn bg-light-blue  waves-effect waves-circle waves-float"
                               >
                                 <i className="material-icons">info</i>
                               </Link>
                               <Link
-                             to={`/admin/edit-brand/${brand.id}`}
+                                to={`/admin/edit-brand/${brand.id}`}
                                 className=" m-3 btn bg-cyan waves-effect waves-circle waves-float"
-                                
                               >
                                 <i className="material-icons">edit</i>
                               </Link>

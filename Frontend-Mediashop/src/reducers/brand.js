@@ -19,6 +19,8 @@ import {
   BRAND_DETAILS_FAIL,
 } from "../actions/types";
 
+
+
 export const brandListReducer = (state = { brands: [] }, action) => {
   switch (action.type) {
     case BRAND_LIST_REQUEST:
