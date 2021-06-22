@@ -13,6 +13,7 @@ import {
   brandCreateReducer,
   brandDetailsReducer,
   brandUpdateReducer,
+  brandList,
 } from "./brand";
 import {
   productByCategoryReducer,
@@ -36,6 +37,7 @@ export default combineReducers({
   contact: contact,
   brandDelete: deleteBrandReducer,
   brandList: brandListReducer,
+  brandListe:brandList,
   brandCreate: brandCreateReducer,
   brandDetails: brandDetailsReducer,
   brandUpdate: brandUpdateReducer,

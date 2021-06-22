@@ -33,8 +33,34 @@ export const brandListReducer = (state = { brands: [] }, action) => {
       return { brands: [] };
     default:
       return state;
-  }
+    }
 };
+
+
+export const brandList = (state = { brandss: [] }, action) => {
+  switch (action.type) {
+   
+    case BRAND_LIST_SUCCESS:
+      return { loading: false,...state, brandss: action.payload.data };
+    case BRAND_LIST_FAIL:
+      return { loading: false,...state, error: action.payload.error };
+   
+    default:
+      return state;
+  }
+
+
+
+}
+
+
+
+
+
+
+
+
+
 export const deleteBrandReducer = (state = {}, action) => {
   switch (action.type) {
     case BRAND_DELETE_REQUEST:

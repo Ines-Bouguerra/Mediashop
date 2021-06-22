@@ -11,6 +11,7 @@ import ProductCarousel from "../../components/products/ProductCarousel";
 import Brand from "../../components/brand/Brand";
 import SubCategory from "../../components/category/SubCategory";
 import { listBrands } from "../../actions/brand";
+import brandss from "../../components/brand/constants";
 const HomeScreen = ({ match }) => {
   const dispatch = useDispatch();
   const query = match.params.query;
@@ -28,19 +29,19 @@ const HomeScreen = ({ match }) => {
   const categoryList = useSelector((state) => state.categoryList);
   const { categories } = categoryList;
 
-  const brandList = useSelector((state) => state.brandList);
-  const { brands } = brandList;
+  // const brandListe = useSelector((state) => state.brandListe);
+  // const { brandss } = brandListe;
   console.log(
     "TCL ~ file: HomeScreen.js ~ line 33 ~ HomeScreen ~ brands",
-    brands
+    brandss
   );
 
   useEffect(() => {
     dispatch(
       getProduct(query, page, limits, category_slug, brand_slug),
       getCategories(),
-      listBrands(),
       getSubCategories(),
+      listBrands(),
       compareProduct(name, reference, priceString)
     );
   }, [
@@ -114,7 +115,7 @@ const HomeScreen = ({ match }) => {
                   </div>
                   <br />
                   <ul className="brands_list">
-                    {brands.map((brand) => (
+                    {brandss.map((brand) => (
                       <li
                         className="brand"
                         style={{ cursor: "pointer", liststyleType: "none" }}
@@ -125,6 +126,7 @@ const HomeScreen = ({ match }) => {
                       </li>
                     ))}
                   </ul>
+                  {/* <Brand /> */}
                 </div>
               </div>
             </div>
