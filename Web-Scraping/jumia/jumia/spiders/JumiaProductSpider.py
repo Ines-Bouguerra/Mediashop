@@ -16,16 +16,16 @@ class JumiaproductspiderSpider(scrapy.Spider):
 
         for product in products:
             item = JumiaItem()
-            item['title'] = product.xpath(
+            item['name'] = product.xpath(
                 'h3[@class="name"]/text()').extract_first()
             item['price'] = product.xpath(
                 'div[@class="prc"]/text()').extract_first()
             item['oldPrice'] = product.xpath(
                 'div[@class="s-prc-w"]/div[@class="old"]/text()').extract_first()
-            item['promotion'] = product.xpath(
+            item['discount'] = product.xpath(
                 'div[@class="s-prc-w"]/div[@class="tag _dsct _sm"]/text()').extract_first()
-            item['rating'] = product.xpath(
-                'div[@class="rev"]/div[@class="stars _s"]/text()').extract_first()
+            # item['rating'] = product.xpath(
+            #     'div[@class="rev"]/div[@class="stars _s"]/text()').extract_first()
 
             yield item
         NEXT_PAGE_SELECTOR = 'a.pg ::attr(href)'

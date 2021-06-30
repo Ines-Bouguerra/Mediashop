@@ -4,8 +4,8 @@ from scrapy.item import Item, Field
 
 class JumiaItem(scrapy.Item):
 
-    title = Field()
+    name = Field()
     price = Field()
     oldPrice = Field()
-    promotion = Field()
-    rating = Field()
+    discount = Field()
+   

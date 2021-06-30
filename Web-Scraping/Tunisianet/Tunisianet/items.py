@@ -7,8 +7,8 @@ class TunisianetItem(scrapy.Item):
     url = Field()
     image = Field()
     reference = Field()
-    title = Field()
-    pricestring = Field()
+    name = Field()
+    priceString = Field()
     price = Field()
     brand = Field()
     category = Field()
@@ -16,7 +16,7 @@ class TunisianetItem(scrapy.Item):
     timestamp = Field()
     currency = Field()
     country = Field()
-    domain = Field()
+    domaine = Field()
     description = Field()
 
 class TunisianetCategoryItem(scrapy.Item):

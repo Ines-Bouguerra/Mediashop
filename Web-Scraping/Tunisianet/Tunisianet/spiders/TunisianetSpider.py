@@ -7,8 +7,11 @@ from datetime import datetime
 class TunisianetspiderSpider(scrapy.Spider):
     name = 'TunisianetSpider'
     allowed_domains = ['tunisianet.com.tn']
-    start_urls = ['https://www.tunisianet.com.tn/702-ordinateur-portable', 'https://www.tunisianet.com.tn/700-accessoires-et-peripheriques', 'https://www.tunisianet.com.tn/701-ordinateur-de-bureau', 'https://www.tunisianet.com.tn/377-telephone-portable-tunisie', 'https://www.tunisianet.com.tn/716-swatch',
-                  'https://www.tunisianet.com.tn/385-logiciels-informatique-tunisie', 'https://www.tunisianet.com.tn/375-serveur-informatique-tunisie', 'https://www.tunisianet.com.tn/380-onduleur', 'https://www.tunisianet.com.tn/406-composant-informatique', ]
+    start_urls = ['https://www.tunisianet.com.tn/702-ordinateur-portable',
+                  'https://www.tunisianet.com.tn/700-accessoires-et-peripheriques', 'https://www.tunisianet.com.tn/701-ordinateur-de-bureau', 'https://www.tunisianet.com.tn/377-telephone-portable-tunisie', 'https://www.tunisianet.com.tn/716-swatch',
+                  'https://www.tunisianet.com.tn/385-logiciels-informatique-tunisie', 'https://www.tunisianet.com.tn/375-serveur-informatique-tunisie',
+                  'https://www.tunisianet.com.tn/380-onduleur', 'https://www.tunisianet.com.tn/406-composant-informatique',
+                  ]
 
     def parse(self, response):
         products = Selector(response).xpath(
@@ -26,15 +29,15 @@ class TunisianetspiderSpider(scrapy.Spider):
                 'div[@class="wb-product-desc product-description col-lg-7 col-xl-7 col-md-6 col-sm-6 col-xs-6"]/span/text()').extract()
             reference_slice = slice(1, -1, 1)
             item['reference'] = item['reference'][0][reference_slice]
-            item['title'] = product.xpath(
+            item['name'] = product.xpath(
                 'div[@class="wb-product-desc product-description col-lg-7 col-xl-7 col-md-6 col-sm-6 col-xs-6"]/h2/a/text()').extract()[0]
 
             for logoPrice in products:
                 if logoPrice == product:
-                    item['pricestring'] = logoPrice.xpath(
+                    item['priceString'] = logoPrice.xpath(
                         'div[@class="wb-product-desc product-description col-lg-7 col-xl-7 col-md-6 col-sm-6 col-xs-6"]/div[@class="product-price-and-shipping"]/span[@class="price"]/text()').extract()[0]
                     price_slice = slice(0, -3)
-                    item['price'] = item['pricestring'][price_slice]
+                    item['price'] = item['priceString'][price_slice]
                     item['brand'] = logoPrice.xpath(
                         'div[@class="wb-product-desc product-description col-lg-7 col-xl-7 col-md-6 col-sm-6 col-xs-6"]/div[@class="product-manufacturer"]/a/@href').extract()
                     brand_slice = slice(30, 40)
@@ -46,10 +49,10 @@ class TunisianetspiderSpider(scrapy.Spider):
             item['timestamp'] = datetime.now()
             item['currency'] = 'TND'
             item['country'] = 'TN'
-            item['domain'] = product.xpath(
+            item['domaine'] = product.xpath(
                 '//div[@class="col-lg-3 col-md-3 col-sm-3 hidden-sm-down"]/a/@href').extract()
             domain_slice = slice(12, 29, 1)
-            item['domain'] = item['domain'][0][domain_slice]
+            item['domaine'] = item['domaine'][0][domain_slice]
             item['description'] = product.xpath(
                 '//div[@class="thumbnail-container text-xs-center"]/div[@class="wb-product-desc product-description col-lg-7 col-xl-7 col-md-6 col-sm-6 col-xs-6"]/div[@class="listds"]/a/p/text()').extract()[0]
             yield item

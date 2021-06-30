@@ -16,11 +16,11 @@ def create_productsJumia_table(engine):
 
 class ProductsJumia(DeclarativeBase):
 
-    __tablename__ = "productsJumia"
+    __tablename__ = "products"
 
     id = Column(Integer, primary_key=True)
-    title = Column('title', String)
+    name = Column('name', String)
     price = Column('price', String)
     oldPrice = Column('oldPrice', String)
-    promotion = Column('promotion', String)
-    rating = Column('rating', String)
+    discount = Column('discount', String)
+  

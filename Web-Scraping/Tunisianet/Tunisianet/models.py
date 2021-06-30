@@ -29,8 +29,8 @@ class Products(DeclarativeBase):
     url = Column('url', String)
     image = Column('image', String)
     reference = Column('reference', String)
-    title = Column('title', String)
-    pricestring = Column('pricestring', String)
+    name = Column('name', String)
+    priceString = Column('priceString', String)
     price = Column('price', String)
     brand = Column('brand', String)
     category = Column('category', String)
@@ -38,7 +38,7 @@ class Products(DeclarativeBase):
     timestamp= Column('timestamp', DateTime)
     currency= Column('currency', String)
     country= Column('country', String)
-    domain= Column('domain',String)
+    domaine= Column('domain',String)
     description= Column('description',String)
 
 
