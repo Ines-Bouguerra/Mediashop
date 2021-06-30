@@ -32,11 +32,7 @@ class ProductDocument(Document):
             'currency',
             'sub_category',
             'country',
-            'short_description',
-            'old_price',
             'image',
-            'marketplaceId',
-
         ]
 
         # Ignore auto updating of Elasticsearch when a model is saved

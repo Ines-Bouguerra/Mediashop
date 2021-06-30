@@ -23,18 +23,17 @@ class products_Serializer(serializers.ModelSerializer):
                   'currency',
                   'sub_category',
                   'country',
-                  'short_description',
-                  'old_price',
                   'image',
-                  'marketplaceId',
                   )
         verbose_name_plural = 'Products'
         ordering = ('timestamp', 'price')
+
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = Account
         fields = ('pk', 'email', 'first_name', 'last_name',)
-        
+
 
 class WishlistSerializer(serializers.ModelSerializer):
     product = products_Serializer(required=False, read_only=True)
@@ -42,4 +41,4 @@ class WishlistSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = WishlistItem
-        fields = ('id','product','user','created_at',)    
+        fields = ('id', 'product', 'user', 'created_at',)

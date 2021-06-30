@@ -74,7 +74,7 @@ def product_list(request):
     query_params = request.GET
     query = query_params.get('query')
     category_slug = query_params.get('category_slug')
-    sub_category=query_params.get('sub_category')
+    sub_category = query_params.get('sub_category')
     brand_slug = query_params.get('brand_slug')
     price = query_params.get('price')
     paginator = ProductPageNumberPagination()
@@ -85,11 +85,11 @@ def product_list(request):
         context['results'] = paginator.paginate_queryset(results, request)
         context['query'] = JsonResponse(query, safe=False)
         return paginator.get_paginated_response(results)
-        
+
     if category_slug:
         category = get_object_or_404(Category, slug=category_slug)
         products = products.filter(category=category)
-    
+
     if sub_category:
         products = products.filter(sub_category=sub_category)
 
@@ -150,7 +150,6 @@ def compare_product(request):
                 'name': product.name,
                 'priceString': product.priceString,
                 'retailer': product.retailer,
-                'short_description': product.short_description,
                 'description': product.description,
                 'image': product.image,
                 'discount': product.discount,
