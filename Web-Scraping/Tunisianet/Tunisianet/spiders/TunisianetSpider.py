@@ -53,6 +53,8 @@ class TunisianetspiderSpider(scrapy.Spider):
                 '//div[@class="col-lg-3 col-md-3 col-sm-3 hidden-sm-down"]/a/@href').extract()
             domain_slice = slice(12, 29, 1)
             item['domaine'] = item['domaine'][0][domain_slice]
+            item['retailer'] = item['domaine'][0][domain_slice]
+            item['marketplace'] = item['domaine'][0][domain_slice]+' TN'
             item['description'] = product.xpath(
                 '//div[@class="thumbnail-container text-xs-center"]/div[@class="wb-product-desc product-description col-lg-7 col-xl-7 col-md-6 col-sm-6 col-xs-6"]/div[@class="listds"]/a/p/text()').extract()[0]
             yield item

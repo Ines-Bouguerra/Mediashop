@@ -6,7 +6,7 @@ import pathlib
 ELASTIC_HOST = 'http://localhost:9200/'
 client = elasticsearch.Elasticsearch(hosts=[ELASTIC_HOST])
 INDEXES = ['mediashop_products']
-fields = ['name', 'reference',
+fields = ['name', 'reference', 'category_slug', 'brand_slug'
           'description',  'sub_category', 'priceString', 'image', 'discount']
 
 
@@ -21,10 +21,11 @@ def lookup(query, index=INDEXES, fields=fields):
         print(result.image)
         data = {
             'reference': result.reference,
+            'category_slug': result.category_slug,
             'sub_category': result.sub_category,
             'name': result.name,
             'price': result.priceString,
-            # 'brand': result.brand,
+            'brand_slug': result.brand_slug,
             'description': result.description,
             'image': result.image,
             'discount': result.discount,

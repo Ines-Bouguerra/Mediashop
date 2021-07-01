@@ -24,6 +24,8 @@ class products_Serializer(serializers.ModelSerializer):
                   'sub_category',
                   'country',
                   'image',
+                  'category_slug',
+                  'brand_slug'
                   )
         verbose_name_plural = 'Products'
         ordering = ('timestamp', 'price')

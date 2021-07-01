@@ -56,7 +56,7 @@ class Sidebar extends React.Component {
               >
                 Admin Admin
               </div>
-              <div className="email">admin.admin2021@gmail.com</div>
+              <div className="email">admin.admin@mediashop.com.tn</div>
               <div className={this.state.defaultClass}>
                 <i
                   className="material-icons"

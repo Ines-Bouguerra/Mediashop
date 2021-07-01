@@ -34,7 +34,7 @@ const Product = ({ product, category, loading }) => {
       </div>
       <div className="product_content">
         <div className="product_price">
-          {product.priceString} {product.currency}
+          {product.priceString}
         </div>
         <div>
           <small> {product.reference}</small>
@@ -81,7 +81,7 @@ const Product = ({ product, category, loading }) => {
         })}
       </ul>
 
-      {product.discount !== "0 %" ? (
+      {(product.discount !== "0 %") & (product.discount === "null") ? (
         <ul className="product_marks">
           <li className="product_mark product_new product_discount">
             {product.discount}

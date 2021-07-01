@@ -10,15 +10,14 @@ class TunisianetItem(scrapy.Item):
     name = Field()
     priceString = Field()
     price = Field()
-    brand = Field()
-    category = Field()
     subcategory = Field()
     timestamp = Field()
     currency = Field()
     country = Field()
     domaine = Field()
     description = Field()
-
-class TunisianetCategoryItem(scrapy.Item):
-    
-    category = Field()
+    discount= Field()
+    retailer= Field()
+    marketplace= Field()
+    category= Field()
+    brand= Field()

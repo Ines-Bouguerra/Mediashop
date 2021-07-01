@@ -14,7 +14,7 @@ DATABASE = {
     'port': '5432',
     'username': 'postgres',
     'password': 'postgresql',
-    'database': 'web_scraping_mediashop'
+    'database': 'mediashop_db'
 }
 
 

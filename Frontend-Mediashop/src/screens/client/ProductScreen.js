@@ -7,6 +7,7 @@ import Message from "../../components/Message";
 import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
 import { addToWishlist } from "../../actions/auth";
+import Post from '../../components/post/Post';
 const ProductScreen = ({ match }) => {
   const dispatch = useDispatch();
   const productDetails = useSelector((state) => state.productDetails);
@@ -37,8 +38,8 @@ const ProductScreen = ({ match }) => {
       ) : (
         <div className="container">
           <Breadcrumb>
-            <Breadcrumb.Item Link to="/">
-              {product.category}
+            <Breadcrumb.Item >
+              {product.category_slug}
             </Breadcrumb.Item>
             <Breadcrumb.Item active>{product.name}</Breadcrumb.Item>
           </Breadcrumb>
@@ -67,15 +68,15 @@ const ProductScreen = ({ match }) => {
             {/* Description */}
             <div className="col-lg-5 order-3">
               <div className="product_description">
-                <div className="product_category">{product.category}</div>
+                <div className="product_category">{product.category_slug}</div>
                 <div className="product_name">{product.name}</div>
-                <div className="rating_r rating_r_4 product_rating">
+                {/* <div className="rating_r rating_r_4 product_rating">
                   <i></i>
                   <i></i>
                   <i></i>
                   <i></i>
                   <i></i>
-                </div>
+                </div> */}
                 <div className="product_text">
                   <p>
                     {product.reference}
@@ -99,7 +100,6 @@ const ProductScreen = ({ match }) => {
                     </button>
                   </div>
                 </div>
-                <div className="">chart Evolution prix</div>
               </div>
             </div>
           </div>
@@ -107,6 +107,7 @@ const ProductScreen = ({ match }) => {
       )}
       <br></br>
       <br></br>
+      <Post />
       <div className="container"></div>
     </div>
   );

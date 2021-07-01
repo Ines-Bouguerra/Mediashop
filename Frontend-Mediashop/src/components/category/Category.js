@@ -30,7 +30,7 @@ const Category = () => {
               <div className="col-md-3 mt-3 py-3 " key={category.id}>
                 <div className="product_border" />
                 <div className="product_image d-flex flex-column align-items-center justify-content-center">
-                  <img src={category.image} alt="" />
+                  <img src={category.image} alt="" style={{width:150,height:150}}/>
                 </div>
                 <br></br>
                 <Link to={`/product-list/category/${category.slug}`}>

@@ -33,6 +33,8 @@ class ProductDocument(Document):
             'sub_category',
             'country',
             'image',
+            'brand_slug',
+            'category_slug'
         ]
 
         # Ignore auto updating of Elasticsearch when a model is saved

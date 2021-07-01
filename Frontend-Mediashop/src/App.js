@@ -119,7 +119,7 @@ class App extends Component {
                   <Switch>
                     <Route exact path="/login" component={Login} />
                     <Route exact path="/" component={Home} />
-                    <UserRoute exact path="/wishlist" component={Favorites} />
+                    <Route exact path="/wishlist" component={Favorites} />
                     <Route exact path="/register" component={Register} />
                     <Route exact path="/google" component={Google} />
                     <Route
@@ -135,16 +135,16 @@ class App extends Component {
                     <Route path="/activate/:uid/:token" component={Activate} />
                     {/* <Route path="/category/:slug" component={CategoryScreen} /> */}
                     <Route exact path="/product-list" component={HomeScreen} />
-                   <Route exact path="/product-list/category/:category_slug" component={HomeScreen} /> 
-                    <Route exact path="/product-list/search/:query" component={HomeScreen} />
+                   <Route exact path="/category/:category_slug" component={HomeScreen} /> 
+                    <Route exact path="/search/:query" component={HomeScreen} />
                     <Route
                       exact
-                      path="/product-list/page/:page/limits/:limits"
+                      path="/page/:page/limits/:limits"
                       component={HomeScreen}
                     />
 
                     <Route
-                      path="/product-list/search/:query/page/:page"
+                      path="/search/:query/page/:page/limits/:limits"
                       component={HomeScreen}
                       exact
                     />

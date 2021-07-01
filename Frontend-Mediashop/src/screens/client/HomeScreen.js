@@ -1,44 +1,51 @@
 import React, { useEffect, useState } from "react";
-import Product from "../../components/products/Product";
 import { useDispatch, useSelector } from "react-redux";
-
+import { listBrands } from "../../actions/brand";
+import { getCategories, getSubCategories } from "../../actions/category";
 import { compareProduct, getProduct } from "../../actions/product";
+import brandss from "../../components/brand/constants";
+import subcategories from "../../components/category/constant";
 import Loader from "../../components/Loader";
 import Filter from "../../components/products/Filter";
-import { getCategories, getSubCategories } from "../../actions/category";
 import Paginate from "../../components/products/Paginate";
+import Product from "../../components/products/Product";
 import ProductCarousel from "../../components/products/ProductCarousel";
-import Brand from "../../components/brand/Brand";
-import SubCategory from "../../components/category/SubCategory";
-import { listBrands } from "../../actions/brand";
-import brandss from "../../components/brand/constants";
+import 'rc-slider/assets/index.css'
+import Slider  from 'rc-slider';
+
+const {createSliderWithTooltip}=Slider;
+const Range=createSliderWithTooltip(Slider.Range)
+
+
 const HomeScreen = ({ match }) => {
   const dispatch = useDispatch();
   const query = match.params.query;
   const page = match.params.page || 1;
-  const limits = match.params.limits || 20;
+  const limits = match.params.limits || 28;
   const name = match.params.name;
   const reference = match.params.reference;
   const priceString = match.params.priceString;
   const [category_slug, setcategory_slug] = useState("");
+  const [subcategory, setsubcategory] = useState("");
   const [brand_slug, setbrand_slug] = useState("");
-
+  const [price, setPrice] = useState([1,10000000]);
+ 
   const productList = useSelector((state) => state.productList);
   const { loading, products, pages } = productList;
 
   const categoryList = useSelector((state) => state.categoryList);
   const { categories } = categoryList;
 
+  // const subcategoryList = useSelector((state) => state.subcategoryList);
+  // const { subcategories } = subcategoryList;
+  
   // const brandListe = useSelector((state) => state.brandListe);
   // const { brandss } = brandListe;
-  console.log(
-    "TCL ~ file: HomeScreen.js ~ line 33 ~ HomeScreen ~ brands",
-    brandss
-  );
+ 
 
   useEffect(() => {
     dispatch(
-      getProduct(query, page, limits, category_slug, brand_slug),
+      getProduct(query, page, limits, category_slug, brand_slug,subcategory,price),
       getCategories(),
       getSubCategories(),
       listBrands(),
@@ -49,7 +56,9 @@ const HomeScreen = ({ match }) => {
     query,
     page,
     category_slug,
+    subcategory,
     brand_slug,
+    price,
     limits,
     name,
     reference,
@@ -86,29 +95,48 @@ const HomeScreen = ({ match }) => {
                   <div className="sidebar_title font-underline col-teal font-italic">
                     Sub Categories
                   </div>
-                  <SubCategory />
+                  <ul className="sidebar_categories">
+                    {subcategories.map((subcategory) => (
+                      <li
+                        style={{ cursor: "pointer", liststyleType: "none" }}
+                        key={subcategory}
+                        onClick={() => setsubcategory(subcategory.slug)}
+                      >
+                        {subcategory.name}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <br></br>
+                
                 <div className="sidebar_section filter_by_section">
                   <div className="sidebar_title font-underline col-teal font-italic">
-                    Filter By
+                    Filter By Price
                   </div>
-                  <div className="sidebar_subtitle">Price</div>
+                  <br></br><br></br>
                   <div className="filter_price">
                     <div id="slider-range" className="slider_range" />
-                    <p>Range: </p>
-                    <p>
-                      <input
-                        type="text"
-                        id="amount"
-                        className="amount"
-                        readOnly
-                        style={{ border: 0, fontWeight: "bold" }}
+                    <div >
+                      <Range
+                      marks={{
+                        1:`1 TND`,
+                        10000:`10000 TND`
+                      }}
+                      min={1}
+                      max={10000}
+                      defaultValue={[1,10000]}
+                      tipFormatter={value=>`${value} TD`}
+                      tipProps={{
+                        placement:"top",
+                        visible:true,
+                      }}
+                      value={price}
+                      onChange={price=>setPrice(price)}
+                      
                       />
-                    </p>
+                    </div>
                   </div>
                 </div>
-                <br></br>
+                <br></br><br/><br/><br/>
                 <div className="sidebar_section">
                   <div className="sidebar_title font-underline col-teal font-italic">
                     Brands

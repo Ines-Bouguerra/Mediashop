@@ -12,18 +12,15 @@ def db_connect():
     Performs database connection using database settings from settings.py.
     Returns sqlalchemy engine instance
     """
-    return create_engine("postgresql://postgres:postgresql@localhost/web_scraping_mediashop")
+    return create_engine("postgresql://postgres:postgresql@localhost/mediashop_db")
 
-def create_products_table(engine):
-    """"""
-    DeclarativeBase.metadata.create_all(engine)
-def create_category_table(engine):
+def create_products_product_table(engine):
     """"""
     DeclarativeBase.metadata.create_all(engine)
 
-class Products(DeclarativeBase):
-    """Sqlalchemy deals model"""
-    __tablename__ = "products"
+class products_product(DeclarativeBase):
+    """Sqlalchemy products model"""
+    __tablename__ = "products_product"
 
     id = Column(Integer, primary_key=True)
     url = Column('url', String)
@@ -32,20 +29,15 @@ class Products(DeclarativeBase):
     name = Column('name', String)
     priceString = Column('priceString', String)
     price = Column('price', String)
-    brand = Column('brand', String)
-    category = Column('category', String)
-    subcategory = Column('subcategory', String)
+    subcategory = Column('sub_category', String)
     timestamp= Column('timestamp', DateTime)
     currency= Column('currency', String)
     country= Column('country', String)
-    domaine= Column('domain',String)
+    domaine= Column('domaine',String)
     description= Column('description',String)
+    discount= Column('discount',String)
+    retailer= Column('retailer',String)
+    marketplace= Column('marketplace',String)
+    category= Column('category_slug',String)
+    brand= Column('brand_slug',String)
 
-
-class Category(DeclarativeBase):
-    __tablename__ = "category"
-
-    id = Column(Integer, primary_key=True)
-   
-    category = Column('name', String)
-  

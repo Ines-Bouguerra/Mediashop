@@ -34,11 +34,11 @@ export const getCategory = async (slug) =>
 
 export const getSubCategories = () => async (dispatch) => {
     try {
-        const res = await axios.get('http://127.0.0.1:8080/api/categories/subcategory-list')
+        const { data } = await axios.get('http://127.0.0.1:8080/api/categories/subcategory-list')
 
         dispatch({
             type: GET_SUB_CATEGORY,
-            payload: res.data,
+            payload: data,
         })
 
     } catch (error) {

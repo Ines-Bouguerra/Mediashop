@@ -26,13 +26,13 @@ export const subcategoryList = (state = { subcategories: [] }, action) => {
         case GET_SUB_CATEGORY:
             return {
                 ...state,
-                subcategories: payload,
+                subcategories: payload.data,
                 loading: false,
             }
         case SUB_CATEGORY_ERROR:
             return {
                 ...state,
-                error: payload,
+                error: payload.error,
                 loading: false,
             }
         default:

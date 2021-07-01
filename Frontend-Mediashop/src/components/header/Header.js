@@ -102,11 +102,11 @@ const Header = ({ logout, isAuthenticated }) => {
                         <div className="wishlist_text">
                           <Link to="/wishlist">Wishlist</Link>
                         </div>
-                        <div className="wishlist_count">115</div>
+                        {/* <div className="wishlist_count">115</div> */}
                       </div>
                     </div>
                   )}
-                  {isAuthenticated && (
+                  {/* {isAuthenticated && (
                     <div className="">
                       <div className="notif_container d-flex flex-row align-items-center justify-content-end">
                         <div className="notif_icon">
@@ -122,7 +122,7 @@ const Header = ({ logout, isAuthenticated }) => {
                         </div>
                       </div>
                     </div>
-                  )}
+                  )} */}
                 </div>
               </div>
             </div>
@@ -177,12 +177,6 @@ const Header = ({ logout, isAuthenticated }) => {
                           <li>
                             <Link to="/blog">
                               Blog
-                              <i className="fas fa-chevron-down" />
-                            </Link>
-                          </li>
-                          <li>
-                            <Link to="/blog-post">
-                              Blog Post
                               <i className="fas fa-chevron-down" />
                             </Link>
                           </li>
