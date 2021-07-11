@@ -12,7 +12,7 @@ def db_connect():
     Performs database connection using database settings from settings.py.
     Returns sqlalchemy engine instance
     """
-    return create_engine("postgresql://postgres:postgresql@localhost/mediashop_db")
+    return create_engine("postgresql://postgres:postgresql@localhost/web_scraping_mediashop")
 
 def create_products_product_table(engine):
     """"""
@@ -20,7 +20,7 @@ def create_products_product_table(engine):
 
 class products_product(DeclarativeBase):
     """Sqlalchemy products model"""
-    __tablename__ = "products_product"
+    __tablename__ = "products"
 
     id = Column(Integer, primary_key=True)
     url = Column('url', String)
