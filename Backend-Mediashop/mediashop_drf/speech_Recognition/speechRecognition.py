@@ -17,10 +17,10 @@ def main():
 
         try:
             dest = r.recognize_google(audio)
-            print('You have said : '+dest)
+            print(f'You have said : {dest}')
             web.get(path).open(dest)
         except Exception as e:
-            print('Error :'+str(e))
+            print(f'Error :{str(e)}')
 
 
 if __name__ == '__main__':

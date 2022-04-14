@@ -18,12 +18,12 @@ from sklearn.preprocessing import LabelEncoder
 def clusterEvaluate(cluster):
     count=np.bincount(cluster)
     count=np.argmax(count)
-    
-    homogenity=np.count_nonzero(cluster==count)/np.size(cluster)
-    return homogenity
+
+    return np.count_nonzero(cluster==count)/np.size(cluster)
 
 """Importing the dataset
 """
+
 
 dataset=pd.read_csv("outputTunisianet.csv")
 
@@ -47,16 +47,10 @@ y=dbscan.fit_predict(X)
 cluster_labels=np.unique(y)
 
 homogenities=[]
-i=0
-
-for index in cluster_labels:
-    if index==-1:
-        i+=1
-    else:
+for i, index in enumerate(cluster_labels):
+    if index != -1:
         cluster=y_truth[y==index]
         homogenities.insert(i, clusterEvaluate(cluster))
-        i+=1
-        
 print(np.mean(homogenities))
 
 """homogenity=the most frequent target label/ total data points"""

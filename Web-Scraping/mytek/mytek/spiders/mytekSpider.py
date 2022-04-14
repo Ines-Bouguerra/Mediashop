@@ -7,11 +7,8 @@ class MytekspiderSpider(scrapy.Spider):
     start_urls = ['https://www.mytek.tn']
     def parse(self, response):
         for div_sel in response.css('ul#menu li.li-niveau1'):
-            url_cat = div_sel.css('a::attr(href)').extract_first()
-            if url_cat:
-                # print(url_cat)
-                request = scrapy.Request(url_cat,self.parse_categorie)
-                yield request
+            if url_cat := div_sel.css('a::attr(href)').extract_first():
+                yield scrapy.Request(url_cat,self.parse_categorie)
     def parse_categorie(self, response):
         # xp = "//div[@class='product-container']//li/a/@href"
         # return (Request(url, callback=self.parse_manga_list_page) for url in response.xpath(xp).extract())
@@ -46,6 +43,5 @@ class MytekspiderSpider(scrapy.Spider):
         if response.css('ul.pagination li.pagination_next a::attr(href)'):
             next_page = response.css('ul.pagination li.pagination_next a::attr(href)').extract_first().strip()
         if next_page:
-            next_page_url = 'https://www.mytek.tn' + next_page
-            request = scrapy.Request(next_page_url,self.parse_categorie)
-            yield request
+            next_page_url = f'https://www.mytek.tn{next_page}'
+            yield scrapy.Request(next_page_url,self.parse_categorie)

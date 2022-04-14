@@ -9,6 +9,7 @@ This is a simple application for sentence embeddings: clustering
 Sentences are mapped to sentence embeddings and then k-mean clustering is applied.
 """
 
+
 from sentence_transformers import SentenceTransformer
 from sklearn.cluster import KMeans
 import pandas as pd
@@ -26,11 +27,11 @@ num_clusters = 87
 clustering_model = KMeans(n_clusters=num_clusters)
 clustering_model.fit(corpus_embeddings)
 cluster_assignment = clustering_model.labels_
-clustered_sentences = [[] for i in range(num_clusters)]
+clustered_sentences = [[] for _ in range(num_clusters)]
 for sentence_id, cluster_id in enumerate(cluster_assignment):
     clustered_sentences[cluster_id].append(corpus[sentence_id])
-    
-    
+
+
 
 for i, cluster in enumerate(clustered_sentences):
     print("Cluster ", i+1)

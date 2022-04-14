@@ -78,7 +78,6 @@ def compare_product(request):
     reference = query_params.get('reference')
     priceString = query_params.get('priceString')
     products = Product.objects.all()
-    context = {}
     q_results = []
     for product in products:
         if product.name == name and product.reference == reference and product.priceString == priceString:
@@ -97,7 +96,7 @@ def compare_product(request):
             product = +1
         else:
             print("error")
-    context['results'] = q_results
+    context = {'results': q_results}
     return JsonResponse(context, safe=False)
 
 
@@ -147,11 +146,11 @@ def speech_to_text(request):
 
         try:
             output = r.recognize_google(audio)
-            print('You have said : '+output)
+            print(f'You have said : {output}')
             data = output
             web.get(path).open(output)
         except Exception as e:
-            print('Error :'+str(e))
+            print(f'Error :{str(e)}')
 
     return JsonResponse({'data': data})
 # filter 
