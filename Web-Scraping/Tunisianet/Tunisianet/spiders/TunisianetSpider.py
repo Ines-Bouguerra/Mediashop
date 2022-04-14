@@ -31,8 +31,7 @@ class TunisianetspiderSpider(scrapy.Spider):
 
             yield item
         NEXT_PAGE_SELECTOR = 'a.next ::attr(href)'
-        next_page = response.css(NEXT_PAGE_SELECTOR).extract_first()
-        if next_page:
+        if next_page := response.css(NEXT_PAGE_SELECTOR).extract_first():
             yield scrapy.Request(
                 response.urljoin(next_page),
                 callback=self.parse

@@ -12,4 +12,4 @@ class Post(models.Model):
         verbose_name_plural = 'Posts'
 
     def __str__(self):
-        return '%s' % self.post_text
+        return f'{self.post_text}'
